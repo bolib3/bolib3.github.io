@@ -5,7 +5,9 @@ import RootLayout from '../layouts/RootLayout.astro';
 ---
 
 <RootLayout>
-  <h1 class="text-9xl text-center mb-8">Problems</h1>
+  <h1 class="text-4xl font-bold">Problems</h1>
+
+  <p class="font-light text-lg">Our collection of bi-level problems</p>
 
   <div class="grid grid-cols-13 gap-4">
     <div>Problem</div>
@@ -40,7 +42,13 @@ import RootLayout from '../layouts/RootLayout.astro';
       <div class="grid grid-cols-13 gap-4">
         <div>{problem.name}</div>
         <div>
-          <a href={problem.citation.href}>{problem.citation.title}</a>
+          {problem.citation ? (
+            <a href={problem.citation.link} class="link">
+              {problem.citation.authors} {problem.citation.year}
+            </a>
+          ) : (
+            <span>-</span>
+          )}
         </div>
         <div>-</div>
         <div>

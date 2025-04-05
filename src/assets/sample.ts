@@ -4,34 +4,36 @@ const placeholderCategory = {
   name: 'placeholder',
 };
 
-const placeholderCitation = {
-  title: 'Example Citation',
-  href: 'https://example.com',
-};
-
 export const problems: Problem[] = [
   {
     name: 'Transmission station',
     category: placeholderCategory,
-    citation: placeholderCitation,
     upperLevelVariables: 10,
     lowerLevelVariables: 600,
     upperLevelConstraints: 0,
     lowerLevelConstraints: 10,
+    citation: {
+      authors: 'Ajay et al.',
+      year: 2004,
+      link: 'https://example.com',
+    },
   },
   {
     name: 'Electric power markets',
     category: placeholderCategory,
-    citation: placeholderCitation,
     upperLevelVariables: 5,
     lowerLevelVariables: 150,
     upperLevelConstraints: 5,
     lowerLevelConstraints: 10,
+    citation: {
+      authors: 'Gabriel',
+      year: 2010,
+      link: 'https://example.com',
+    },
   },
   {
     name: 'weish26.dat-100',
     category: placeholderCategory,
-    citation: placeholderCitation,
     upperLevelVariables: 700,
     lowerLevelVariables: 700,
     upperLevelConstraints: 15,
@@ -40,7 +42,6 @@ export const problems: Problem[] = [
   {
     name: 'BCPIns',
     category: placeholderCategory,
-    citation: placeholderCitation,
     upperLevelVariables: 100,
     lowerLevelVariables: 1593,
     upperLevelConstraints: 0,
@@ -49,7 +50,6 @@ export const problems: Problem[] = [
   {
     name: 'normalClique',
     category: placeholderCategory,
-    citation: placeholderCitation,
     upperLevelVariables: 2,
     lowerLevelVariables: 236,
     upperLevelConstraints: 10,
@@ -58,37 +58,53 @@ export const problems: Problem[] = [
   {
     name: 'Linear',
     category: placeholderCategory,
-    citation: placeholderCitation,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
     lowerLevelConstraints: '10-80000',
+    citation: {
+      authors: 'Moore.',
+      year: 2007,
+      link: 'https://example.com',
+    },
   },
   {
     name: 'Linear regularised',
     category: placeholderCategory,
-    citation: placeholderCitation,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
     lowerLevelConstraints: '10-80000',
+    citation: {
+      authors: 'Moore.',
+      year: 2007,
+      link: 'https://example.com',
+    },
   },
   {
     name: 'RBF kernel',
     category: placeholderCategory,
-    citation: placeholderCitation,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
     lowerLevelConstraints: '10-80000',
+    citation: {
+      authors: 'Coniglio et al.',
+      year: 2022,
+      link: 'https://example.com',
+    },
   },
   {
     name: 'Polynomial kernel',
     category: placeholderCategory,
-    citation: placeholderCitation,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
     lowerLevelConstraints: '10-80000',
+    citation: {
+      authors: 'Kunapuli et al.',
+      year: 2020,
+      link: 'https://example.com',
+    },
   },
 ];
