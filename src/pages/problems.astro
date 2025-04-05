@@ -1,0 +1,67 @@
+---
+import { problems } from '../assets/sample';
+import Download from '../components/Download.astro';
+import RootLayout from '../layouts/RootLayout.astro';
+---
+
+<RootLayout>
+  <h1 class="text-9xl text-center mb-8">Problems</h1>
+
+  <div class="grid grid-cols-13 gap-4">
+    <div>Problem</div>
+    <div>Citation</div>
+    <div>Dataset</div>
+    <div>
+      Upper-level variables
+      <code>n</code>
+    </div>
+    <div>
+      Lower-level variables
+      <code>m</code>
+    </div>
+    <div>
+      Upper-level constraints
+      <code>p</code>
+    </div>
+    <div>
+      Lower-level constraints
+      <code>q</code>
+    </div>
+    <div>Python</div>
+    <div>MatLab</div>
+    <div>Julia</div>
+    <div>AMPL</div>
+    <div>GAMS</div>
+    <div>PDF</div>
+  </div>
+
+  {
+    problems.map((problem) => (
+      <div class="grid grid-cols-13 gap-4">
+        <div>{problem.name}</div>
+        <div>
+          <a href={problem.citation.href}>{problem.citation.title}</a>
+        </div>
+        <div>-</div>
+        <div>
+          <code>{problem.upperLevelVariables}</code>
+        </div>
+        <div>
+          <code>{problem.lowerLevelVariables}</code>
+        </div>
+        <div>
+          <code>{problem.upperLevelConstraints}</code>
+        </div>
+        <div>
+          <code>{problem.lowerLevelConstraints}</code>
+        </div>
+        <Download link="https://picsum.photos/536/354" />
+        <Download link="https://picsum.photos/536/354" />
+        <Download link="https://picsum.photos/536/354" />
+        <Download link="https://picsum.photos/536/354" />
+        <Download link="https://picsum.photos/536/354" />
+        <Download link="https://picsum.photos/536/354" />
+      </div>
+    ))
+  }
+</RootLayout>
