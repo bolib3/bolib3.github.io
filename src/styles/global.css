@@ -1,1 +1,18 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+/* 
+  This is the global CSS file for the project which
+  sets up some default styles for brevity and
+  consistency across the application. 
+
+  Please extend this sparingly and prefer using components
+  styled with Tailwind CSS utility classes for most cases. 
+*/
+
+a {
+  text-decoration: underline;
+  color: blue;
+  &:hover {
+    text-decoration: none;
+  }
+}
