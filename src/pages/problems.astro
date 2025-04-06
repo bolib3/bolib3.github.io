@@ -2,12 +2,15 @@
 import { problems } from '../assets/sample';
 import Download from '../components/Download.astro';
 import RootLayout from '../layouts/RootLayout.astro';
+import VueProblems from '../components/Problems.vue';
 ---
 
 <RootLayout>
   <h1 class="text-4xl font-bold">Problems</h1>
 
   <p class="text-lg font-light">Our collection of bi-level problems</p>
+
+  <VueProblems client:load />
 
   <div class="grid grid-cols-13 gap-4">
     <div>Problem</div>
@@ -38,7 +41,7 @@ import RootLayout from '../layouts/RootLayout.astro';
   </div>
 
   {
-    problems.map((problem) => (
+    problems.map(problem => (
       <div class="grid grid-cols-13 gap-4">
         <div>{problem.name}</div>
         <div>

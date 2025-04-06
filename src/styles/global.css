@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './shadcn.css';
 
 /* 
   This is the global CSS file for the project which
