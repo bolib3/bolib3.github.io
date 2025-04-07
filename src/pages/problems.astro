@@ -1,8 +1,6 @@
 ---
-import { problems } from '../assets/sample';
-import Download from '../components/Download.astro';
 import RootLayout from '../layouts/RootLayout.astro';
-import VueProblems from '../components/Problems.vue';
+import Datatable from '../components/problems/Datatable.vue';
 ---
 
 <RootLayout>
@@ -10,69 +8,5 @@ import VueProblems from '../components/Problems.vue';
 
   <p class="text-lg font-light">Our collection of bi-level problems</p>
 
-  <VueProblems client:load />
-
-  <div class="grid grid-cols-13 gap-4">
-    <div>Problem</div>
-    <div>Citation</div>
-    <div>Dataset</div>
-    <div>
-      Upper-level variables
-      <code>n</code>
-    </div>
-    <div>
-      Lower-level variables
-      <code>m</code>
-    </div>
-    <div>
-      Upper-level constraints
-      <code>p</code>
-    </div>
-    <div>
-      Lower-level constraints
-      <code>q</code>
-    </div>
-    <div>Python</div>
-    <div>MatLab</div>
-    <div>Julia</div>
-    <div>AMPL</div>
-    <div>GAMS</div>
-    <div>PDF</div>
-  </div>
-
-  {
-    problems.map(problem => (
-      <div class="grid grid-cols-13 gap-4">
-        <div>{problem.name}</div>
-        <div>
-          {problem.citation ? (
-            <a href={problem.citation.link} class="link">
-              {problem.citation.authors} {problem.citation.year}
-            </a>
-          ) : (
-            <span>-</span>
-          )}
-        </div>
-        <div>-</div>
-        <div>
-          <code>{problem.upperLevelVariables}</code>
-        </div>
-        <div>
-          <code>{problem.lowerLevelVariables}</code>
-        </div>
-        <div>
-          <code>{problem.upperLevelConstraints}</code>
-        </div>
-        <div>
-          <code>{problem.lowerLevelConstraints}</code>
-        </div>
-        <Download link="https://picsum.photos/536/354" />
-        <Download link="https://picsum.photos/536/354" />
-        <Download link="https://picsum.photos/536/354" />
-        <Download link="https://picsum.photos/536/354" />
-        <Download link="https://picsum.photos/536/354" />
-        <Download link="https://picsum.photos/536/354" />
-      </div>
-    ))
-  }
+  <Datatable client:load />
 </RootLayout>

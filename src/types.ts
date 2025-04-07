@@ -9,16 +9,12 @@ export type ValueOrRange = number | `${number}-${number}`;
 
 export interface Problem {
   name: string;
-  category: ProblemCategory;
+  category: string; // TODO: Should this be an array or nested object?
   citation?: Citation;
   upperLevelVariables: ValueOrRange;
   lowerLevelVariables: ValueOrRange;
   upperLevelConstraints: ValueOrRange;
   lowerLevelConstraints: ValueOrRange;
+  addedAt: Date;
   // dataset: never; // TODO: What should this be?
-}
-
-export interface ProblemCategory {
-  parentCategory?: ProblemCategory;
-  name: string;
 }
