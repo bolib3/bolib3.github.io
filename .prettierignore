@@ -1,2 +1,7 @@
 package*
 dist
+
+# Ignore the shadcn code
+src/components/ui
+src/styles/shadcn.css
+src/lib/utils.ts
