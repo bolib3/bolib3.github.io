@@ -142,7 +142,12 @@ const columns = [
   },
 ];
 
-const sorting = ref<SortingState>([]);
+const sorting = ref<SortingState>([
+  {
+    id: 'name',
+    desc: false,
+  },
+]);
 const columnFilters = ref<ColumnFiltersState>([]);
 const columnVisibility = ref<VisibilityState>({
   addedAt: false,
