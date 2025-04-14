@@ -1,0 +1,129 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    svg {
+      filter: grayscale(100%);
+    }
+  </style>
+  <!-- 3D Coordinate system -->
+  <g transform="translate(400, 320)">
+    <!-- X axis -->
+    <line x1="-300" y1="0" x2="300" y2="0" stroke="#ddd" stroke-width="1.5" stroke-dasharray="5,3"
+    ></line>
+    <polygon points="300,0 290,-5 290,5" fill="#ddd"></polygon>
+
+    <!-- Y axis -->
+    <line x1="0" y1="200" x2="0" y2="-200" stroke="#ddd" stroke-width="1.5" stroke-dasharray="5,3"
+    ></line>
+    <polygon points="0,-200 -5,-190 5,-190" fill="#ddd"></polygon>
+
+    <!-- Z axis (perspective) -->
+    <line x1="0" y1="0" x2="150" y2="150" stroke="#ddd" stroke-width="1.5" stroke-dasharray="5,3"
+    ></line>
+    <polygon points="150,150 138,147 147,138" fill="#ddd"></polygon>
+
+    <!-- Upper level solution space (blue surface) -->
+    <path
+      d="M -250,50 C -200,-100 -50,-150 50,-80 C 100,-50 200,-30 250,30 C 150,100 0,80 -150,70 Z"
+      fill="#4c8dff"
+      fill-opacity="0.5"
+      stroke="#2c5aa0"
+      stroke-width="1.5"></path>
+
+    <!-- Lower level solution space (green surface) -->
+    <path
+      d="M -200,20 C -150,-70 -30,-90 30,-50 C 80,-20 150,-10 180,20 C 100,70 0,50 -120,40 Z"
+      fill="#4caf50"
+      fill-opacity="0.5"
+      stroke="#2e7d32"
+      stroke-width="1.5"></path>
+
+    <!-- Optimal path through both levels (red line) -->
+    <path
+      d="M -180,10 C -100,-50 0,-30 120,10"
+      stroke="#e53935"
+      stroke-width="3"
+      fill="none"
+      stroke-dasharray="none"></path>
+
+    <!-- Upper level constraint boundary -->
+    <path
+      d="M -220,30 C -150,-80 -20,-100 70,-30 C 120,0 200,20 230,40"
+      stroke="#1976d2"
+      stroke-width="2"
+      fill="none"
+      stroke-dasharray="5,3"></path>
+
+    <!-- Lower level constraint boundary -->
+    <path
+      d="M -170,0 C -100,-60 -10,-70 50,-20 C 90,10 160,30 170,30"
+      stroke="#388e3c"
+      stroke-width="2"
+      fill="none"
+      stroke-dasharray="5,3"></path>
+
+    <!-- Bilevel optimal solution point -->
+    <circle cx="60" cy="-20" r="8" fill="#ff5722" stroke="#bf360c" stroke-width="1.5"></circle>
+
+    <!-- Leader's decision space -->
+    <ellipse
+      cx="-150"
+      cy="-40"
+      rx="80"
+      ry="40"
+      transform="rotate(-15)"
+      fill="#2196f3"
+      fill-opacity="0.3"
+      stroke="#0d47a1"
+      stroke-width="1.5"></ellipse>
+
+    <!-- Follower's response curves -->
+    <path d="M -100,-20 C -50,-60 50,-40 100,0" stroke="#7b1fa2" stroke-width="2" fill="none"
+    ></path>
+    <path d="M -120,0 C -70,-40 30,-20 80,20" stroke="#7b1fa2" stroke-width="2" fill="none"></path>
+    <path d="M -140,20 C -90,-20 10,0 60,40" stroke="#7b1fa2" stroke-width="2" fill="none"></path>
+
+    <!-- Level sets of upper objective -->
+    <ellipse
+      cx="0"
+      cy="-30"
+      rx="220"
+      ry="80"
+      transform="rotate(-10)"
+      fill="none"
+      stroke="#0d47a1"
+      stroke-width="1"
+      stroke-dasharray="3,2"></ellipse>
+    <ellipse
+      cx="0"
+      cy="-30"
+      rx="170"
+      ry="60"
+      transform="rotate(-10)"
+      fill="none"
+      stroke="#0d47a1"
+      stroke-width="1"
+      stroke-dasharray="3,2"></ellipse>
+    <ellipse
+      cx="0"
+      cy="-30"
+      rx="120"
+      ry="40"
+      transform="rotate(-10)"
+      fill="none"
+      stroke="#0d47a1"
+      stroke-width="1"
+      stroke-dasharray="3,2"></ellipse>
+
+    <!-- 3D grid on surfaces for depth perception -->
+    <g stroke="#ffffff" stroke-width="0.5" opacity="0.5">
+      <!-- Grid lines on upper surface -->
+      <path d="M -200,30 C -150,-90 -20,-110 80,-40 C 130,-10 220,10 250,30" fill="none"></path>
+      <path d="M -220,10 C -170,-100 -40,-120 60,-50 C 110,-20 200,0 230,20" fill="none"></path>
+      <path d="M -240,-10 C -190,-120 -60,-140 40,-70 C 90,-40 180,-20 210,0" fill="none"></path>
+
+      <path d="M -200,0 C -100,-50 0,-70 100,-20" fill="none"></path>
+      <path d="M -150,20 C -50,-30 50,-50 150,0" fill="none"></path>
+      <path d="M -100,40 C 0,-10 100,-30 200,20" fill="none"></path>
+    </g>
+  </g>
+</svg>

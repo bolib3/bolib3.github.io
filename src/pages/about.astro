@@ -1,13 +1,44 @@
 ---
 import RootLayout from '../layouts/RootLayout.astro';
+import { Button } from '@/components/ui/button';
 ---
 
 <RootLayout>
-  <h1 class="text-4xl font-bold">About</h1>
+  <h1>About</h1>
 
-  <p>
+  <p class="mt-6 max-w-3xl leading-7">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tempore eum laboriosam dolorum
     atque, cupiditate dignissimos delectus odit qui cumque odio tenetur. Dolor vero earum corporis
     eaque iure nam voluptatem!
+  </p>
+
+  <h3 class="mt-6">Contributing</h3>
+
+  <p class="mt-6 max-w-3xl leading-7">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Please see this <Button
+      variant="link"
+      class="p-0"
+    >
+      <a href="/contributing">guide.</a>
+    </Button>
+
+    <h3 class="mt-6">Citing</h3>
+
+    <p class="mt-6 max-w-3xl leading-7">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+    <div class="bg-muted">
+      <pre
+        class="bg-muted relative overflow-x-auto rounded-lg p-4 font-mono text-sm font-semibold">
+      <code>
+  @report&#123;lorem:2024,
+    title = &#123;Lorem ipsum dolor sit amet&#125;,
+    author = &#123;John Doe&#125;,
+    year = &#123;2024&#125;,
+    institution = &#123;University of Lorem Ipsum&#125;,
+    address = &#123;1234 Lorem St, Ipsum City, IL 12345&#125;
+  &#125;
+      </code>
+    </pre>
+    </div>
   </p>
 </RootLayout>

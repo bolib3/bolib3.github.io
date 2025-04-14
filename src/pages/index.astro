@@ -1,13 +1,25 @@
 ---
+import SplashArt from '@/components/SplashArt.astro';
 import RootLayout from '../layouts/RootLayout.astro';
+import { Button } from '@/components/ui/button';
 ---
 
 <RootLayout>
-  <h1 class="text-4xl font-bold">Bi-level benchmarking</h1>
+  <h1>Bi-level benchmarking</h1>
 
-  <p class="max-w-2xl">
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis nulla quam consequatur. Sed
-    eligendi odit vel. Quos ab, rerum adipisci maiores excepturi possimus aut dignissimos alias sit
-    quo at nobis.
-  </p>
+  <div class="grid gap-4 md:grid-cols-2">
+    <div>
+      <p class="mt-6 max-w-3xl leading-7">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis nulla quam consequatur.
+        Sed eligendi odit vel. Quos ab, rerum adipisci maiores excepturi possimus aut dignissimos
+        alias sit quo at nobis.
+      </p>
+
+      <Button class="mt-4">
+        <a href="/problems"> Browse Problems </a>
+      </Button>
+    </div>
+
+    <SplashArt />
+  </div>
 </RootLayout>

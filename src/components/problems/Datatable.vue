@@ -137,10 +137,7 @@ const columns = [
 const sorting = ref<SortingState>([]);
 const columnFilters = ref<ColumnFiltersState>([]);
 const columnVisibility = ref<VisibilityState>({
-  upperLevelVariables: false,
-  lowerLevelVariables: false,
-  upperLevelConstraints: false,
-  lowerLevelConstraints: false,
+  addedAt: false,
 });
 
 const table = useVueTable({
