@@ -37,6 +37,7 @@ import { h, ref } from 'vue';
 import { problems } from '@/assets/sample';
 import type { Citation, Problem } from '@/types';
 import ActionMenu from './ActionMenu.vue';
+import DataTableToolbar from './DataTableToolbar.vue';
 
 const data = problems;
 
@@ -87,10 +88,15 @@ const columns = [
       return h(
         Badge,
         { variant: 'outline', style: { backgroundColor: category.colour } },
-        category.name
+        () => category.name
       );
     },
     enableHiding: false,
+    filterFn: (row, columnId, value) => {
+      const rowValue = row.getValue(columnId) as Category;
+
+      return value.some((v) => rowValue.name.toLowerCase().includes(v.toLowerCase()));
+    },
   }),
   columnHelper.accessor('upperLevelVariables', {
     header: ({ column }) => sortableHeader(column, 'n', 'Upper Level Variables'),
@@ -117,9 +123,7 @@ const columns = [
         return h('div', { class: 'text-muted' }, '-');
       }
 
-      return h(
-        Button,
-        { variant: 'link', asChild: true },
+      return h(Button, { variant: 'link', asChild: true }, () =>
         h(
           'a',
           { href: citation.link, target: '_blank' },
@@ -178,36 +182,8 @@ const table = useVueTable({
 
 <template>
   <div class="w-full">
-    <div class="flex items-center gap-2 py-4">
-      <Input
-        class="max-w-sm"
-        placeholder="Search..."
-        :model-value="table.getColumn('name')?.getFilterValue() as string"
-        @update:model-value="table.getColumn('name')?.setFilterValue($event)"
-      />
-      <DropdownMenu>
-        <DropdownMenuTrigger as-child>
-          <Button variant="outline" class="ml-auto">
-            Columns <ChevronDown class="ml-2 h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuCheckboxItem
-            v-for="column in table.getAllColumns().filter((column) => column.getCanHide())"
-            :key="column.id"
-            class="capitalize"
-            :model-value="column.getIsVisible()"
-            @update:model-value="
-              (value) => {
-                column.toggleVisibility(!!value);
-              }
-            "
-          >
-            {{ column.id }}
-          </DropdownMenuCheckboxItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+    <DataTableToolbar :table="table" />
+
     <div class="rounded-md border">
       <Table>
         <TableHeader>
