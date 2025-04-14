@@ -18,6 +18,34 @@ defineProps<{
 function copy(text: string) {
   navigator.clipboard.writeText(text);
 }
+
+function downloadDataset(problem: Problem) {
+  downloadFile('/sample/bilevel.csv', snakeCase(problem.name) + '.csv');
+}
+
+function downloadPython(problem: Problem) {
+  downloadFile('/sample/bilevel.py', snakeCase(problem.name) + '.py');
+}
+
+function downloadMatLab(problem: Problem) {
+  downloadFile('/sample/bilevel.m', snakeCase(problem.name) + '.m');
+}
+
+function snakeCase(str: string) {
+  return str
+    .replace(/([a-z])([A-Z])/g, '$1_$2')
+    .replace(/[\s-]+/g, '_')
+    .toLowerCase();
+}
+
+function downloadFile(url: string, filename: string) {
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
 </script>
 
 <template>
@@ -33,9 +61,11 @@ function copy(text: string) {
       <DropdownMenuItem @click="copy(problem.name)"> Copy name </DropdownMenuItem>
       <DropdownMenuItem> Copy citation </DropdownMenuItem>
       <DropdownMenuSeparator />
-      <DropdownMenuItem>Download dataset <code>50mb</code></DropdownMenuItem>
-      <DropdownMenuItem>Download Python</DropdownMenuItem>
-      <DropdownMenuItem>Download MatLab</DropdownMenuItem>
+      <DropdownMenuItem @click="downloadDataset(problem)">
+        Download dataset <code>50mb</code></DropdownMenuItem
+      >
+      <DropdownMenuItem @click="downloadPython(problem)">Download Python</DropdownMenuItem>
+      <DropdownMenuItem @click="downloadMatLab(problem)">Download MatLab</DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
 </template>
