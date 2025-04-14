@@ -1,11 +1,6 @@
-<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    svg {
-      filter: grayscale(100%);
-    }
-  </style>
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" class="group">
   <!-- 3D Coordinate system -->
-  <g transform="translate(400, 320)">
+  <g transform="translate(400, 200)">
     <!-- X axis -->
     <line x1="-300" y1="0" x2="300" y2="0" stroke="#ddd" stroke-width="1.5" stroke-dasharray="5,3"
     ></line>
@@ -21,26 +16,26 @@
     ></line>
     <polygon points="150,150 138,147 147,138" fill="#ddd"></polygon>
 
-    <!-- Upper level solution space (blue surface) -->
+    <!-- Upper level solution space -->
     <path
       d="M -250,50 C -200,-100 -50,-150 50,-80 C 100,-50 200,-30 250,30 C 150,100 0,80 -150,70 Z"
-      fill="#4c8dff"
+      fill="#8d8d8d"
       fill-opacity="0.5"
-      stroke="#2c5aa0"
+      stroke="#5a5a5a"
       stroke-width="1.5"></path>
 
-    <!-- Lower level solution space (green surface) -->
+    <!-- Lower level solution space -->
     <path
       d="M -200,20 C -150,-70 -30,-90 30,-50 C 80,-20 150,-10 180,20 C 100,70 0,50 -120,40 Z"
-      fill="#4caf50"
+      fill="#8f8f8f"
       fill-opacity="0.5"
-      stroke="#2e7d32"
+      stroke="#7d7d7d"
       stroke-width="1.5"></path>
 
-    <!-- Optimal path through both levels (red line) -->
+    <!-- Optimal path through both levels -->
     <path
       d="M -180,10 C -100,-50 0,-30 120,10"
-      stroke="#e53935"
+      stroke="#939393"
       stroke-width="3"
       fill="none"
       stroke-dasharray="none"></path>
@@ -48,7 +43,7 @@
     <!-- Upper level constraint boundary -->
     <path
       d="M -220,30 C -150,-80 -20,-100 70,-30 C 120,0 200,20 230,40"
-      stroke="#1976d2"
+      stroke="#767676"
       stroke-width="2"
       fill="none"
       stroke-dasharray="5,3"></path>
@@ -56,13 +51,20 @@
     <!-- Lower level constraint boundary -->
     <path
       d="M -170,0 C -100,-60 -10,-70 50,-20 C 90,10 160,30 170,30"
-      stroke="#388e3c"
+      stroke="#8e8e8e"
       stroke-width="2"
       fill="none"
       stroke-dasharray="5,3"></path>
 
     <!-- Bilevel optimal solution point -->
-    <circle cx="60" cy="-20" r="8" fill="#ff5722" stroke="#bf360c" stroke-width="1.5"></circle>
+    <circle
+      cx="60"
+      cy="-20"
+      r="8"
+      fill="oklch(75% 0.183 55.934)"
+      stroke="oklch(75% 0.183 55.934)"
+      stroke-width="1.5"
+      class="group-hover:animate-pulse"></circle>
 
     <!-- Leader's decision space -->
     <ellipse
@@ -71,16 +73,16 @@
       rx="80"
       ry="40"
       transform="rotate(-15)"
-      fill="#2196f3"
+      fill="#696969"
       fill-opacity="0.3"
-      stroke="#0d47a1"
+      stroke="#474747"
       stroke-width="1.5"></ellipse>
 
     <!-- Follower's response curves -->
-    <path d="M -100,-20 C -50,-60 50,-40 100,0" stroke="#7b1fa2" stroke-width="2" fill="none"
+    <path d="M -100,-20 C -50,-60 50,-40 100,0" stroke="#5e5e5e" stroke-width="2" fill="none"
     ></path>
-    <path d="M -120,0 C -70,-40 30,-20 80,20" stroke="#7b1fa2" stroke-width="2" fill="none"></path>
-    <path d="M -140,20 C -90,-20 10,0 60,40" stroke="#7b1fa2" stroke-width="2" fill="none"></path>
+    <path d="M -120,0 C -70,-40 30,-20 80,20" stroke="#5e5e5e" stroke-width="2" fill="none"></path>
+    <path d="M -140,20 C -90,-20 10,0 60,40" stroke="#5e5e5e" stroke-width="2" fill="none"></path>
 
     <!-- Level sets of upper objective -->
     <ellipse
@@ -90,7 +92,7 @@
       ry="80"
       transform="rotate(-10)"
       fill="none"
-      stroke="#0d47a1"
+      stroke="#474747"
       stroke-width="1"
       stroke-dasharray="3,2"></ellipse>
     <ellipse
@@ -100,7 +102,7 @@
       ry="60"
       transform="rotate(-10)"
       fill="none"
-      stroke="#0d47a1"
+      stroke="#474747"
       stroke-width="1"
       stroke-dasharray="3,2"></ellipse>
     <ellipse
@@ -110,7 +112,7 @@
       ry="40"
       transform="rotate(-10)"
       fill="none"
-      stroke="#0d47a1"
+      stroke="#474747"
       stroke-width="1"
       stroke-dasharray="3,2"></ellipse>
 
