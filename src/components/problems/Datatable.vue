@@ -81,7 +81,15 @@ const columns = [
   columnHelper.accessor('category', {
     header: ({ column }) => sortableHeader(column, 'Category'),
     // TODO: Nested categories
-    cell: ({ row }) => h(Badge, { variant: 'outline' }, row.getValue('category')),
+    cell: ({ row }) => {
+      const category = row.getValue('category') as Category;
+
+      return h(
+        Badge,
+        { variant: 'outline', style: { backgroundColor: category.colour } },
+        category.name
+      );
+    },
     enableHiding: false,
   }),
   columnHelper.accessor('upperLevelVariables', {

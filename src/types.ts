@@ -7,9 +7,14 @@ export interface Citation {
 // Either a specific value or a range of values
 export type ValueOrRange = number | `${number}-${number}`;
 
+export interface Category {
+  name: string;
+  colour: string;
+}
+
 export interface Problem {
   name: string;
-  category: string; // TODO: Should this be an array or nested object?
+  category: Category; // TODO: Should this be an array or nested object?
   citation?: Citation;
   upperLevelVariables: ValueOrRange;
   lowerLevelVariables: ValueOrRange;

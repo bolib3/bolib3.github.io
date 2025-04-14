@@ -1,9 +1,28 @@
-import type { Problem } from '../types';
+import type { Category, Problem } from '../types';
+
+export const categories = {
+  energy: {
+    name: 'Energy & Transportation',
+    colour: 'oklch(88.5% 0.062 18.334)',
+  },
+  synth: {
+    name: 'Synthetic',
+    colour: 'oklch(95.1% 0.026 236.824)',
+  },
+  svm: {
+    name: 'Machine Learning / Support Vector Machine',
+    colour: 'oklch(95% 0.052 163.051)',
+  },
+  regression: {
+    name: 'Machine Learning / Regression',
+    colour: 'oklch(95.2% 0.037 318.852)',
+  },
+} satisfies Record<string, Category>;
 
 export const problems: Problem[] = [
   {
     name: 'Transmission station',
-    category: 'Energy & Transportation',
+    category: categories.energy,
     upperLevelVariables: 10,
     lowerLevelVariables: 600,
     upperLevelConstraints: 0,
@@ -17,7 +36,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Electric power markets',
-    category: 'Energy & Transportation',
+    category: categories.energy,
     upperLevelVariables: 5,
     lowerLevelVariables: 150,
     upperLevelConstraints: 5,
@@ -31,7 +50,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'weish26.dat-100',
-    category: 'Synthetic',
+    category: categories.synth,
     upperLevelVariables: 700,
     lowerLevelVariables: 700,
     upperLevelConstraints: 15,
@@ -40,7 +59,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'BCPIns',
-    category: 'Synthetic',
+    category: categories.synth,
     upperLevelVariables: 100,
     lowerLevelVariables: 1593,
     upperLevelConstraints: 0,
@@ -49,7 +68,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'normalClique',
-    category: 'Synthetic',
+    category: categories.synth,
     upperLevelVariables: 2,
     lowerLevelVariables: 236,
     upperLevelConstraints: 10,
@@ -58,7 +77,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Linear',
-    category: 'Machine Learning / Support Vector Machine',
+    category: categories.svm,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
@@ -72,7 +91,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Linear regularised',
-    category: 'Machine Learning / Support Vector Machine',
+    category: categories.svm,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
@@ -86,7 +105,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'RBF kernel',
-    category: 'Machine Learning / Support Vector Machine',
+    category: categories.svm,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
@@ -100,7 +119,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Polynomial kernel',
-    category: 'Machine Learning / Support Vector Machine',
+    category: categories.svm,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
@@ -114,7 +133,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Simple Linear',
-    category: 'Machine Learning / Regression',
+    category: categories.regression,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
@@ -128,7 +147,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Multiple Linear',
-    category: 'Machine Learning / Regression',
+    category: categories.regression,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
@@ -142,7 +161,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Polynomial',
-    category: 'Machine Learning / Regression',
+    category: categories.regression,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
@@ -156,7 +175,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Lasso',
-    category: 'Machine Learning / Regression',
+    category: categories.regression,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
@@ -170,7 +189,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Ridge',
-    category: 'Machine Learning / Regression',
+    category: categories.regression,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
     upperLevelConstraints: '10-80000',
