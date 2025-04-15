@@ -8,6 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { snakeCase } from '@/lib/utils';
 import type { Problem } from '@/types';
 import { MoreHorizontal } from 'lucide-vue-next';
 
@@ -29,13 +30,6 @@ function downloadPython(problem: Problem) {
 
 function downloadMatLab(problem: Problem) {
   downloadFile('/sample/bilevel.m', snakeCase(problem.name) + '.m');
-}
-
-function snakeCase(str: string) {
-  return str
-    .replace(/([a-z])([A-Z])/g, '$1_$2')
-    .replace(/[\s-]+/g, '_')
-    .toLowerCase();
 }
 
 function downloadFile(url: string, filename: string) {

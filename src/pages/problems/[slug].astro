@@ -1,0 +1,25 @@
+---
+import { problems } from '@/assets/sample';
+import RootLayout from '../../layouts/RootLayout.astro';
+import { slugify } from '@/lib/utils';
+
+export function getStaticPaths() {
+  return problems.map((problem) => ({
+    params: {
+      slug: slugify(problem.name),
+    },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const problem = problems.find((problem) => slugify(problem.name) === slug)!;
+---
+
+<RootLayout>
+  <h1>{problem.name}</h1>
+
+  <p class="mt-6 max-w-3xl leading-7">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, vitae.
+  </p>
+</RootLayout>

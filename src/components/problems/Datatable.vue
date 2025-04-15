@@ -5,16 +5,8 @@ import type {
   SortingState,
   VisibilityState,
 } from '@tanstack/vue-table';
-import { cn, valueUpdater } from '@/lib/utils';
+import { slugify, valueUpdater } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import {
   Table,
@@ -76,7 +68,13 @@ const sortableHeader = <A, B>(column: Column<A, B>, header: string, tooltip?: st
 const columns = [
   columnHelper.accessor('name', {
     header: ({ column }) => sortableHeader(column, 'Name'),
-    cell: ({ row }) => h('div', {}, row.getValue('name')),
+    cell: ({ row }) => {
+      const name = row.getValue('name') as string;
+
+      return h(Button, { variant: 'link', asChild: true }, () =>
+        h('a', { href: `/problems/${slugify(name)}` }, name)
+      );
+    },
     enableHiding: false,
   }),
   columnHelper.accessor('category', {

@@ -14,3 +14,16 @@ export function valueUpdater<T extends Updater<any>>(updaterOrValue: T, ref: Ref
     ? updaterOrValue(ref.value)
     : updaterOrValue
 }
+
+export function snakeCase(str: string) {
+  return str
+    .replace(/([a-z])([A-Z])/g, '$1_$2')
+    .replace(/[\s-]+/g, '_')
+    .toLowerCase();
+}
+
+export function slugify(str: string) {
+  return str
+    .replace(/[\s-]+/g, '-')
+    .toLowerCase();
+}
