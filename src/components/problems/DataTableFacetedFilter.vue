@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Column } from '@tanstack/vue-table';
-import type { Component } from 'vue';
 import type { Problem } from '@/types';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';

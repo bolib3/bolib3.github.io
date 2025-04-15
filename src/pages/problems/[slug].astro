@@ -3,6 +3,15 @@ import { problems } from '@/assets/sample';
 import RootLayout from '../../layouts/RootLayout.astro';
 import { slugify } from '@/lib/utils';
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+
 export function getStaticPaths() {
   return problems.map((problem) => ({
     params: {
@@ -17,7 +26,20 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
 ---
 
 <RootLayout>
-  <h1>{problem.name}</h1>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem>
+        <!-- @ts-ignore -->
+        <BreadcrumbLink href="/problems"> Problems </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>{problem.name}</BreadcrumbPage>
+      </BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+
+  <h1 class="mt-4">{problem.name}</h1>
 
   <p class="mt-6 max-w-3xl leading-7">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, vitae.
