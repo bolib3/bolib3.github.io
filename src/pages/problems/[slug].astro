@@ -11,6 +11,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import ProblemPreview from '@/components/problems/ProblemPreview.vue';
 
 export function getStaticPaths() {
   return problems.map((problem) => ({
@@ -41,7 +42,11 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
 
   <h1 class="mt-4">{problem.name}</h1>
 
-  <p class="mt-6 max-w-3xl leading-7">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, vitae.
-  </p>
+  <div class="grid grid-cols-2 gap-4">
+    <p class="mt-6 max-w-3xl leading-7">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, vitae.
+    </p>
+
+    <ProblemPreview client:load />
+  </div>
 </RootLayout>
