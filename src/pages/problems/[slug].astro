@@ -48,12 +48,31 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
 
   <h1 class="mt-4">{problem.name}</h1>
 
-  <div class="grid grid-cols-2 gap-4">
-    <p class="mt-6 max-w-3xl leading-7">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, vitae.
-    </p>
+  <div class="grid gap-4 md:grid-cols-2">
+    <div>
+      <p class="mt-6 max-w-3xl leading-7">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto molestias impedit natus
+        nulla officiis. Pariatur rerum ipsum laudantium minima nobis dolore necessitatibus quos,
+        velit veniam! Ex nihil placeat voluptate saepe?
+      </p>
 
-    <ProblemPreview client:load>
+      <p class="mt-6 max-w-3xl leading-7">
+        Vero esse dolores reprehenderit provident rerum dicta, veniam magni iure exercitationem
+        dolore. Ut alias consequatur architecto consectetur deserunt illum aperiam, accusamus
+        laboriosam. Facere temporibus similique provident voluptatibus nostrum cumque voluptatem,
+        eveniet quam iusto officia illum ut iure officiis praesentium, qui exercitationem neque
+        saepe earum error dolores aliquid voluptas esse quia? Doloremque, inventore maxime!
+        Provident dolor perferendis necessitatibus consequuntur similique culpa officia eius.
+      </p>
+
+      <p class="mt-6 max-w-3xl leading-7">
+        Magnam magni perferendis voluptatibus nobis vel sunt ipsa consectetur molestiae, nemo
+        laudantium aut esse sit commodi, eius saepe sequi. Vero ullam odit numquam cum dolor dolore
+        aperiam earum ipsam minima.
+      </p>
+    </div>
+
+    <ProblemPreview client:only>
       <Code slot="python" code={samplePython} lang="python" class="p-5 text-xs" />
       <Code slot="matlab" code={sampleMatlab} lang="matlab" class="p-5 text-xs" />
       <Code slot="julia" code={sampleJulia} lang="julia" class="p-5 text-xs" />
