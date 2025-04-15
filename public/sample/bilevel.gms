@@ -1,5 +1,3 @@
-* ==== Bilevel Optimization Stub in GAMS ====
-
 Sets
     i /1*3/
     j /1*3/;

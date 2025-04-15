@@ -1,5 +1,3 @@
-% Bilevel Optimization in MATLAB
-
 % Simulation parameters
 N = 128;
 dt = 0.01;

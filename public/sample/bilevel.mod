@@ -1,5 +1,3 @@
-# ==== Bilevel Optimization Stub in AMPL ====
-
 # Indexing (e.g. 3x3 grid)
 set INDEX := 1 2 3;
 
@@ -41,5 +39,3 @@ minimize outer_obj: loss;
 
 # === Optional: bounds, constraints ===
 # s.t. total_energy: sum {i in INDEX, j in INDEX} source[i,j] <= 1.0;
-
-# ==== End ====
