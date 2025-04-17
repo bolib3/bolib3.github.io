@@ -11,10 +11,14 @@ import {
 import { snakeCase } from '@/lib/utils';
 import type { Problem } from '@/types';
 import { MoreHorizontal } from 'lucide-vue-next';
+import { computed } from 'vue';
+import { slugify } from '../../lib/utils';
 
-defineProps<{
+const props = defineProps<{
   problem: Problem;
 }>();
+
+const slug = computed(() => slugify(props.problem.name));
 
 function copy(text: string) {
   navigator.clipboard.writeText(text);
@@ -64,6 +68,8 @@ function downloadFile(url: string, filename: string) {
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end">
       <DropdownMenuLabel>Actions</DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem as="a" :href="`/problems/${slug}`"> View details </DropdownMenuItem>
       <DropdownMenuItem @click="copy(problem.name)"> Copy name </DropdownMenuItem>
       <DropdownMenuItem> Copy citation </DropdownMenuItem>
       <DropdownMenuSeparator />
