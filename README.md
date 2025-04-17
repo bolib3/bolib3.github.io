@@ -1,22 +1,28 @@
 # Bilevel benchmarking
 
-This is the Bilevel benchmarking website source. It is built using [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+This is the Bilevel benchmarking website source. It is built using [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), [Vue.js](https://vuejs.org/) and [chadcn/vue](https://www.shadcn-vue.com/).
 
 ## Getting Started
 
-First, install the dependencies:
+1. Install [Node.js](https://github.com/nvm-sh/nvm)
+
+```bash
+nvm use --lts
+```
+
+2. Install the projects dependencies
 
 ```bash
 npm install
 ```
 
-Then, run the development server:
+3. Start the local development server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:4321](http://localhost:4321) with your browser.
+4. Open [http://localhost:4321](http://localhost:4321) with your browser
 
 ## Formatting
 
