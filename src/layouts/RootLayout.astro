@@ -12,6 +12,14 @@ import Footer from '../components/Footer.astro';
     <link rel="icon" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Bilevel benchmarking</title>
+
+    <script is:inline>
+      const theme = localStorage.getItem('theme');
+
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </head>
   <body class="mx-auto flex min-h-screen max-w-[1536px] flex-col">
     <Header />
