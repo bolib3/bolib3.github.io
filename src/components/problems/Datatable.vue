@@ -85,7 +85,7 @@ const columns = [
 
       return h(
         Badge,
-        { variant: 'outline', style: { backgroundColor: category.colour } },
+        { variant: 'outline', class: 'text-black', style: { backgroundColor: category.colour } },
         () => category.name
       );
     },

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useStorage } from '@vueuse/core';
+import { useLocalStorage } from '@vueuse/core';
 
 // Persist the selected language in local storage
 // This will allow the user to switch between languages and have their choice remembered
-const chosenLanguage = useStorage('chosenLanguage', 'python');
+const chosenLanguage = useLocalStorage('chosenLanguage', 'python');
 </script>
 
 <template>
