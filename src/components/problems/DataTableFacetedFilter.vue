@@ -39,7 +39,7 @@ const selectedValues = computed(() => new Set(props.column?.getFilterValue() as 
 <template>
   <Popover>
     <PopoverTrigger as-child>
-      <Button variant="outline" size="sm" class="h-8 border-dashed">
+      <Button variant="outline" size="sm" class="h-9 border-dashed">
         <CirclePlus class="mr-2 h-4 w-4" />
         {{ title }}
         <template v-if="selectedValues.size > 0">
@@ -61,7 +61,7 @@ const selectedValues = computed(() => new Set(props.column?.getFilterValue() as 
                 v-for="option in options.filter((option) => selectedValues.has(option.value))"
                 :key="option.value"
                 variant="secondary"
-                class="rounded-sm px-1 font-normal"
+                class="rounded-sm px-1 font-normal text-black"
                 :style="{
                   backgroundColor: option.colour,
                 }"

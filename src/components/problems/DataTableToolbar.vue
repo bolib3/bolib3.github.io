@@ -30,9 +30,9 @@ const isFiltered = computed(() => props.table.getState().columnFilters.length > 
 </script>
 
 <template>
-  <div class="flex items-center gap-2 py-4">
+  <div class="flex flex-wrap items-center gap-2 py-4">
     <Input
-      class="h-8 max-w-sm"
+      class="max-w-sm"
       placeholder="Search..."
       :model-value="table.getColumn('name')?.getFilterValue() as string"
       @update:model-value="table.getColumn('name')?.setFilterValue($event)"

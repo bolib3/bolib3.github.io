@@ -7,14 +7,14 @@ import { Button } from '@/components/ui/button';
 <RootLayout>
   <h1>Problems</h1>
 
-  <p class="mt-6 max-w-3xl leading-7">Our collection of bilevel problems</p>
+  <p class="text-muted-foreground mt-6 max-w-3xl leading-7">Our collection of bilevel problems</p>
 
-  <Datatable client:load />
-
-  <p class="text-muted-foreground">
-    Want to download multiple problems?
-    <Button variant="link" class="p-0">
-      <a href="/downloads"> Download a collection </a>
-    </Button>
-  </p>
+  <Datatable client:load>
+    <p class="text-muted-foreground text-sm" slot="bottom-right">
+      Want to download multiple problems?
+      <Button variant="link" class="p-0">
+        <a href="/downloads"> Download a collection </a>
+      </Button>
+    </p>
+  </Datatable>
 </RootLayout>

@@ -2,6 +2,7 @@
 import SplashArt from '@/components/SplashArt.astro';
 import RootLayout from '../layouts/RootLayout.astro';
 import { Button } from '@/components/ui/button';
+import { Search } from 'lucide-vue-next';
 ---
 
 <RootLayout>
@@ -17,6 +18,7 @@ import { Button } from '@/components/ui/button';
 
       <div class="mt-4">
         <Button>
+          <Search />
           <a href="/problems"> Browse Problems </a>
         </Button>
 

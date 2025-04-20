@@ -1,6 +1,7 @@
 ---
 import RootLayout from '../layouts/RootLayout.astro';
 import { Button } from '@/components/ui/button';
+import { Mail } from 'lucide-vue-next';
 
 const email = 'lorem@example.com';
 ---
@@ -15,6 +16,7 @@ const email = 'lorem@example.com';
   </p>
 
   <Button class="mt-4">
+    <Mail />
     <a href={`mailto:${email}`}>
       {email}
     </a>

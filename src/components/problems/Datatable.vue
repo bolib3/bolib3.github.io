@@ -223,6 +223,8 @@ const table = useVueTable({
         {{ table.getFilteredRowModel().rows.length }} of
         {{ table.getPreFilteredRowModel().rows.length }} problems
       </div>
+
+      <slot name="bottom-right" />
     </div>
   </div>
 </template>
