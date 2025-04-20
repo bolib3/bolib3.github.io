@@ -1,5 +1,6 @@
 ---
 import RootLayout from '../layouts/RootLayout.astro';
+import DownloadCollection from '../components/DownloadCollection.vue';
 ---
 
 <RootLayout>
@@ -10,4 +11,6 @@ import RootLayout from '../layouts/RootLayout.astro';
     atque, cupiditate dignissimos delectus odit qui cumque odio tenetur. Dolor vero earum corporis
     eaque iure nam voluptatem!
   </p>
+
+  <DownloadCollection client:only />
 </RootLayout>
