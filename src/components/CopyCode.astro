@@ -1,0 +1,21 @@
+---
+import { Code } from 'astro:components';
+import CopyToClipboard from './CopyToClipboard.vue';
+import type { BuiltinLanguage, SpecialLanguage } from 'shiki';
+import type { ThemePresets } from '@astrojs/markdown-remark';
+
+interface Props {
+  code: string;
+  lang: BuiltinLanguage | SpecialLanguage;
+  theme?: ThemePresets;
+  class?: string;
+}
+
+const { code, lang, theme, class: className } = Astro.props;
+---
+
+<div class:list={['relative', className]}>
+  <Code lang={lang} code={code} theme={theme ?? 'github-dark'} class="p-4 text-xs" />
+
+  <CopyToClipboard class="absolute top-2 right-2" text={code} client:load />
+</div>

@@ -1,0 +1,29 @@
+---
+import CopyCode from '@/components/CopyCode.astro';
+import LanguageTabs from './LanguageTabs.vue';
+import type { Problem } from '@/types';
+
+interface Props {
+  problem: Problem;
+}
+
+const { problem } = Astro.props;
+
+// TODO: Load these based on the problem name
+import python from '/public/sample/bilevel.py?raw';
+import matlab from '/public/sample/bilevel.m?raw';
+import julia from '/public/sample/bilevel.jl?raw';
+import ampl from '/public/sample/bilevel.mod?raw';
+import gams from '/public/sample/bilevel.gms?raw';
+
+console.debug(problem.name);
+---
+
+<LanguageTabs client:only>
+  <CopyCode slot="python" code={python} lang="python" />
+  <CopyCode slot="matlab" code={matlab} lang="matlab" />
+  <CopyCode slot="julia" code={julia} lang="julia" />
+  <!-- Note that ampl & gams are not supported by shiki so we're using python for now -->
+  <CopyCode slot="ampl" code={ampl} lang="python" />
+  <CopyCode slot="gams" code={gams} lang="python" />
+</LanguageTabs>

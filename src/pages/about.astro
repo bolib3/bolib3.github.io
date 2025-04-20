@@ -1,6 +1,15 @@
 ---
+import CopyCode from '@/components/CopyCode.astro';
 import RootLayout from '../layouts/RootLayout.astro';
 import { Button } from '@/components/ui/button';
+
+const citation = `@report{lorem:2024,
+    title = {Lorem ipsum dolor sit amet},
+    author = {John Doe},
+    year = {2024},
+    institution = {University of Lorem Ipsum},
+    address = {1234 Lorem St, Ipsum City, IL 12345}
+}`;
 ---
 
 <RootLayout>
@@ -26,19 +35,6 @@ import { Button } from '@/components/ui/button';
 
     <p class="mt-6 max-w-3xl leading-7">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 
-    <div class="bg-muted">
-      <pre
-        class="bg-muted relative overflow-x-auto rounded-lg p-4 font-mono text-sm font-semibold">
-      <code>
-  @report&#123;lorem:2024,
-    title = &#123;Lorem ipsum dolor sit amet&#125;,
-    author = &#123;John Doe&#125;,
-    year = &#123;2024&#125;,
-    institution = &#123;University of Lorem Ipsum&#125;,
-    address = &#123;1234 Lorem St, Ipsum City, IL 12345&#125;
-  &#125;
-      </code>
-    </pre>
-    </div>
+    <CopyCode code={citation} lang="bibtex" theme="github-light-default" class="max-w-xl" />
   </p>
 </RootLayout>

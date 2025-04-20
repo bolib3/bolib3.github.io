@@ -17,7 +17,7 @@ const chosenLanguage = useLocalStorage('chosenLanguage', 'python');
       <TabsTrigger value="gams"> GAMS </TabsTrigger>
     </TabsList>
     <TabsContent value="python">
-      <slot name="python" class="overflow-x-auto" />
+      <slot name="python" />
     </TabsContent>
     <TabsContent value="matlab">
       <slot name="matlab" />

@@ -2,7 +2,6 @@
 import { problems } from '@/assets/sample';
 import RootLayout from '../../layouts/RootLayout.astro';
 import { slugify } from '@/lib/utils';
-import { Code } from 'astro:components';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -11,7 +10,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import ProblemPreview from '@/components/problems/ProblemPreview.vue';
+import ProblemPreview from '@/components/problems/preview/ProblemPreview.astro';
 
 export function getStaticPaths() {
   return problems.map((problem) => ({
@@ -22,12 +21,6 @@ export function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-
-import samplePython from '/public/sample/bilevel.py?raw';
-import sampleMatlab from '/public/sample/bilevel.m?raw';
-import sampleJulia from '/public/sample/bilevel.jl?raw';
-import sampleAMPL from '/public/sample/bilevel.mod?raw';
-import sampleGAMS from '/public/sample/bilevel.gms?raw';
 
 const problem = problems.find((problem) => slugify(problem.name) === slug)!;
 ---
@@ -72,12 +65,6 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
       </p>
     </div>
 
-    <ProblemPreview client:only>
-      <Code slot="python" code={samplePython} lang="python" class="p-5 text-xs" />
-      <Code slot="matlab" code={sampleMatlab} lang="matlab" class="p-5 text-xs" />
-      <Code slot="julia" code={sampleJulia} lang="julia" class="p-5 text-xs" />
-      <Code slot="ampl" code={sampleAMPL} lang="text" class="p-5 text-xs" />
-      <Code slot="gams" code={sampleGAMS} lang="text" class="p-5 text-xs" />
-    </ProblemPreview>
+    <ProblemPreview problem={problem} />
   </div>
 </RootLayout>
