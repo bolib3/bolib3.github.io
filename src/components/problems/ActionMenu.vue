@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { snakeCase } from '@/lib/utils';
+import { downloadFile, snakeCase } from '@/lib/utils';
 import type { Problem } from '@/types';
 import { MoreHorizontal } from 'lucide-vue-next';
 import { computed } from 'vue';
@@ -46,15 +46,6 @@ function downloadAMPL(problem: Problem) {
 
 function downloadGAMS(problem: Problem) {
   downloadFile('/sample/bilevel.gms', snakeCase(problem.name) + '.gms');
-}
-
-function downloadFile(url: string, filename: string) {
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
 }
 </script>
 
