@@ -11,7 +11,7 @@ import {
 import { ChevronDown, X } from 'lucide-vue-next';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { categories } from '@/assets/sample';
+import { categories } from '@/lib/problems';
 import { computed } from 'vue';
 
 interface DataTableToolbarProps {

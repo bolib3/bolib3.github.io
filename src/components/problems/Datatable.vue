@@ -26,7 +26,7 @@ import {
 } from '@tanstack/vue-table';
 import { ChevronDown, ChevronsUpDown, ChevronUp } from 'lucide-vue-next';
 import { h, ref } from 'vue';
-import { problems } from '@/assets/sample';
+import { problems } from '@/lib/problems';
 import type { Citation, Problem } from '@/types';
 import ActionMenu from './ActionMenu.vue';
 import DataTableToolbar from './DataTableToolbar.vue';
