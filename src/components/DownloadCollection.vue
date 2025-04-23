@@ -19,8 +19,9 @@ import { downloadFile } from '@/lib/utils';
 const chosenLanguage = useLocalStorage('chosenLanguage', 'python');
 
 function downloadCollection() {
-  // TODO: Choose zip file based on selected language
-  downloadFile('/sample/bilevel.zip', `${chosenLanguage.value}-collection.zip`);
+  const fileName = `${chosenLanguage.value}-collection.zip`;
+
+  downloadFile(`/collections/${fileName}`, fileName);
 }
 </script>
 
