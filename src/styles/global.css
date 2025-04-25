@@ -23,3 +23,13 @@ h1 {
 h3 {
   @apply scroll-m-20 text-2xl font-semibold tracking-tight;
 }
+
+/* 
+  Shiki dark mode support 
+  https://shiki.style/guide/dual-themes#class-based-dark-mode
+*/
+html.dark .astro-code-themes,
+html.dark .astro-code-themes span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}

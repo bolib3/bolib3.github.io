@@ -35,6 +35,12 @@ const citation = `@report{lorem:2024,
 
     <p class="mt-6 max-w-3xl leading-7">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 
-    <CopyCode code={citation} lang="bibtex" theme="github-light-default" class="max-w-xl" />
+    <CopyCode
+      code={citation}
+      lang="bibtex"
+      themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
+      defaultColor="light"
+      class="max-w-xl"
+    />
   </p>
 </RootLayout>
