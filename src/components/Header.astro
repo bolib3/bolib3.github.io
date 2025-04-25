@@ -7,7 +7,7 @@ import { Button } from './ui/button';
   class="bg-background sticky top-0 z-50 flex w-full items-center justify-between gap-4 px-4 py-5 max-sm:drop-shadow"
 >
   <nav class="flex flex-wrap items-center gap-x-6 gap-y-2">
-    <a href="/" class="inline-flex items-center gap-2 font-bold">
+    <a href="/" class="inline-flex items-center gap-2 font-bold whitespace-nowrap">
       <svg class="h-5 w-5" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
         <g
           stroke="currentColor"
@@ -33,10 +33,10 @@ import { Button } from './ui/button';
     <a href="/contact"> Contact</a>
   </nav>
 
-  <div class="max-sm:hidden">
+  <div class="flex items-center gap-2">
     <ThemeControl client:only />
 
-    <Button variant="ghost">
+    <Button variant="ghost" class="max-sm:hidden">
       <a href="https://github.com/jdjfisher/bilevel-benchmarking" target="_blank">
         <svg viewBox="0 0 438.549 438.549"
           ><path
