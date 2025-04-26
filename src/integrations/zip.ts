@@ -85,11 +85,16 @@ async function createZip(sourceFiles: SourceFile[], outputPath: string) {
 
     output.on('close', resolve);
     archive.on('error', reject);
-
     archive.pipe(output);
+
     for (const file of sourceFiles) {
+      if (!fs.existsSync(file.path)) {
+        throw new Error(`Missing file: ${file.path}`);
+      }
+
       archive.file(file.path, { name: file.name });
     }
+
     archive.finalize();
   });
 }
