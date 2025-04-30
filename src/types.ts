@@ -1,5 +1,3 @@
-import type { Dataset } from './lib/datasets';
-
 export interface Citation {
   authors: string;
   year: number;
@@ -12,6 +10,11 @@ export type ValueOrRange = number | `${number}-${number}`;
 export interface Category {
   name: string;
   colour: string;
+}
+
+export interface Dataset {
+  name: string;
+  size: number; // Size in bytes
 }
 
 export interface Problem {

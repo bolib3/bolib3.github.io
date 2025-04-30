@@ -1,7 +1,4 @@
-export interface Dataset {
-  name: string;
-  size: number; // Size in bytes
-}
+import type { Dataset } from '@/types';
 
 export const datasets: Dataset[] = [
   {
