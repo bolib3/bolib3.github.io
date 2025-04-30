@@ -5,14 +5,19 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { downloadFile, snakeCase } from '@/lib/utils';
+import { downloadFile, formatBytes, snakeCase } from '@/lib/utils';
 import type { Problem } from '@/types';
-import { MoreHorizontal } from 'lucide-vue-next';
+import { MoreHorizontal, Table } from 'lucide-vue-next';
 import { computed } from 'vue';
 import { slugify } from '../../lib/utils';
+import type { Dataset } from '@/lib/datasets';
 
 const props = defineProps<{
   problem: Problem;
@@ -24,8 +29,8 @@ function copy(text: string) {
   navigator.clipboard.writeText(text);
 }
 
-function downloadDataset(problem: Problem) {
-  downloadFile('/sample/bilevel.csv', snakeCase(problem.name) + '.csv');
+function downloadDataset(dataset: Dataset) {
+  downloadFile('/sample/bilevel.csv', snakeCase(dataset.name) + '.csv');
 }
 
 function downloadPython(problem: Problem) {
@@ -64,14 +69,34 @@ function downloadGAMS(problem: Problem) {
       <DropdownMenuItem @click="copy(problem.name)"> Copy name </DropdownMenuItem>
       <DropdownMenuItem> Copy citation </DropdownMenuItem>
       <DropdownMenuSeparator />
-      <DropdownMenuItem @click="downloadDataset(problem)">
-        Download dataset <code>50mb</code></DropdownMenuItem
-      >
       <DropdownMenuItem @click="downloadPython(problem)">Download Python</DropdownMenuItem>
       <DropdownMenuItem @click="downloadMatLab(problem)">Download MatLab</DropdownMenuItem>
       <DropdownMenuItem @click="downloadJulia(problem)">Download Julia</DropdownMenuItem>
       <DropdownMenuItem @click="downloadAMPL(problem)">Download AMPL</DropdownMenuItem>
       <DropdownMenuItem @click="downloadGAMS(problem)">Download GAMS</DropdownMenuItem>
+
+      <DropdownMenuSub v-if="problem.datasets">
+        <DropdownMenuSubTrigger>
+          <Table class="mr-2 h-4 w-4" />
+          <span>Download datasets</span>
+        </DropdownMenuSubTrigger>
+        <DropdownMenuPortal>
+          <DropdownMenuSubContent>
+            <DropdownMenuItem
+              v-for="dataset in problem.datasets"
+              :key="dataset.name"
+              @click="downloadDataset(dataset)"
+            >
+              {{ dataset.name }}
+
+              <code class="text-muted-foreground text-xs">
+                -
+                {{ formatBytes(dataset.size) }}
+              </code>
+            </DropdownMenuItem>
+          </DropdownMenuSubContent>
+        </DropdownMenuPortal>
+      </DropdownMenuSub>
     </DropdownMenuContent>
   </DropdownMenu>
 </template>

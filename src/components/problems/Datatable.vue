@@ -30,6 +30,7 @@ import { problems } from '@/lib/problems';
 import type { Citation, Problem } from '@/types';
 import ActionMenu from './ActionMenu.vue';
 import DataTableToolbar from './DataTableToolbar.vue';
+import type { Dataset } from '@/lib/datasets';
 
 const data = problems;
 
@@ -130,9 +131,14 @@ const columns = [
       );
     },
   }),
-  columnHelper.accessor('addedAt', {
-    header: ({ column }) => sortableHeader(column, 'Added'),
-    cell: ({ row }) => h('div', {}, (row.getValue('addedAt') as Date).toLocaleDateString()),
+  columnHelper.accessor('datasets', {
+    header: () => 'Datasets',
+    cell: ({ row }) =>
+      h(
+        'div',
+        { class: 'text-sm text-muted-foreground truncate' },
+        (row.getValue('datasets') as undefined | Dataset[])?.map((d) => d.name)?.join(', ')
+      ),
   }),
   {
     id: 'actions',

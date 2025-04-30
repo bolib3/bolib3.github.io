@@ -1,3 +1,5 @@
+import type { Dataset } from './lib/datasets';
+
 export interface Citation {
   authors: string;
   year: number;
@@ -21,5 +23,5 @@ export interface Problem {
   upperLevelConstraints: ValueOrRange;
   lowerLevelConstraints: ValueOrRange;
   addedAt: Date;
-  // dataset: never; // TODO: What should this be?
+  datasets?: Dataset[];
 }

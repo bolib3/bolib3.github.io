@@ -1,4 +1,5 @@
 import type { Category, Problem } from '../types';
+import { datasets } from './datasets';
 
 export const categories = {
   energy: {
@@ -33,6 +34,7 @@ export const problems: Problem[] = [
       year: 2004,
       link: 'https://example.com',
     },
+    datasets: [datasets[3]!, datasets[2]!, datasets[7]!],
   },
   {
     name: 'Electric power markets',
@@ -47,6 +49,7 @@ export const problems: Problem[] = [
       year: 2010,
       link: 'https://example.com',
     },
+    datasets: [datasets[2]!, datasets[0]!, datasets[5]!],
   },
   {
     name: 'weish26.dat-100',
