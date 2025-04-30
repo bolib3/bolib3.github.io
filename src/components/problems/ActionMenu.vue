@@ -52,6 +52,10 @@ function downloadAMPL(problem: Problem) {
 function downloadGAMS(problem: Problem) {
   downloadFile('/sample/bilevel.gms', snakeCase(problem.name) + '.gms');
 }
+
+function downloadLaTeX(problem: Problem) {
+  downloadFile('/sample/bilevel.tex', snakeCase(problem.name) + '.tex');
+}
 </script>
 
 <template>
@@ -74,6 +78,7 @@ function downloadGAMS(problem: Problem) {
       <DropdownMenuItem @click="downloadJulia(problem)">Download Julia</DropdownMenuItem>
       <DropdownMenuItem @click="downloadAMPL(problem)">Download AMPL</DropdownMenuItem>
       <DropdownMenuItem @click="downloadGAMS(problem)">Download GAMS</DropdownMenuItem>
+      <DropdownMenuItem @click="downloadLaTeX(problem)">Download LaTeX</DropdownMenuItem>
 
       <DropdownMenuSub v-if="problem.datasets">
         <DropdownMenuSubTrigger>

@@ -15,6 +15,7 @@ import matlab from '/public/sample/bilevel.m?raw';
 import julia from '/public/sample/bilevel.jl?raw';
 import ampl from '/public/sample/bilevel.mod?raw';
 import gams from '/public/sample/bilevel.gms?raw';
+import latex from '/public/sample/bilevel.tex?raw';
 
 console.debug(problem.name);
 ---
@@ -26,4 +27,5 @@ console.debug(problem.name);
   <!-- Note that ampl & gams are not supported by shiki so we're using python for now -->
   <CopyCode slot="ampl" code={ampl} lang="python" />
   <CopyCode slot="gams" code={gams} lang="python" />
+  <CopyCode slot="latex" code={latex} lang="latex" />
 </LanguageTabs>

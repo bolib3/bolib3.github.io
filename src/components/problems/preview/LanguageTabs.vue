@@ -9,12 +9,13 @@ const chosenLanguage = useLocalStorage('chosenLanguage', 'python');
 
 <template>
   <Tabs v-model="chosenLanguage">
-    <TabsList class="grid grid-cols-5">
+    <TabsList class="grid grid-cols-6">
       <TabsTrigger value="python"> Python </TabsTrigger>
       <TabsTrigger value="matlab"> MatLab </TabsTrigger>
       <TabsTrigger value="julia"> Julia </TabsTrigger>
       <TabsTrigger value="ampl"> AMPL </TabsTrigger>
       <TabsTrigger value="gams"> GAMS </TabsTrigger>
+      <TabsTrigger value="latex"> LaTeX </TabsTrigger>
     </TabsList>
     <TabsContent value="python">
       <slot name="python" />
@@ -30,6 +31,9 @@ const chosenLanguage = useLocalStorage('chosenLanguage', 'python');
     </TabsContent>
     <TabsContent value="gams">
       <slot name="gams" />
+    </TabsContent>
+    <TabsContent value="latex">
+      <slot name="latex" />
     </TabsContent>
   </Tabs>
 </template>

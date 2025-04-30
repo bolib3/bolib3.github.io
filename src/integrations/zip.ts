@@ -68,6 +68,13 @@ async function zipSample(logger: AstroIntegrationLogger) {
       })),
       name: 'gams-collection.gms.zip',
     },
+    {
+      files: problems.map((problem) => ({
+        path: 'public/sample/bilevel.tex',
+        name: slugify(problem.name) + '.tex',
+      })),
+      name: 'latex-collection.zip',
+    },
     // Datasets
     {
       files: datasets.map((dataset) => ({

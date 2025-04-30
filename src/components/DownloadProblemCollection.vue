@@ -39,6 +39,7 @@ function downloadCollection() {
           <SelectItem value="julia"> Julia </SelectItem>
           <SelectItem value="ampl"> AMPL </SelectItem>
           <SelectItem value="gams"> GAMS </SelectItem>
+          <SelectItem value="latex"> LaTeX </SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
