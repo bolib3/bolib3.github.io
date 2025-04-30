@@ -14,10 +14,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { downloadFile, formatBytes, snakeCase } from '@/lib/utils';
 import type { Problem } from '@/types';
-import { MoreHorizontal, Table } from 'lucide-vue-next';
+import { MoreHorizontal, Radical, Table } from 'lucide-vue-next';
 import { computed } from 'vue';
 import { slugify } from '../../lib/utils';
 import type { Dataset } from '@/lib/datasets';
+import { Download } from 'lucide-vue-next';
 
 const props = defineProps<{
   problem: Problem;
@@ -73,17 +74,32 @@ function downloadLaTeX(problem: Problem) {
       <DropdownMenuItem @click="copy(problem.name)"> Copy name </DropdownMenuItem>
       <DropdownMenuItem> Copy citation </DropdownMenuItem>
       <DropdownMenuSeparator />
-      <DropdownMenuItem @click="downloadPython(problem)">Download Python</DropdownMenuItem>
-      <DropdownMenuItem @click="downloadMatLab(problem)">Download MatLab</DropdownMenuItem>
-      <DropdownMenuItem @click="downloadJulia(problem)">Download Julia</DropdownMenuItem>
-      <DropdownMenuItem @click="downloadAMPL(problem)">Download AMPL</DropdownMenuItem>
-      <DropdownMenuItem @click="downloadGAMS(problem)">Download GAMS</DropdownMenuItem>
-      <DropdownMenuItem @click="downloadLaTeX(problem)">Download LaTeX</DropdownMenuItem>
+
+      <DropdownMenuSub>
+        <DropdownMenuSubTrigger>
+          <Radical class="mr-2 h-4 w-4" />
+          <span class="mr-2">Download problem</span>
+        </DropdownMenuSubTrigger>
+        <DropdownMenuPortal>
+          <DropdownMenuSubContent>
+            <DropdownMenuItem @click="downloadPython(problem)">
+              <Download /> Python
+            </DropdownMenuItem>
+            <DropdownMenuItem @click="downloadMatLab(problem)">
+              <Download /> MatLab
+            </DropdownMenuItem>
+            <DropdownMenuItem @click="downloadJulia(problem)"><Download /> Julia</DropdownMenuItem>
+            <DropdownMenuItem @click="downloadAMPL(problem)"><Download /> AMPL</DropdownMenuItem>
+            <DropdownMenuItem @click="downloadGAMS(problem)"><Download /> GAMS</DropdownMenuItem>
+            <DropdownMenuItem @click="downloadLaTeX(problem)"><Download /> LaTeX</DropdownMenuItem>
+          </DropdownMenuSubContent>
+        </DropdownMenuPortal>
+      </DropdownMenuSub>
 
       <DropdownMenuSub v-if="problem.datasets">
         <DropdownMenuSubTrigger>
           <Table class="mr-2 h-4 w-4" />
-          <span>Download datasets</span>
+          <span class="mr-2">Download datasets</span>
         </DropdownMenuSubTrigger>
         <DropdownMenuPortal>
           <DropdownMenuSubContent>
@@ -92,6 +108,7 @@ function downloadLaTeX(problem: Problem) {
               :key="dataset.name"
               @click="downloadDataset(dataset)"
             >
+              <Download />
               {{ dataset.name }}
 
               <code class="text-muted-foreground text-xs">
