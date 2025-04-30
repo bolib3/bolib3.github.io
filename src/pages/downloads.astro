@@ -1,7 +1,8 @@
 ---
 import RootLayout from '../layouts/RootLayout.astro';
-import DownloadCollection from '../components/DownloadCollection.vue';
+import DownloadProblemCollection from '../components/DownloadProblemCollection.vue';
 import Datatable from '@/components/datasets/Datatable.vue';
+import DownloadDatasetCollection from '../components/DownloadDatasetCollection.vue';
 ---
 
 <RootLayout>
@@ -21,7 +22,7 @@ import Datatable from '@/components/datasets/Datatable.vue';
         Download all of the available problems in a single zip file for a chosen language.
       </p>
 
-      <DownloadCollection client:only />
+      <DownloadProblemCollection client:only />
     </div>
 
     <div>
@@ -33,6 +34,8 @@ import Datatable from '@/components/datasets/Datatable.vue';
       </p>
 
       <Datatable client:load />
+
+      <DownloadDatasetCollection client:load />
     </div>
   </div>
 </RootLayout>

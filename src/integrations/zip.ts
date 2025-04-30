@@ -4,6 +4,7 @@ import archiver from 'archiver';
 import type { AstroIntegration, AstroIntegrationLogger } from 'astro';
 import { problems } from '../lib/problems';
 import { slugify } from '../lib/utils';
+import { datasets } from '../lib/datasets';
 
 interface SourceFile {
   path: string;
@@ -66,6 +67,14 @@ async function zipSample(logger: AstroIntegrationLogger) {
         name: slugify(problem.name) + '.gms',
       })),
       name: 'gams-collection.gms.zip',
+    },
+    // Datasets
+    {
+      files: datasets.map((dataset) => ({
+        path: 'public/sample/bilevel.csv',
+        name: slugify(dataset.name) + '.csv',
+      })),
+      name: 'dataset-collection.zip',
     },
   ];
 
