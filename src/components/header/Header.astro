@@ -1,6 +1,7 @@
 ---
 import ThemeControl from '@/components/ThemeControl.vue';
-import { Button } from './ui/button';
+import { Button } from '@/components/ui/button';
+import NavLink from './NavLink.astro';
 ---
 
 <header
@@ -24,13 +25,10 @@ import { Button } from './ui/button';
       Bilevel Benchmarking
     </a>
 
-    <a href="/problems"> Problems </a>
-
-    <a href="/downloads"> Downloads </a>
-
-    <a href="/about">About</a>
-
-    <a href="/contact"> Contact</a>
+    <NavLink href="/problems"> Problems </NavLink>
+    <NavLink href="/downloads"> Downloads </NavLink>
+    <NavLink href="/about">About</NavLink>
+    <NavLink href="/contact"> Contact</NavLink>
   </nav>
 
   <div class="flex items-center gap-2">

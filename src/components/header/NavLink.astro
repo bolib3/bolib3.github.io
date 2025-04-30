@@ -1,0 +1,16 @@
+---
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+
+// Remove trailing slash
+const currentPath = Astro.url.pathname.replace(/\/$/, '');
+
+const active = currentPath.endsWith(href);
+---
+
+<a href={href} class:list={{ 'text-muted-foreground': !active }}>
+  <slot />
+</a>
