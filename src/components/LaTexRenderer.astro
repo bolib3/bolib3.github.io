@@ -1,0 +1,20 @@
+---
+// LaTexRenderer.astro
+import 'katex/dist/katex.min.css';
+import katex from 'katex';
+
+interface Props {
+  tex: string;
+  displayMode?: boolean;
+}
+
+const { tex, displayMode = true } = Astro.props;
+
+const html = katex.renderToString(tex, {
+  displayMode,
+  throwOnError: false,
+  trust: true,
+});
+---
+
+<div class="overflow-x-auto px-4 md:p-8 border border-dashed" set:html={html} />
