@@ -144,17 +144,15 @@ const table = useVueTable({
 </script>
 
 <template>
-  <div class="mt-6 w-full">
-    <div class="py-4">
-      <Input
-        class="max-w-sm"
-        placeholder="Search..."
-        :model-value="table.getColumn('name')?.getFilterValue() as string"
-        @update:model-value="table.getColumn('name')?.setFilterValue($event)"
-      />
-    </div>
+  <div class="mt-4 w-full">
+    <Input
+      class="max-w-sm"
+      placeholder="Search..."
+      :model-value="table.getColumn('name')?.getFilterValue() as string"
+      @update:model-value="table.getColumn('name')?.setFilterValue($event)"
+    />
 
-    <div class="rounded-md border">
+    <div class="mt-4 rounded-md border">
       <Table>
         <TableHeader>
           <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
