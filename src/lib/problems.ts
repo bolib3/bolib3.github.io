@@ -1,6 +1,9 @@
 import type { Category, Problem } from '../types';
 import { datasets } from './datasets';
 
+const loremIpsum =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
 export const categories = {
   energy: {
     name: 'Energy & Transportation',
@@ -23,6 +26,7 @@ export const categories = {
 export const problems: Problem[] = [
   {
     name: 'Transmission station',
+    description: loremIpsum,
     category: categories.energy,
     upperLevelVariables: 10,
     lowerLevelVariables: 600,
@@ -38,6 +42,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Electric power markets',
+    description: loremIpsum,
     category: categories.energy,
     upperLevelVariables: 5,
     lowerLevelVariables: 150,
@@ -53,6 +58,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'weish26.dat-100',
+    description: loremIpsum,
     category: categories.synth,
     upperLevelVariables: 700,
     lowerLevelVariables: 700,
@@ -62,6 +68,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'BCPIns',
+    description: loremIpsum,
     category: categories.synth,
     upperLevelVariables: 100,
     lowerLevelVariables: 1593,
@@ -71,6 +78,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'normalClique',
+    description: loremIpsum,
     category: categories.synth,
     upperLevelVariables: 2,
     lowerLevelVariables: 236,
@@ -80,6 +88,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Linear',
+    description: loremIpsum,
     category: categories.svm,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
@@ -94,6 +103,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Linear regularised',
+    description: loremIpsum,
     category: categories.svm,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
@@ -108,6 +118,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'RBF kernel',
+    description: loremIpsum,
     category: categories.svm,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
@@ -122,6 +133,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Polynomial kernel',
+    description: loremIpsum,
     category: categories.svm,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
@@ -136,6 +148,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Simple Linear',
+    description: loremIpsum,
     category: categories.regression,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
@@ -150,6 +163,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Multiple Linear',
+    description: loremIpsum,
     category: categories.regression,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
@@ -164,6 +178,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Polynomial',
+    description: loremIpsum,
     category: categories.regression,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
@@ -178,6 +193,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Lasso',
+    description: loremIpsum,
     category: categories.regression,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',
@@ -192,6 +208,7 @@ export const problems: Problem[] = [
   },
   {
     name: 'Ridge',
+    description: loremIpsum,
     category: categories.regression,
     upperLevelVariables: '10-80000',
     lowerLevelVariables: '10-80000',

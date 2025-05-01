@@ -12,6 +12,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import ProblemPreview from '@/components/problems/preview/ProblemPreview.astro';
+import CategoryTag from '@/components/CategoryTag.vue';
 
 export function getStaticPaths() {
   return problems.map((problem) => ({
@@ -29,45 +30,57 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
 ---
 
 <RootLayout>
-  <Breadcrumb>
-    <BreadcrumbList>
-      <BreadcrumbItem>
-        <!-- @ts-ignore -->
-        <BreadcrumbLink href="/problems"> Problems </BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbSeparator />
-      <BreadcrumbItem>
-        <BreadcrumbPage>{problem.name}</BreadcrumbPage>
-      </BreadcrumbItem>
-    </BreadcrumbList>
-  </Breadcrumb>
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <!-- @ts-ignore -->
+          <BreadcrumbLink href="/problems"> Problems </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>{problem.name}</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+
+    <CategoryTag category={problem.category} />
+  </div>
 
   <h1 class="mt-4">{problem.name}</h1>
 
   <div class="grid gap-4 md:grid-cols-2">
     <div>
       <p class="mt-6 max-w-3xl leading-7">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto molestias impedit natus
-        nulla officiis. Pariatur rerum ipsum laudantium minima nobis dolore necessitatibus quos,
-        velit veniam! Ex nihil placeat voluptate saepe?
+        {problem.description}
       </p>
+
+      <div class="mt-6">
+        <LaTexRenderer tex={latex} />
+      </div>
+
+      <h2 class="mt-12 text-2xl font-bold">Solution</h2>
 
       <p class="mt-6 max-w-3xl leading-7">
-        Vero esse dolores reprehenderit provident rerum dicta, veniam magni iure exercitationem
-        dolore. Ut alias consequatur architecto consectetur deserunt illum aperiam, accusamus
-        laboriosam. Facere temporibus similique provident voluptatibus nostrum cumque voluptatem,
-        eveniet quam iusto officia illum ut iure officiis praesentium, qui exercitationem neque
-        saepe earum error dolores aliquid voluptas esse quia? Doloremque, inventore maxime!
-        Provident dolor perferendis necessitatibus consequuntur similique culpa officia eius.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam libero quos itaque iste,
+        similique modi perspiciatis sequi corrupti tenetur aspernatur nemo quibusdam tempore
+        laudantium facilis deserunt minima ad odio molestiae?
       </p>
 
-      <LaTexRenderer tex={latex} />
-
-      <p class="mt-6 max-w-3xl leading-7">
-        Magnam magni perferendis voluptatibus nobis vel sunt ipsa consectetur molestiae, nemo
-        laudantium aut esse sit commodi, eius saepe sequi. Vero ullam odit numquam cum dolor dolore
-        aperiam earum ipsam minima.
-      </p>
+      {
+        problem.datasets && (
+          <>
+            <h2 class="mt-12 text-2xl font-bold">Datasets</h2>
+            <ul class="list-disc pl-6">
+              {problem.datasets.map((dataset) => (
+                <li>
+                  <code>{dataset.name}</code>
+                </li>
+              ))}
+            </ul>
+          </>
+        )
+      }
     </div>
 
     <ProblemPreview problem={problem} />

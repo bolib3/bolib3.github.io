@@ -31,6 +31,7 @@ import type { Citation, Problem } from '@/types';
 import ActionMenu from './ActionMenu.vue';
 import DataTableToolbar from './DataTableToolbar.vue';
 import type { Dataset } from '@/lib/datasets';
+import CategoryTag from '../CategoryTag.vue';
 
 const data = problems;
 
@@ -84,11 +85,7 @@ const columns = [
     cell: ({ row }) => {
       const category = row.getValue('category') as Category;
 
-      return h(
-        Badge,
-        { variant: 'outline', class: 'text-black', style: { backgroundColor: category.colour } },
-        () => category.name
-      );
+      return h(CategoryTag, { category });
     },
     enableHiding: false,
     filterFn: (row, columnId, value) => {
