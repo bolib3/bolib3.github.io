@@ -2,6 +2,7 @@
 import { problems } from '@/lib/problems';
 import RootLayout from '../../layouts/RootLayout.astro';
 import { slugify } from '@/lib/utils';
+import LaTexRenderer from '@/components/LaTexRenderer.astro';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -21,6 +22,8 @@ export function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
+
+import latex from '/public/sample/bilevel.tex?raw';
 
 const problem = problems.find((problem) => slugify(problem.name) === slug)!;
 ---
@@ -57,6 +60,8 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
         saepe earum error dolores aliquid voluptas esse quia? Doloremque, inventore maxime!
         Provident dolor perferendis necessitatibus consequuntur similique culpa officia eius.
       </p>
+
+      <LaTexRenderer tex={latex} />
 
       <p class="mt-6 max-w-3xl leading-7">
         Magnam magni perferendis voluptatibus nobis vel sunt ipsa consectetur molestiae, nemo
