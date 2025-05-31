@@ -31,7 +31,7 @@ const props = defineProps<{
 const columnHelper = createColumnHelper<Dataset>();
 
 function downloadDataset(name: string) {
-  downloadFile('/sample/bilevel.csv', slugify(name) + '.csv');
+  downloadFile('/sample/bilevel.csv', slugify(name));
 }
 
 const sortableHeader = <A, B>(column: Column<A, B>, header: string, tooltip?: string) => {

@@ -17,7 +17,7 @@ import type { Problem } from '@/types';
 import { MoreHorizontal, Radical, Table } from 'lucide-vue-next';
 import { computed } from 'vue';
 import { slugify } from '../../lib/utils';
-import type { Dataset } from '@/lib/datasets';
+import type { Dataset } from '@/types';
 import { Download } from 'lucide-vue-next';
 
 const props = defineProps<{
@@ -31,7 +31,7 @@ function copy(text: string) {
 }
 
 function downloadDataset(dataset: Dataset) {
-  downloadFile('/sample/bilevel.csv', snakeCase(dataset.name) + '.csv');
+  downloadFile('/sample/bilevel.csv', snakeCase(dataset.name));
 }
 
 function downloadPython(problem: Problem) {
