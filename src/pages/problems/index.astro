@@ -2,6 +2,8 @@
 import RootLayout from '../../layouts/RootLayout.astro';
 import Datatable from '../../components/problems/Datatable.vue';
 import { Button } from '@/components/ui/button';
+
+import { problems } from '@/lib/problems';
 ---
 
 <RootLayout>
@@ -9,7 +11,7 @@ import { Button } from '@/components/ui/button';
 
   <p class="text-muted-foreground mt-6 max-w-3xl leading-7">Our collection of bilevel problems</p>
 
-  <Datatable client:load>
+  <Datatable problems={problems} client:load>
     <p class="text-muted-foreground text-sm" slot="bottom-right">
       Want to download multiple problems?
       <Button variant="link" class="p-0">

@@ -20,12 +20,13 @@ import {
 } from '@tanstack/vue-table';
 import { ChevronDown, ChevronsUpDown, ChevronUp, Download } from 'lucide-vue-next';
 import { h, ref } from 'vue';
-import type { Dataset } from '@/types';
-import { datasets } from '@/lib/datasets';
+import type { Dataset, Problem } from '@/types';
 import Input from '../ui/input/Input.vue';
-import { problems } from '@/lib/problems';
 
-const data = datasets;
+const props = defineProps<{
+  datasets: Dataset[];
+  problems: Problem[];
+}>();
 
 const columnHelper = createColumnHelper<Dataset>();
 
@@ -86,8 +87,9 @@ const columns = [
 
       // TODO: Lets do this somewhere else
       const relatedProblem =
-        problems.filter((problem) => problem.datasets?.some((dataset) => dataset.name === name)) ??
-        [];
+        props.problems.filter((problem) =>
+          problem.datasets?.some((dataset) => dataset.name === name)
+        ) ?? [];
 
       return h(
         'div',
@@ -124,7 +126,7 @@ const sorting = ref<SortingState>([
 const columnFilters = ref<ColumnFiltersState>([]);
 
 const table = useVueTable({
-  data,
+  data: props.datasets,
   columns,
   getCoreRowModel: getCoreRowModel(),
   getSortedRowModel: getSortedRowModel(),

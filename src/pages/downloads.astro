@@ -3,6 +3,9 @@ import RootLayout from '../layouts/RootLayout.astro';
 import DownloadProblemCollection from '../components/DownloadProblemCollection.vue';
 import Datatable from '@/components/datasets/Datatable.vue';
 import DownloadDatasetCollection from '../components/DownloadDatasetCollection.vue';
+
+import { datasets } from '@/lib/datasets';
+import { problems } from '@/lib/problems';
 ---
 
 <RootLayout>
@@ -33,7 +36,7 @@ import DownloadDatasetCollection from '../components/DownloadDatasetCollection.v
         below.
       </p>
 
-      <Datatable client:load />
+      <Datatable datasets={datasets} problems={problems} client:load />
 
       <DownloadDatasetCollection client:load />
     </div>

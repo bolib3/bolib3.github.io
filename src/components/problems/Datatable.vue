@@ -26,14 +26,15 @@ import {
 } from '@tanstack/vue-table';
 import { ChevronDown, ChevronsUpDown, ChevronUp } from 'lucide-vue-next';
 import { h, ref } from 'vue';
-import { problems } from '@/lib/problems';
 import type { Citation, Problem } from '@/types';
 import ActionMenu from './ActionMenu.vue';
 import DataTableToolbar from './DataTableToolbar.vue';
 import type { Dataset } from '@/lib/datasets';
 import CategoryTag from '../CategoryTag.vue';
 
-const data = problems;
+const props = defineProps<{
+  problems: Problem[];
+}>();
 
 const columnHelper = createColumnHelper<Problem>();
 
@@ -159,7 +160,7 @@ const columnVisibility = ref<VisibilityState>({
 });
 
 const table = useVueTable({
-  data,
+  data: props.problems,
   columns,
   getCoreRowModel: getCoreRowModel(),
   getSortedRowModel: getSortedRowModel(),
