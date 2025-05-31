@@ -1,33 +1,15 @@
-import type { Category, Problem } from '../types';
+import type { Problem } from '../types';
+import { categories } from './categories';
 import { datasets } from './datasets';
 
 const loremIpsum =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
 
-export const categories = {
-  energy: {
-    name: 'Energy & Transportation',
-    colour: 'oklch(88.5% 0.062 18.334)',
-  },
-  synth: {
-    name: 'Synthetic',
-    colour: 'oklch(95.1% 0.026 236.824)',
-  },
-  svm: {
-    name: 'Machine Learning / Support Vector Machine',
-    colour: 'oklch(95% 0.052 163.051)',
-  },
-  regression: {
-    name: 'Machine Learning / Regression',
-    colour: 'oklch(95.2% 0.037 318.852)',
-  },
-} satisfies Record<string, Category>;
-
 export const problems: Problem[] = [
   {
     name: 'Transmission station',
     description: loremIpsum,
-    category: categories.energy,
+    category: categories.transportation,
     upperLevelVariables: 10,
     lowerLevelVariables: 600,
     upperLevelConstraints: 0,
@@ -43,7 +25,7 @@ export const problems: Problem[] = [
   {
     name: 'Electric power markets',
     description: loremIpsum,
-    category: categories.energy,
+    category: categories.transportation,
     upperLevelVariables: 5,
     lowerLevelVariables: 150,
     upperLevelConstraints: 5,
