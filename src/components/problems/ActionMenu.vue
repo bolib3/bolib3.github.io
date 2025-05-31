@@ -12,7 +12,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { downloadFile, formatBytes, snakeCase } from '@/lib/utils';
+import { downloadFile, formatBytes } from '@/lib/utils';
 import type { Problem } from '@/types';
 import { MoreHorizontal, Radical, Table } from 'lucide-vue-next';
 import { computed } from 'vue';
@@ -31,23 +31,23 @@ function copy(text: string) {
 }
 
 function downloadDataset(dataset: Dataset) {
-  downloadFile('/sample/bilevel.csv', snakeCase(dataset.name));
+  downloadFile(`/datasets/${dataset.name}`, dataset.name);
 }
 
 function downloadPython(problem: Problem) {
-  downloadFile('/sample/bilevel.py', snakeCase(problem.name) + '.py');
+  downloadFile(`/problems/python/${problem.name}.py`, problem.name + '.py');
 }
 
 function downloadMatLab(problem: Problem) {
-  downloadFile('/sample/bilevel.m', snakeCase(problem.name) + '.m');
+  downloadFile(`/problems/matlab/${problem.name}.m`, problem.name + '.m');
 }
 
 function downloadGAMS(problem: Problem) {
-  downloadFile('/sample/bilevel.gms', snakeCase(problem.name) + '.gms');
+  downloadFile(`/problems/gams/${problem.name}.gms`, problem.name + '.gms');
 }
 
 function downloadLaTeX(problem: Problem) {
-  downloadFile('/sample/bilevel.tex', snakeCase(problem.name) + '.tex');
+  downloadFile(`/problems/latex/${problem.name}.tex`, problem.name + '.tex');
 }
 </script>
 

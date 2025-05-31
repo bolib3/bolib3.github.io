@@ -2,6 +2,7 @@
 import CopyCode from '@/components/CopyCode.astro';
 import LanguageTabs from './LanguageTabs.vue';
 import type { Problem } from '@/types';
+import fs from 'fs';
 
 interface Props {
   problem: Problem;
@@ -9,13 +10,10 @@ interface Props {
 
 const { problem } = Astro.props;
 
-// TODO: Load these based on the problem name
-import python from '/public/sample/bilevel.py?raw';
-import matlab from '/public/sample/bilevel.m?raw';
-import gams from '/public/sample/bilevel.gms?raw';
-import latex from '/public/sample/bilevel.tex?raw';
-
-console.debug(problem.name);
+const python = fs.readFileSync(`./public/problems/python/${problem.name}.py`, 'utf-8');
+const matlab = fs.readFileSync(`./public/problems/matlab/${problem.name}.m`, 'utf-8');
+const gams = fs.readFileSync(`./public/problems/gams/${problem.name}.gms`, 'utf-8');
+const latex = fs.readFileSync(`./public/problems/latex/${problem.name}.tex`, 'utf-8');
 ---
 
 <LanguageTabs client:only>
