@@ -2,6 +2,7 @@
 import { problems } from '@/lib/data';
 import RootLayout from '../../layouts/RootLayout.astro';
 import { slugify } from '@/lib/utils';
+import fs from 'fs';
 import LaTexRenderer from '@/components/LaTexRenderer.astro';
 import {
   Breadcrumb,
@@ -24,9 +25,9 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 
-import latex from '/public/sample/bilevel.tex?raw';
-
 const problem = problems.find((problem) => slugify(problem.name) === slug)!;
+
+const latex = fs.readFileSync(`./public/problems/latex/${problem.name}.tex`, 'utf-8');
 ---
 
 <RootLayout>
