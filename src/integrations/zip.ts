@@ -42,24 +42,10 @@ async function zipSample(logger: AstroIntegrationLogger) {
     },
     {
       files: problems.map((problem) => ({
-        path: 'public/sample/bilevel.jl',
-        name: slugify(problem.name) + '.jl',
-      })),
-      name: 'julia-collection.zip',
-    },
-    {
-      files: problems.map((problem) => ({
         path: 'public/sample/bilevel.m',
         name: slugify(problem.name) + '.m',
       })),
       name: 'matlab-collection.zip',
-    },
-    {
-      files: problems.map((problem) => ({
-        path: 'public/sample/bilevel.mod',
-        name: slugify(problem.name) + '.mod',
-      })),
-      name: 'ampl-collection.zip',
     },
     {
       files: problems.map((problem) => ({

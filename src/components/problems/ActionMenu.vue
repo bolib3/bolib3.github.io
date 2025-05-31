@@ -42,14 +42,6 @@ function downloadMatLab(problem: Problem) {
   downloadFile('/sample/bilevel.m', snakeCase(problem.name) + '.m');
 }
 
-function downloadJulia(problem: Problem) {
-  downloadFile('/sample/bilevel.jl', snakeCase(problem.name) + '.jl');
-}
-
-function downloadAMPL(problem: Problem) {
-  downloadFile('/sample/bilevel.mod', snakeCase(problem.name) + '.mod');
-}
-
 function downloadGAMS(problem: Problem) {
   downloadFile('/sample/bilevel.gms', snakeCase(problem.name) + '.gms');
 }
@@ -88,8 +80,6 @@ function downloadLaTeX(problem: Problem) {
             <DropdownMenuItem @click="downloadMatLab(problem)">
               <Download /> MatLab
             </DropdownMenuItem>
-            <DropdownMenuItem @click="downloadJulia(problem)"><Download /> Julia</DropdownMenuItem>
-            <DropdownMenuItem @click="downloadAMPL(problem)"><Download /> AMPL</DropdownMenuItem>
             <DropdownMenuItem @click="downloadGAMS(problem)"><Download /> GAMS</DropdownMenuItem>
             <DropdownMenuItem @click="downloadLaTeX(problem)"><Download /> LaTeX</DropdownMenuItem>
           </DropdownMenuSubContent>
