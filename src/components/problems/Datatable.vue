@@ -7,7 +7,6 @@ import type {
 } from '@tanstack/vue-table';
 import { slugify, valueUpdater } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import {
   Table,
   TableBody,
@@ -29,7 +28,7 @@ import { h, ref } from 'vue';
 import type { Citation, Problem } from '@/types';
 import ActionMenu from './ActionMenu.vue';
 import DataTableToolbar from './DataTableToolbar.vue';
-import type { Dataset } from '@/lib/datasets';
+import type { Dataset } from '@/lib/types';
 import CategoryTag from '../CategoryTag.vue';
 
 const props = defineProps<{

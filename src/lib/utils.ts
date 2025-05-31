@@ -49,3 +49,27 @@ export function formatBytes(bytes: number, decimals = 2) {
 
   return `${size} ${sizes[i]}`;
 }
+
+export function intersect<T>(arr1: T[], arr2: T[], ...rest: T[][]): T[] {
+  const intersection = arr1.filter((item) => arr2.includes(item));
+
+  const [nextArr, ...otherArr] = rest;
+
+  if (!nextArr || nextArr.length === 0) {
+    return intersection;
+  }
+
+  return intersect(intersection, nextArr, ...otherArr);
+}
+
+export function union<T>(arr1: T[], arr2: T[], ...rest: T[][]): T[] {
+  const unionSet = new Set(arr1);
+
+  arr2.forEach((item) => unionSet.add(item));
+
+  rest.forEach((arr) => {
+    arr.forEach((item) => unionSet.add(item));
+  });
+
+  return Array.from(unionSet);
+}

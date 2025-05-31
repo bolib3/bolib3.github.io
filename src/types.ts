@@ -27,5 +27,5 @@ export interface Problem {
   upperLevelConstraints: ValueOrRange;
   lowerLevelConstraints: ValueOrRange;
   addedAt: Date;
-  datasets?: Dataset[];
+  datasets: Dataset[] | undefined;
 }
