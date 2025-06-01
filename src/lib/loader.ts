@@ -39,10 +39,10 @@ const problemMetadataValidator = z.object({
     y: z.array(z.number()),
     F: z.number(),
     G: z.array(z.number()),
-    H: z.array(z.number()).optional(),
+    H: z.array(z.number()),
     f: z.number(),
     g: z.array(z.number()),
-    h: z.array(z.number()).optional(),
+    h: z.array(z.number()),
   }),
 });
 
@@ -129,6 +129,7 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
       datasets: problemsDatasets,
       addedAt: new Date(), // TODO: Set actual date or remove this field
       // citation: undefined, // TODO: Set actual citation
+      solution: metadata.solution,
     };
   });
 }
