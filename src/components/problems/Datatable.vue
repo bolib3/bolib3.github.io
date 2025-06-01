@@ -94,21 +94,33 @@ const columns = [
       return value.some((v) => rowValue.name.toLowerCase().includes(v.toLowerCase()));
     },
   }),
-  columnHelper.accessor('upperLevelVariables', {
-    header: ({ column }) => sortableHeader(column, 'n', 'Upper Level Variables'),
-    cell: ({ row }) => h('code', {}, row.getValue('upperLevelVariables')),
+  columnHelper.accessor('dimension.x', {
+    header: ({ column }) => sortableHeader(column, 'x', 'Upper-level decision variables'),
   }),
-  columnHelper.accessor('lowerLevelVariables', {
-    header: ({ column }) => sortableHeader(column, 'm', 'Lower Level Variables'),
-    cell: ({ row }) => h('code', {}, row.getValue('lowerLevelVariables')),
+  columnHelper.accessor('dimension.y', {
+    header: ({ column }) => sortableHeader(column, 'y', 'Lower-level decision variables'),
   }),
-  columnHelper.accessor('upperLevelConstraints', {
-    header: ({ column }) => sortableHeader(column, 'p', 'Upper Level Constraints'),
-    cell: ({ row }) => h('code', {}, row.getValue('upperLevelConstraints')),
+  columnHelper.accessor('dimension.F', {
+    header: ({ column }) => sortableHeader(column, 'F(x,y)', 'Upper-level objective function'),
   }),
-  columnHelper.accessor('lowerLevelConstraints', {
-    header: ({ column }) => sortableHeader(column, 'q', 'Lower Level Constraints'),
-    cell: ({ row }) => h('code', {}, row.getValue('lowerLevelConstraints')),
+  columnHelper.accessor('dimension.f', {
+    header: ({ column }) => sortableHeader(column, 'f(x,y)', 'Lower-level objective function'),
+  }),
+  columnHelper.accessor('dimension.G', {
+    header: ({ column }) =>
+      sortableHeader(column, 'G(x,y)', 'Upper-level inequality constraint functions'),
+  }),
+  columnHelper.accessor('dimension.g', {
+    header: ({ column }) =>
+      sortableHeader(column, 'g(x,y)', 'Lower-level inequality constraint functions'),
+  }),
+  columnHelper.accessor('dimension.H', {
+    header: ({ column }) =>
+      sortableHeader(column, 'H(x,y)', 'Upper-level equality constraint functions'),
+  }),
+  columnHelper.accessor('dimension.h', {
+    header: ({ column }) =>
+      sortableHeader(column, 'h(x,y)', 'Lower-level equality constraint functions'),
   }),
   columnHelper.accessor('citation', {
     header: ({ column }) => sortableHeader(column, 'Citation'),
@@ -154,7 +166,9 @@ const sorting = ref<SortingState>([
   },
 ]);
 const columnFilters = ref<ColumnFiltersState>([]);
-const columnVisibility = ref<VisibilityState>({});
+const columnVisibility = ref<VisibilityState>({
+  citation: false,
+});
 
 const table = useVueTable({
   data: props.problems,
