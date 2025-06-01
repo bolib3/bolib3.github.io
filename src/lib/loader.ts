@@ -122,10 +122,7 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
       name: metadata.name,
       description: loremIpsum, // TODO: Set actual description or remove this field
       category: categories[metadata.category] ?? categories.miscellaneous!,
-      upperLevelVariables: metadata.dimension.x,
-      lowerLevelVariables: metadata.dimension.y,
-      upperLevelConstraints: metadata.dimension.F,
-      lowerLevelConstraints: metadata.dimension.G,
+      dimension: metadata.dimension,
       datasets: problemsDatasets,
       // citation: undefined, // TODO: Set actual citation
       solution: metadata.solution,

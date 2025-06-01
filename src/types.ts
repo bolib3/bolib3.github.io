@@ -4,9 +4,6 @@ export interface Citation {
   link: string;
 }
 
-// Either a specific value or a range of values
-export type ValueOrRange = number | `${number}-${number}`;
-
 export interface Category {
   name: string;
   colour: string;
@@ -22,12 +19,20 @@ export interface Problem {
   description: string;
   category: Category; // TODO: Should this be an array or nested object?
   citation?: Citation;
-  upperLevelVariables: ValueOrRange;
-  lowerLevelVariables: ValueOrRange;
-  upperLevelConstraints: ValueOrRange;
-  lowerLevelConstraints: ValueOrRange;
+  dimension: Dimension;
   datasets: Dataset[] | undefined;
   solution: Solution;
+}
+
+interface Dimension {
+  x: number;
+  y: number;
+  F: number;
+  G: number;
+  H: number;
+  f: number;
+  g: number;
+  h: number;
 }
 
 interface Solution {
