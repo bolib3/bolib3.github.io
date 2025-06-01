@@ -63,9 +63,8 @@ const latex = fs.readFileSync(`./public/problems/latex/${problem.name}.tex`, 'ut
       <h2 class="mt-12 text-2xl font-bold">Solution</h2>
 
       <p class="mt-6 max-w-3xl leading-7">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam libero quos itaque iste,
-        similique modi perspiciatis sequi corrupti tenetur aspernatur nemo quibusdam tempore
-        laudantium facilis deserunt minima ad odio molestiae?
+        <!-- TODO: Format nicely -->
+        {JSON.stringify(problem.solution, null, 2)}
       </p>
 
       {

@@ -28,4 +28,17 @@ export interface Problem {
   lowerLevelConstraints: ValueOrRange;
   addedAt: Date;
   datasets: Dataset[] | undefined;
+  solution: Solution;
+}
+
+interface Solution {
+  optimality: string;
+  x: number[];
+  y: number[];
+  F: number;
+  G: number[];
+  H: number[];
+  f: number;
+  g: number[];
+  h: number[];
 }
