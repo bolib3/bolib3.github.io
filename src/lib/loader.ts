@@ -127,7 +127,6 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
       upperLevelConstraints: metadata.dimension.F,
       lowerLevelConstraints: metadata.dimension.G,
       datasets: problemsDatasets,
-      addedAt: new Date(), // TODO: Set actual date or remove this field
       // citation: undefined, // TODO: Set actual citation
       solution: metadata.solution,
     };

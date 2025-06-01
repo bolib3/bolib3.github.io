@@ -154,9 +154,7 @@ const sorting = ref<SortingState>([
   },
 ]);
 const columnFilters = ref<ColumnFiltersState>([]);
-const columnVisibility = ref<VisibilityState>({
-  addedAt: false,
-});
+const columnVisibility = ref<VisibilityState>({});
 
 const table = useVueTable({
   data: props.problems,
