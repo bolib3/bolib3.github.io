@@ -41,4 +41,8 @@ function publishProblem(problem: Problem) {
     `${BOLIB_PATH}/latex/${problem.name}.tex`,
     `public/problems/latex/${problem.name}.tex`
   );
+  fs.copyFileSync(
+    `${BOLIB_PATH}/pdf/${problem.name}.pdf`,
+    `public/problems/pdf/${problem.name}.pdf`
+  );
 }
