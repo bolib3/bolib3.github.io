@@ -1,7 +1,12 @@
 package*
 dist
 
+# Ignore the bolib3 submodule
+bolib3
+
 # Ignore the shadcn code
 src/components/ui
 src/styles/shadcn.css
 src/lib/utils.ts
+
+
