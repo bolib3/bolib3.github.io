@@ -1,5 +1,5 @@
 import type { Dataset, Problem } from '../types';
-import type { AstroIntegration } from 'astro';
+import type { AstroIntegration, AstroIntegrationLogger } from 'astro';
 import { problems, datasets } from '../lib/data';
 import fs from 'fs';
 import { BOLIB_PATH } from '../lib/loader';
@@ -8,16 +8,18 @@ export default function publisherIntegration(): AstroIntegration {
   return {
     name: 'publisher',
     hooks: {
-      'astro:build:setup': () => publish(),
-      'astro:server:setup': () => publish(),
+      'astro:build:setup': ({ logger }) => publish(logger),
+      'astro:server:setup': ({ logger }) => publish(logger),
       // TODO: Consider setting up a watcher for changes in the source files for local development
     },
   };
 }
 
-function publish() {
+function publish(logger: AstroIntegrationLogger) {
   datasets.forEach(publishDataset);
+  logger.info(`Published ${datasets.length} datasets.`);
   problems.forEach(publishProblem);
+  logger.info(`Published ${problems.length} problems.`);
 }
 
 function publishDataset(dataset: Dataset) {
