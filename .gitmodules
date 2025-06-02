@@ -1,0 +1,3 @@
+[submodule "bolib3"]
+	path = bolib3
+	url = https://github.com/bolib3/bolib3.git
