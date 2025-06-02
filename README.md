@@ -1,6 +1,6 @@
-# Bilevel benchmarking
+# bolib3.github.io
 
-This is the Bilevel benchmarking website source. It is built using [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), [Vue.js](https://vuejs.org/) and [shadcn/vue](https://www.shadcn-vue.com/).
+This is the source for the bolib3 website. It is built using [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), [Vue.js](https://vuejs.org/) and [shadcn/vue](https://www.shadcn-vue.com/).
 
 ## Getting Started
 
