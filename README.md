@@ -4,25 +4,31 @@ This is the source for the bolib3 website. It is built using [Astro](https://ast
 
 ## Getting Started
 
-1. Install [Node.js](https://github.com/nvm-sh/nvm)
+1. Clone the repository (with submodules)
+
+```bash
+git clone --recurse-submodules https://github.com/bolib3/bolib3.github.io
+```
+
+2. Install [Node.js](https://github.com/nvm-sh/nvm)
 
 ```bash
 nvm use --lts
 ```
 
-2. Install the projects dependencies
+3. Install the projects dependencies
 
 ```bash
 npm install
 ```
 
-3. Start the local development server
+4. Start the local development server
 
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:4321](http://localhost:4321) with your browser
+5. Open [http://localhost:4321](http://localhost:4321) with your browser
 
 ## Formatting
 
