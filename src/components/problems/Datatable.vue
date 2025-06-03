@@ -168,6 +168,7 @@ const sorting = ref<SortingState>([
 const columnFilters = ref<ColumnFiltersState>([]);
 const columnVisibility = ref<VisibilityState>({
   citation: false,
+  datasets: false,
 });
 
 const table = useVueTable({
