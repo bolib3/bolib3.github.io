@@ -34,6 +34,10 @@ function downloadDataset(dataset: Dataset) {
   downloadFile(`/datasets/${dataset.name}`, dataset.name);
 }
 
+function downloadPDF(problem: Problem) {
+  downloadFile(`/problems/pdf/${problem.name}.pdf`, problem.name + '.pdf');
+}
+
 function downloadPython(problem: Problem) {
   downloadFile(`/problems/python/${problem.name}.py`, problem.name + '.py');
 }
@@ -74,6 +78,7 @@ function downloadLaTeX(problem: Problem) {
         </DropdownMenuSubTrigger>
         <DropdownMenuPortal>
           <DropdownMenuSubContent>
+            <DropdownMenuItem @click="downloadPDF(problem)"> <Download /> PDF </DropdownMenuItem>
             <DropdownMenuItem @click="downloadPython(problem)">
               <Download /> Python
             </DropdownMenuItem>
