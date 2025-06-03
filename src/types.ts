@@ -16,7 +16,6 @@ export interface Dataset {
 
 export interface Problem {
   name: string;
-  description: string;
   category: Category; // TODO: Should this be an array or nested object?
   citation?: Citation;
   dimension: Dimension;

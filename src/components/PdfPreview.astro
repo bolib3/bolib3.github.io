@@ -1,0 +1,13 @@
+---
+import type { Problem } from '@/types';
+
+interface Props {
+  problem: Problem;
+}
+
+const { problem } = Astro.props;
+
+const pdfPath = `/problems/pdf/${problem.name}.pdf#toolbar=0&navpanes=0&scrollbar=0`;
+---
+
+<embed src={pdfPath} class="h-[50rem] w-full" type="application/pdf" title="Problem PDF Preview" />

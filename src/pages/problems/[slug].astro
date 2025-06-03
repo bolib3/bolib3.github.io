@@ -2,8 +2,7 @@
 import { problems } from '@/lib/data';
 import RootLayout from '../../layouts/RootLayout.astro';
 import { slugify } from '@/lib/utils';
-import fs from 'fs';
-import LaTexRenderer from '@/components/LaTexRenderer.astro';
+import PdfPreview from '@/components/PdfPreview.astro';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -26,8 +25,6 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 
 const problem = problems.find((problem) => slugify(problem.name) === slug)!;
-
-const latex = fs.readFileSync(`./public/problems/latex/${problem.name}.tex`, 'utf-8');
 ---
 
 <RootLayout>
@@ -52,12 +49,8 @@ const latex = fs.readFileSync(`./public/problems/latex/${problem.name}.tex`, 'ut
 
   <div class="grid gap-4 md:grid-cols-2">
     <div>
-      <p class="mt-6 max-w-3xl leading-7">
-        {problem.description}
-      </p>
-
       <div class="mt-6">
-        <LaTexRenderer tex={latex} />
+        <PdfPreview problem={problem} />
       </div>
 
       <h2 class="mt-12 text-2xl font-bold">Dimension</h2>
