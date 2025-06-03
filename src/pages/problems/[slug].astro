@@ -60,6 +60,13 @@ const latex = fs.readFileSync(`./public/problems/latex/${problem.name}.tex`, 'ut
         <LaTexRenderer tex={latex} />
       </div>
 
+      <h2 class="mt-12 text-2xl font-bold">Dimension</h2>
+
+      <p class="mt-6 max-w-3xl leading-7">
+        <!-- TODO: Format nicely -->
+        {JSON.stringify(problem.dimension, null, 2)}
+      </p>
+
       <h2 class="mt-12 text-2xl font-bold">Solution</h2>
 
       <p class="mt-6 max-w-3xl leading-7">
