@@ -2,7 +2,6 @@ import type { Category, Dataset, Problem } from '@/types';
 import * as fs from 'fs';
 import { basename } from 'path';
 import z from 'zod';
-import { intersect, union } from './utils';
 
 export const BOLIB_PATH = './bolib3/bolib3';
 
@@ -12,6 +11,7 @@ const loremIpsum =
 const problemMetadataValidator = z.object({
   name: z.string(),
   category: z.string(),
+  published: z.boolean(),
   dimension: z.object({
     x: z.number(),
     y: z.number(),
@@ -56,57 +56,47 @@ export function loadDatasets(): Dataset[] {
 }
 
 export function loadProblems(categories: Record<string, Category>, datasets: Dataset[]): Problem[] {
-  const pythonProblemPaths = fs.globSync(BOLIB_PATH + '/python/*.py');
-  const gamsProblemPaths = fs.globSync(BOLIB_PATH + '/gams/*.gms');
-  const matlabProblemPaths = fs.globSync(BOLIB_PATH + '/matlab/*.m');
-  const latexProblemPaths = fs.globSync(BOLIB_PATH + '/latex/*.tex');
-  const problemPdfPaths = fs.globSync(BOLIB_PATH + '/pdf/*.pdf');
-  const problemMetadataPaths = fs.globSync(BOLIB_PATH + '/json/*.json');
+  const problemMetadataPaths = fs.globSync(`${BOLIB_PATH}/json/*.json`);
 
-  const pythonProblemNames = pythonProblemPaths.map((path) => basename(path, '.py'));
-  const gamsProblemNames = gamsProblemPaths.map((path) => basename(path, '.gms'));
-  const matlabProblemNames = matlabProblemPaths.map((path) => basename(path, '.m'));
-  const latexProblemNames = latexProblemPaths.map((path) => basename(path, '.tex'));
-  const problemPdfNames = problemPdfPaths.map((path) => basename(path, '.pdf'));
-  const problemMetadataNames = problemMetadataPaths.map((path) => basename(path, '.json'));
+  console.log(`Found metadata for ${problemMetadataPaths.length} problems in bolib3.`);
 
-  const commonProblemNames = intersect(
-    pythonProblemNames,
-    gamsProblemNames,
-    matlabProblemNames,
-    latexProblemNames,
-    problemPdfNames,
-    problemMetadataNames
-  );
+  const pythonProblems = fs.globSync(`${BOLIB_PATH}/python/*.py`).map((p) => basename(p, '.py'));
+  const gamsProblems = fs.globSync(`${BOLIB_PATH}/gams/*.gms`).map((p) => basename(p, '.gms'));
+  const matlabProblems = fs.globSync(`${BOLIB_PATH}/matlab/*.m`).map((p) => basename(p, '.m'));
+  const latexProblems = fs.globSync(`${BOLIB_PATH}/latex/*.tex`).map((p) => basename(p, '.tex'));
+  const problemPdfs = fs.globSync(`${BOLIB_PATH}/pdf/*.pdf`).map((p) => basename(p, '.pdf'));
 
-  const allProblemNames = union(
-    pythonProblemNames,
-    gamsProblemNames,
-    matlabProblemNames,
-    latexProblemNames,
-    problemPdfNames,
-    problemMetadataNames
-  );
+  const foundProblems = {
+    python: pythonProblems,
+    gams: gamsProblems,
+    matlab: matlabProblems,
+    latex: latexProblems,
+    pdf: problemPdfs,
+  };
 
-  if (commonProblemNames.length === allProblemNames.length) {
-    console.log('All problem names are common across all formats.');
-  } else {
-    console.warn(
-      'There are some problem names that are not common across all formats. Ignoring the following:\n',
-      allProblemNames.filter((name) => !commonProblemNames.includes(name)).join(', ')
-    );
-  }
+  const problems: Problem[] = [];
 
-  return commonProblemNames.map((name): Problem => {
-    const metadataPath = `${BOLIB_PATH}/json/${name}.json`;
+  for (const metadataPath of problemMetadataPaths) {
     const rawMetadata = fs.readFileSync(metadataPath, 'utf-8');
     const parseResult = problemMetadataValidator.safeParse(JSON.parse(rawMetadata));
 
     if (!parseResult.success) {
-      throw new Error(`Invalid metadata for problem ${name}: ${parseResult.error.message}`);
+      throw new Error(`Invalid problem metadata in ${metadataPath}: ${parseResult.error.message}`);
     }
 
     const metadata = parseResult.data;
+    const name = metadata.name;
+
+    if (!metadata.published) {
+      console.info(`Problem ${name} is not published, skipping.`);
+      continue;
+    }
+
+    for (const [type, problems] of Object.entries(foundProblems)) {
+      if (!problems.includes(name)) {
+        throw new Error(`Problem ${name} not found in ${type} files.`);
+      }
+    }
 
     const problemsDatasets = metadata.datasets?.map((datasetName) => {
       const dataset = datasets.find((d) => d.name === datasetName);
@@ -118,7 +108,7 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
       return dataset;
     });
 
-    return {
+    problems.push({
       name: metadata.name,
       description: loremIpsum, // TODO: Set actual description or remove this field
       category: categories[metadata.category] ?? categories.miscellaneous!,
@@ -126,6 +116,8 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
       datasets: problemsDatasets,
       // citation: undefined, // TODO: Set actual citation
       solution: metadata.solution,
-    };
-  });
+    });
+  }
+
+  return problems;
 }
