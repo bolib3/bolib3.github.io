@@ -8,7 +8,7 @@ export const BOLIB_PATH = './bolib3/bolib3';
 const problemMetadataValidator = z.object({
   name: z.string(),
   category: z.string(),
-  published: z.boolean(),
+  published: z.boolean().optional().default(false),
   dimension: z.object({
     x: z.number(),
     y: z.number(),
