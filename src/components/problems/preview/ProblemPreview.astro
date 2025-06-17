@@ -16,7 +16,7 @@ const gams = fs.readFileSync(`./public/problems/gams/${problem.name}.gms`, 'utf-
 const latex = fs.readFileSync(`./public/problems/latex/${problem.name}.tex`, 'utf-8');
 ---
 
-<LanguageTabs client:load>
+<LanguageTabs client:only>
   <CopyCode slot="python" code={python} lang="python" />
   <CopyCode slot="matlab" code={matlab} lang="matlab" />
   <!-- Note that gams is not supported by shiki so we're using python for now -->
