@@ -73,3 +73,20 @@ export function union<T>(arr1: T[], arr2: T[], ...rest: T[][]): T[] {
 
   return Array.from(unionSet);
 }
+
+export function stringifyInlineArrays(value: any, indent: number = 2): string {
+  const seen = new WeakSet();
+
+  const json = JSON.stringify(value, function (key, val) {
+    if (typeof val === 'object' && val !== null) {
+      if (seen.has(val)) return '[Circular]';
+      seen.add(val);
+    }
+    return val;
+  }, indent);
+
+  return json.replace(
+    /\[\s*((?:-?\d+(?:\.\d+)?(?:,\s*)?)+)\s*\]/g,
+    (_, numbers) => `[${numbers.replace(/\s+/g, ' ')}]`
+  );
+}

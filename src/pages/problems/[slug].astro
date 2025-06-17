@@ -1,8 +1,9 @@
 ---
 import { problems } from '@/lib/data';
 import RootLayout from '../../layouts/RootLayout.astro';
-import { slugify } from '@/lib/utils';
+import { slugify, stringifyInlineArrays } from '@/lib/utils';
 import PdfPreview from '@/components/PdfPreview.astro';
+import { Code } from 'astro:components';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -48,42 +49,54 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
   <h1 class="mt-4">{problem.name}</h1>
 
   <div class="grid gap-4 md:grid-cols-2">
-    <div>
-      <div class="mt-6">
-        <PdfPreview problem={problem} />
+    <div class="overflow-x-auto">
+      <div class="justify-between pr-8 md:flex">
+        <div>
+          <h2 class="mt-12 text-2xl font-bold">Dimension</h2>
+
+          <p class="mt-6 max-w-3xl leading-7">
+            <Code
+              code={stringifyInlineArrays(problem.dimension, 2)}
+              lang="json"
+              themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
+              defaultColor="light"
+            />
+          </p>
+        </div>
+
+        {
+          problem.datasets && (
+            <div>
+              <h2 class="mt-12 text-2xl font-bold">Datasets</h2>
+              <ul class="mt-6 list-disc pl-6">
+                {problem.datasets.map((dataset) => (
+                  <li>
+                    <code>{dataset.name}</code>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
       </div>
-
-      <h2 class="mt-12 text-2xl font-bold">Dimension</h2>
-
-      <p class="mt-6 max-w-3xl leading-7">
-        <!-- TODO: Format nicely -->
-        {JSON.stringify(problem.dimension, null, 2)}
-      </p>
 
       <h2 class="mt-12 text-2xl font-bold">Solution</h2>
 
       <p class="mt-6 max-w-3xl leading-7">
-        <!-- TODO: Format nicely -->
-        {JSON.stringify(problem.solution, null, 2)}
+        <Code
+          code={stringifyInlineArrays(problem.solution, 2)}
+          lang="json"
+          themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
+          defaultColor="light"
+        />
       </p>
 
-      {
-        problem.datasets && (
-          <>
-            <h2 class="mt-12 text-2xl font-bold">Datasets</h2>
-            <ul class="list-disc pl-6">
-              {problem.datasets.map((dataset) => (
-                <li>
-                  <code>{dataset.name}</code>
-                </li>
-              ))}
-            </ul>
-          </>
-        )
-      }
+      <div class="mt-12">
+        <PdfPreview problem={problem} />
+      </div>
     </div>
 
-    <div class="overflow-x-auto">
+    <div class="sticky top-20 overflow-x-auto md:max-h-[calc(100vh-10rem)]">
       <ProblemPreview problem={problem} />
     </div>
   </div>
