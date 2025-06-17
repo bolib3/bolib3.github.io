@@ -2,6 +2,7 @@
 import CopyCode from '@/components/CopyCode.astro';
 import RootLayout from '../layouts/RootLayout.astro';
 import { Button } from '@/components/ui/button';
+import { Mail } from 'lucide-vue-next';
 
 const citation = `@report{bolib3,
     title = {BOLIB-3: Bilevel optimisation library for benchmarking},
@@ -9,26 +10,25 @@ const citation = `@report{bolib3,
     year = {2025},
     institution = {University of Southampton}
 }`;
+
+const email = 's.ward@soton.ac.uk';
 ---
 
 <RootLayout>
   <h1>About</h1>
 
   <p class="mt-6 max-w-3xl leading-7">
-    This repository provides a comprehensive collection of bilevel optimization benchmarks for 
-    researchers and practitioners. Bilevel optimization involves hierarchical decision-making 
-    where one optimization problem is nested within another, commonly found in areas like 
-    economics, engineering design, and machine learning.
+    This repository provides a comprehensive collection of bilevel optimization benchmarks for
+    researchers and practitioners. Bilevel optimization involves hierarchical decision-making where
+    one optimization problem is nested within another, commonly found in areas like economics,
+    engineering design, and machine learning.
   </p>
 
   <h3 class="mt-6">Contributing</h3>
 
   <p class="mt-6 max-w-3xl leading-7">
-    We welcome contributions of new benchmark problems, datasets, and improvements to existing 
-    instances. Please see <Button
-      variant="link"
-      class="p-0"
-    >
+    We welcome contributions of new benchmark problems, datasets, and improvements to existing
+    instances. Please see <Button variant="link" class="p-0">
       <a href="https://github.com/bolib3/bolib3.github.io/blob/main/CONTRIBUTING.md">
         our contribution guidelines
       </a>
@@ -37,7 +37,10 @@ const citation = `@report{bolib3,
 
     <h3 class="mt-6">Citing</h3>
 
-    <p class="mt-6 max-w-3xl leading-7">If you use these benchmarks in your research, please cite our work to help support the community.</p>
+    <p class="mt-6 max-w-3xl leading-7">
+      If you use these benchmarks in your research, please cite our work to help support the
+      community.
+    </p>
 
     <CopyCode
       code={citation}
@@ -46,5 +49,19 @@ const citation = `@report{bolib3,
       defaultColor="light"
       class="max-w-xl"
     />
+
+    <h3 class="mt-6">Contact</h3>
+
+    <p class="mt-6 max-w-3xl leading-7">
+      For questions, citing information, collaboration opportunities, or to report corrections,
+      please get in touch using the contact details below.
+    </p>
+
+    <Button class="mt-4">
+      <Mail />
+      <a href={`mailto:${email}`}>
+        {email}
+      </a>
+    </Button>
   </p>
 </RootLayout>
