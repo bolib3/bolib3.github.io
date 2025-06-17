@@ -29,7 +29,7 @@ const problemMetadataValidator = z.object({
     g: z.string(),
     h: z.string(),
   }),
-  datasets: z.array(z.string()).optional(),
+  datasets: z.array(z.string()),
   solution: z.object({
     optimality: z.string(),
     x: z.array(z.number()),

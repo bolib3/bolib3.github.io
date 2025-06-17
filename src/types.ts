@@ -19,7 +19,7 @@ export interface Problem {
   category: Category; // TODO: Should this be an array or nested object?
   citation?: Citation;
   dimension: Dimension;
-  datasets: Dataset[] | undefined;
+  datasets: Dataset[];
   solution: Solution;
 }
 
