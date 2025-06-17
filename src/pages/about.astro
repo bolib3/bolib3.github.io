@@ -3,12 +3,11 @@ import CopyCode from '@/components/CopyCode.astro';
 import RootLayout from '../layouts/RootLayout.astro';
 import { Button } from '@/components/ui/button';
 
-const citation = `@report{lorem:2024,
-    title = {Lorem ipsum dolor sit amet},
-    author = {John Doe},
-    year = {2024},
-    institution = {University of Lorem Ipsum},
-    address = {1234 Lorem St, Ipsum City, IL 12345}
+const citation = `@report{bolib3,
+    title = {BOLIB-3: Bilevel optimisation library for benchmarking},
+    author = {Samuel Ward, Yaru Qian, Jordan Fisher, Alain Zemkoho},
+    year = {2025},
+    institution = {University of Southampton}
 }`;
 ---
 
@@ -16,26 +15,29 @@ const citation = `@report{lorem:2024,
   <h1>About</h1>
 
   <p class="mt-6 max-w-3xl leading-7">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum tempore eum laboriosam dolorum
-    atque, cupiditate dignissimos delectus odit qui cumque odio tenetur. Dolor vero earum corporis
-    eaque iure nam voluptatem!
+    This repository provides a comprehensive collection of bilevel optimization benchmarks for 
+    researchers and practitioners. Bilevel optimization involves hierarchical decision-making 
+    where one optimization problem is nested within another, commonly found in areas like 
+    economics, engineering design, and machine learning.
   </p>
 
   <h3 class="mt-6">Contributing</h3>
 
   <p class="mt-6 max-w-3xl leading-7">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Please see <Button
+    We welcome contributions of new benchmark problems, datasets, and improvements to existing 
+    instances. Please see <Button
       variant="link"
       class="p-0"
     >
       <a href="https://github.com/bolib3/bolib3.github.io/blob/main/CONTRIBUTING.md">
-        this guide.
+        our contribution guidelines
       </a>
     </Button>
+    for detailed instructions on how to add new problems or enhance the collection.
 
     <h3 class="mt-6">Citing</h3>
 
-    <p class="mt-6 max-w-3xl leading-7">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p class="mt-6 max-w-3xl leading-7">If you use these benchmarks in your research, please cite our work to help support the community.</p>
 
     <CopyCode
       code={citation}
