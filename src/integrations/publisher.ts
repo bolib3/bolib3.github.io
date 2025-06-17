@@ -3,6 +3,7 @@ import type { AstroIntegration, AstroIntegrationLogger } from 'astro';
 import { problems, datasets } from '../lib/data';
 import fs from 'fs';
 import { BOLIB_PATH } from '../lib/loader';
+import { convertPdfToImages } from '../lib/pdf';
 
 export default function publisherIntegration(): AstroIntegration {
   return {
@@ -15,10 +16,10 @@ export default function publisherIntegration(): AstroIntegration {
   };
 }
 
-function publish(logger: AstroIntegrationLogger) {
+async function publish(logger: AstroIntegrationLogger) {
   datasets.forEach(publishDataset);
   logger.info(`Published ${datasets.length} datasets.`);
-  problems.forEach(publishProblem);
+  await Promise.all(problems.map(publishProblem));
   logger.info(`Published ${problems.length} problems.`);
 }
 
@@ -26,7 +27,7 @@ function publishDataset(dataset: Dataset) {
   fs.copyFileSync(`${BOLIB_PATH}/data/${dataset.name}`, `public/datasets/${dataset.name}`);
 }
 
-function publishProblem(problem: Problem) {
+async function publishProblem(problem: Problem) {
   fs.copyFileSync(
     `${BOLIB_PATH}/python/${problem.name}.py`,
     `public/problems/python/${problem.name}.py`
@@ -46,5 +47,10 @@ function publishProblem(problem: Problem) {
   fs.copyFileSync(
     `${BOLIB_PATH}/pdf/${problem.name}.pdf`,
     `public/problems/pdf/${problem.name}.pdf`
+  );
+
+  await convertPdfToImages(
+    `${BOLIB_PATH}/pdf/${problem.name}.pdf`,
+    `public/problems/png/${problem.name}.png`
   );
 }
