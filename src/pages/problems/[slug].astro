@@ -81,7 +81,7 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
         </div>
 
         {
-          problem.datasets && (
+          problem.datasets?.length && (
             <div>
               <h2 class="mt-12 text-2xl font-bold">Datasets</h2>
               <ul class="mt-6 list-disc pl-6">
