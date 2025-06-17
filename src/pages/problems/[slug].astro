@@ -2,7 +2,6 @@
 import { problems } from '@/lib/data';
 import RootLayout from '../../layouts/RootLayout.astro';
 import { slugify, stringifyInlineArrays } from '@/lib/utils';
-import PdfPreview from '@/components/PdfPreview.astro';
 import { Code } from 'astro:components';
 import {
   Breadcrumb,
@@ -14,6 +13,7 @@ import {
 } from '@/components/ui/breadcrumb';
 import ProblemPreview from '@/components/problems/preview/ProblemPreview.astro';
 import CategoryTag from '@/components/CategoryTag.vue';
+import { Image } from 'astro:assets';
 
 export function getStaticPaths() {
   return problems.map((problem) => ({
@@ -50,6 +50,22 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
 
   <div class="grid gap-4 md:grid-cols-2">
     <div class="overflow-x-auto">
+      <div class="mt-12">
+        <a
+          href={`/problems/pdf/${slugify(problem.name)}.pdf`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src={`/problems/png/${slugify(problem.name)}.png`}
+            alt={`Preview of ${problem.name}`}
+            width={800}
+            height={600}
+            class="rounded-lg"
+          />
+        </a>
+      </div>
+
       <div class="justify-between pr-8 md:flex">
         <div>
           <h2 class="mt-12 text-2xl font-bold">Dimension</h2>
@@ -90,10 +106,6 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
           defaultColor="light"
         />
       </p>
-
-      <div class="mt-12">
-        <PdfPreview problem={problem} />
-      </div>
     </div>
 
     <div class="sticky top-20 overflow-x-auto md:max-h-[calc(100vh-10rem)]">
