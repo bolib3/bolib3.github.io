@@ -77,7 +77,7 @@ export function union<T>(arr1: T[], arr2: T[], ...rest: T[][]): T[] {
 export function stringifyInlineArrays(value: any, indent: number = 2): string {
   const seen = new WeakSet();
 
-  const json = JSON.stringify(value, function (key, val) {
+  const json = JSON.stringify(value, function (_, val) {
     if (typeof val === 'object' && val !== null) {
       if (seen.has(val)) return '[Circular]';
       seen.add(val);
