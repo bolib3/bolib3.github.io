@@ -91,7 +91,7 @@ function downloadLaTeX(problem: Problem) {
         </DropdownMenuPortal>
       </DropdownMenuSub>
 
-      <DropdownMenuSub v-if="problem.datasets">
+      <DropdownMenuSub v-if="problem.datasets.length > 0">
         <DropdownMenuSubTrigger>
           <Table class="mr-2 h-4 w-4" />
           <span class="mr-2">Download datasets</span>
