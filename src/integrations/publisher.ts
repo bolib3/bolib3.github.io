@@ -3,7 +3,7 @@ import type { AstroIntegration, AstroIntegrationLogger } from 'astro';
 import { problems, datasets } from '../lib/data';
 import fs from 'fs';
 import { BOLIB_PATH } from '../lib/loader';
-import { convertPdfToImages } from '../lib/pdf';
+import { convertPdfToImage } from '../lib/pdf';
 
 export default function publisherIntegration(): AstroIntegration {
   return {
@@ -49,7 +49,7 @@ async function publishProblem(problem: Problem) {
     `public/problems/pdf/${problem.name}.pdf`
   );
 
-  await convertPdfToImages(
+  await convertPdfToImage(
     `${BOLIB_PATH}/pdf/${problem.name}.pdf`,
     `public/problems/png/${problem.name}.png`
   );
