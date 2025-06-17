@@ -83,6 +83,8 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
       }
     </div>
 
-    <ProblemPreview problem={problem} />
+    <div class="overflow-x-auto">
+      <ProblemPreview problem={problem} />
+    </div>
   </div>
 </RootLayout>
