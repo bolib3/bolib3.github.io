@@ -68,7 +68,6 @@ function downloadLaTeX(problem: Problem) {
       <DropdownMenuSeparator />
       <DropdownMenuItem as="a" :href="`/problems/${slug}`"> View details </DropdownMenuItem>
       <DropdownMenuItem @click="copy(problem.name)"> Copy name </DropdownMenuItem>
-      <DropdownMenuItem> Copy citation </DropdownMenuItem>
       <DropdownMenuSeparator />
 
       <DropdownMenuSub>
