@@ -110,7 +110,6 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
       category: categories[metadata.category] ?? categories.miscellaneous!,
       dimension: metadata.dimension,
       datasets: problemsDatasets,
-      // citation: undefined, // TODO: Set actual citation
       solution: metadata.solution,
     });
   }

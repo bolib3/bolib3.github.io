@@ -1,9 +1,3 @@
-export interface Citation {
-  authors: string;
-  year: number;
-  link: string;
-}
-
 export interface Category {
   name: string;
   colour: string;
@@ -17,7 +11,6 @@ export interface Dataset {
 export interface Problem {
   name: string;
   category: Category; // TODO: Should this be an array or nested object?
-  citation?: Citation;
   dimension: Dimension;
   datasets: Dataset[];
   solution: Solution;

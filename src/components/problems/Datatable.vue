@@ -25,7 +25,7 @@ import {
 } from '@tanstack/vue-table';
 import { ChevronDown, ChevronsUpDown, ChevronUp } from 'lucide-vue-next';
 import { h, ref } from 'vue';
-import type { Citation, Problem } from '@/types';
+import type { Problem } from '@/types';
 import ActionMenu from './ActionMenu.vue';
 import DataTableToolbar from './DataTableToolbar.vue';
 import type { Dataset } from '@/lib/types';
@@ -122,24 +122,6 @@ const columns = [
     header: ({ column }) =>
       sortableHeader(column, 'h(x,y)', 'Lower-level equality constraint functions'),
   }),
-  columnHelper.accessor('citation', {
-    header: ({ column }) => sortableHeader(column, 'Citation'),
-    cell: ({ row }) => {
-      const citation = row.getValue('citation') as Citation | undefined;
-
-      if (!citation) {
-        return h('div', { class: 'text-muted' }, '-');
-      }
-
-      return h(Button, { variant: 'link', asChild: true }, () =>
-        h(
-          'a',
-          { href: citation.link, target: '_blank' },
-          [citation.authors, citation.year].join(' ')
-        )
-      );
-    },
-  }),
   columnHelper.accessor('datasets', {
     header: () => 'Datasets',
     cell: ({ row }) =>
@@ -167,7 +149,6 @@ const sorting = ref<SortingState>([
 ]);
 const columnFilters = ref<ColumnFiltersState>([]);
 const columnVisibility = ref<VisibilityState>({
-  citation: false,
   datasets: false,
 });
 
