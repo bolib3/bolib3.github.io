@@ -43,7 +43,12 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
       </BreadcrumbList>
     </Breadcrumb>
 
-    <CategoryTag category={problem.category} />
+    <div class="flex items-center gap-3">
+      <span class="text-muted-foreground text-sm">
+        Added {problem.added.toLocaleDateString('en-GB')}
+      </span>
+      <CategoryTag category={problem.category} />
+    </div>
   </div>
 
   <h1 class="mt-4">{problem.name}</h1>
