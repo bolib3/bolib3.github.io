@@ -10,7 +10,8 @@ export interface Dataset {
 
 export interface Problem {
   name: string;
-  category: Category; // TODO: Should this be an array or nested object?
+  category: Category; // TODO: Subcategories
+  added: Date;
   dimension: Dimension;
   datasets: Dataset[];
   solution: Solution;

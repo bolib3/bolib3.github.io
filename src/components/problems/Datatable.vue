@@ -131,6 +131,16 @@ const columns = [
         (row.getValue('datasets') as undefined | Dataset[])?.map((d) => d.name)?.join(', ')
       ),
   }),
+  // TODO: Ensure proper sorting for dates
+  columnHelper.accessor('added', {
+    header: ({ column }) => sortableHeader(column, 'Added', 'Date when the problem was added'),
+    cell: ({ row }) =>
+      h(
+        'span',
+        { class: 'text-sm text-muted-foreground' },
+        (row.getValue('added') as Date).toLocaleDateString('en-GB')
+      ),
+  }),
   {
     id: 'actions',
     enableHiding: false,
