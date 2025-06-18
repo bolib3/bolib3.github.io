@@ -34,34 +34,34 @@ const email = 's.ward@soton.ac.uk';
       </a>
     </Button>
     for detailed instructions on how to add new problems or enhance the collection.
-
-    <h3 class="mt-6">Citing</h3>
-
-    <p class="mt-6 max-w-3xl leading-7">
-      If you use these benchmarks in your research, please cite our work to help support the
-      community.
-    </p>
-
-    <CopyCode
-      code={citation}
-      lang="bibtex"
-      themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
-      defaultColor="light"
-      class="max-w-xl"
-    />
-
-    <h3 class="mt-6">Contact</h3>
-
-    <p class="mt-6 max-w-3xl leading-7">
-      For questions, citing information, collaboration opportunities, or to report corrections,
-      please get in touch using the contact details below.
-    </p>
-
-    <Button class="mt-4">
-      <Mail />
-      <a href={`mailto:${email}`}>
-        {email}
-      </a>
-    </Button>
   </p>
+
+  <h3 class="mt-6">Citing</h3>
+
+  <p class="mt-6 max-w-3xl leading-7">
+    If you use these benchmarks in your research, please cite our work to help support the
+    community.
+  </p>
+
+  <CopyCode
+    code={citation}
+    lang="bibtex"
+    themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
+    defaultColor="light"
+    class="max-w-xl"
+  />
+
+  <h3 class="mt-6">Contact</h3>
+
+  <p class="mt-6 max-w-3xl leading-7">
+    For questions, citing information, collaboration opportunities, or to report corrections, please
+    get in touch using the contact details below.
+  </p>
+
+  <Button class="mt-4 mb-16">
+    <Mail />
+    <a href={`mailto:${email}`}>
+      {email}
+    </a>
+  </Button>
 </RootLayout>

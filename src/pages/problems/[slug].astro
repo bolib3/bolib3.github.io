@@ -66,23 +66,21 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
         </a>
       </div>
 
-      <div class="justify-between pr-8 md:flex">
-        <div>
+      <div class="justify-between gap-8 md:flex">
+        <div class="w-full">
           <h2 class="mt-12 text-2xl font-bold">Dimension</h2>
-
-          <p class="mt-6 max-w-3xl leading-7">
-            <Code
-              code={stringifyInlineArrays(problem.dimension, 2)}
-              lang="json"
-              themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
-              defaultColor="light"
-            />
-          </p>
+          <Code
+            class="mt-6"
+            code={stringifyInlineArrays(problem.dimension, 2)}
+            lang="json"
+            themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
+            defaultColor="light"
+          />
         </div>
 
         {
           problem.datasets.length > 0 && (
-            <div>
+            <div class="pr-8">
               <h2 class="mt-12 text-2xl font-bold">Datasets</h2>
               <ul class="mt-6 list-disc pl-6">
                 {problem.datasets.map((dataset) => (
@@ -98,14 +96,13 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
 
       <h2 class="mt-12 text-2xl font-bold">Solution</h2>
 
-      <p class="mt-6 max-w-3xl leading-7">
-        <Code
-          code={stringifyInlineArrays(problem.solution, 2)}
-          lang="json"
-          themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
-          defaultColor="light"
-        />
-      </p>
+      <Code
+        class="mt-6"
+        code={stringifyInlineArrays(problem.solution, 2)}
+        lang="json"
+        themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
+        defaultColor="light"
+      />
     </div>
 
     <div class="sticky top-20 overflow-x-auto md:max-h-[calc(100vh-10rem)]">
