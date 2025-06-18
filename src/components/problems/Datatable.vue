@@ -150,6 +150,12 @@ const sorting = ref<SortingState>([
 const columnFilters = ref<ColumnFiltersState>([]);
 const columnVisibility = ref<VisibilityState>({
   datasets: false,
+  dimension_F: false,
+  dimension_f: false,
+  dimension_G: false,
+  dimension_g: false,
+  dimension_H: false,
+  dimension_h: false,
 });
 
 const table = useVueTable({
