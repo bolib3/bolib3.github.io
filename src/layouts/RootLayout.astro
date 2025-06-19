@@ -5,7 +5,7 @@ import Footer from '@/components/Footer.astro';
 ---
 
 <!doctype html>
-<html lang="en" class="overflow-x-hidden">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -21,11 +21,13 @@ import Footer from '@/components/Footer.astro';
       }
     </script>
   </head>
-  <body class="mx-auto flex min-h-screen max-w-[1536px] flex-col">
-    <Header />
-    <main class="flex-grow px-4 py-6">
-      <slot />
-    </main>
-    <Footer />
+  <body>
+    <div class="mx-auto flex min-h-screen max-w-[1536px] flex-col">
+      <Header />
+      <main class="flex-grow px-4 py-6">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>
