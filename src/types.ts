@@ -10,7 +10,8 @@ export interface Dataset {
 
 export interface Problem {
   name: string;
-  category: Category; // TODO: Subcategories
+  category: Category;
+  subcategory: string | null;
   added: Date;
   dimension: Dimension;
   datasets: Dataset[];

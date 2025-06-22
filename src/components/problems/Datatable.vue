@@ -25,7 +25,7 @@ import {
 } from '@tanstack/vue-table';
 import { ChevronDown, ChevronsUpDown, ChevronUp } from 'lucide-vue-next';
 import { h, ref } from 'vue';
-import type { Problem } from '@/types';
+import type { Category, Problem } from '@/types';
 import ActionMenu from './ActionMenu.vue';
 import DataTableToolbar from './DataTableToolbar.vue';
 import type { Dataset } from '@/lib/types';
@@ -81,11 +81,10 @@ const columns = [
   }),
   columnHelper.accessor('category', {
     header: ({ column }) => sortableHeader(column, 'Category'),
-    // TODO: Nested categories
     cell: ({ row }) => {
       const category = row.getValue('category') as Category;
 
-      return h(CategoryTag, { category });
+      return h(CategoryTag, { category, subcategory: row.original.subcategory });
     },
     enableHiding: false,
     filterFn: (row, columnId, value) => {

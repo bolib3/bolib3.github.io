@@ -8,6 +8,7 @@ export const BOLIB_PATH = './bolib3/bolib3';
 const problemMetadataValidator = z.object({
   name: z.string(),
   category: z.string(),
+  subcategory: z.string().optional(),
   added: z
     .string()
     .datetime()
@@ -112,6 +113,7 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
     problems.push({
       name: metadata.name,
       category: categories[metadata.category] ?? categories.miscellaneous!,
+      subcategory: metadata.subcategory ?? null,
       added: metadata.added,
       dimension: metadata.dimension,
       datasets: problemsDatasets,

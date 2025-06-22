@@ -47,7 +47,7 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
       <span class="text-muted-foreground text-sm">
         Added {problem.added.toLocaleDateString('en-GB')}
       </span>
-      <CategoryTag category={problem.category} />
+      <CategoryTag category={problem.category} subcategory={problem.subcategory} />
     </div>
   </div>
 
