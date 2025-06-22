@@ -130,7 +130,9 @@ const columns = [
         (row.getValue('datasets') as undefined | Dataset[])?.map((d) => d.name)?.join(', ')
       ),
   }),
-  // TODO: Ensure proper sorting for dates
+  columnHelper.accessor('solution.optimality', {
+    header: 'Solution Optimality',
+  }),
   columnHelper.accessor('added', {
     header: ({ column }) => sortableHeader(column, 'Added', 'Date when the problem was added'),
     cell: ({ row }) =>
@@ -165,6 +167,7 @@ const columnVisibility = ref<VisibilityState>({
   dimension_g: false,
   dimension_H: false,
   dimension_h: false,
+  solution_optimality: false,
 });
 
 const table = useVueTable({
