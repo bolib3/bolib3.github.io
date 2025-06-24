@@ -1,0 +1,37 @@
+---
+import { Button } from '@/components/ui/button';
+import type { Dataset } from '@/types';
+import { Download } from 'lucide-vue-next';
+
+interface Props {
+  datasets: Dataset[];
+}
+
+const { datasets } = Astro.props;
+---
+
+{
+  datasets.length > 0 && (
+    <div class="pr-8">
+      <h2 class="mt-12 text-2xl font-bold">Datasets</h2>
+      <div class="mt-6 space-y-3">
+        {datasets.map((dataset) => (
+          <div class="flex items-center justify-between gap-4 rounded-lg border p-3">
+            <code class="text-sm">{dataset.name}</code>
+
+            {/* @ts-ignore */}
+            <Button
+              href={`/datasets/${dataset.name}`}
+              as="a"
+              variant="link"
+              download={dataset.name}
+              title="Download dataset"
+            >
+              <Download class="h-4 w-4" />
+            </Button>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

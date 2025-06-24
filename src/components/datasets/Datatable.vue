@@ -108,9 +108,17 @@ const columns = [
     id: 'download',
     header: 'Download',
     cell: ({ row }) => {
+      const dataset = row.original as Dataset;
+
       return h(
         Button,
-        { variant: 'link', onClick: () => downloadDataset(row.getValue('name')) },
+        {
+          href: `/datasets/${dataset.name}`,
+          as: 'a',
+          variant: 'link',
+          download: dataset.name,
+          title: `Download ${dataset.name}`,
+        },
         () => h(Download)
       );
     },
