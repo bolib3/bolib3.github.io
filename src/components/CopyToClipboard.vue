@@ -20,8 +20,7 @@ async function copy() {
 </script>
 
 <template>
-  <!-- TODO: Improve darkmode / theme support -->
-  <Button @click="copy" variant="ghost" size="icon" class="text-white" :class="props.class">
+  <Button @click="copy" variant="ghost" size="icon" title="Copy to clipboard" :class="props.class">
     <CopyCheck v-if="copied" />
     <Copy v-else />
   </Button>

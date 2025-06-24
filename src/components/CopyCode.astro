@@ -2,14 +2,29 @@
 import { Code } from 'astro:components';
 import CopyToClipboard from './CopyToClipboard.vue';
 import type { ComponentProps } from 'astro/types';
+import { Download } from 'lucide-vue-next';
+import { Button } from '@/components/ui/button';
 
-type Props = ComponentProps<typeof Code>;
+type Props = ComponentProps<typeof Code> & {
+  downloadPath?: string;
+};
 
-const { code, class: className, ...other } = Astro.props;
+const { code, downloadPath, class: className, ...other } = Astro.props;
 ---
 
 <div class:list={['relative', className]}>
-  <Code code={code} {...other} class="p-4 text-xs" />
+  <Code code={code} {...other} class="min-h-32 p-4 text-xs" />
 
-  <CopyToClipboard class="absolute top-2 right-2" text={code} client:load />
+  <!-- TODO: Improve dark mode / theme support -->
+  <div class="absolute top-2 right-2 flex items-center gap-2 text-white">
+    {
+      downloadPath && (
+        // @ts-ignore
+        <Button as="a" variant="ghost" size="icon" href={downloadPath} download="" title="Download">
+          <Download class="h-4 w-4" />
+        </Button>
+      )
+    }
+    <CopyToClipboard text={code} client:load />
+  </div>
 </div>

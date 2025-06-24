@@ -17,9 +17,29 @@ const latex = fs.readFileSync(`./public/problems/latex/${problem.name}.tex`, 'ut
 ---
 
 <LanguageTabs client:only>
-  <CopyCode slot="python" code={python} lang="python" />
-  <CopyCode slot="matlab" code={matlab} lang="matlab" />
+  <CopyCode
+    slot="python"
+    code={python}
+    lang="python"
+    downloadPath={`/problems/python/${problem.name}.py`}
+  />
+  <CopyCode
+    slot="matlab"
+    code={matlab}
+    lang="matlab"
+    downloadPath={`/problems/matlab/${problem.name}.m`}
+  />
   <!-- Note that gams is not supported by shiki so we're using python for now -->
-  <CopyCode slot="gams" code={gams} lang="python" />
-  <CopyCode slot="latex" code={latex} lang="latex" />
+  <CopyCode
+    slot="gams"
+    code={gams}
+    lang="python"
+    downloadPath={`/problems/gams/${problem.name}.gms`}
+  />
+  <CopyCode
+    slot="latex"
+    code={latex}
+    lang="latex"
+    downloadPath={`/problems/latex/${problem.name}.tex`}
+  />
 </LanguageTabs>

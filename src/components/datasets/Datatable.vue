@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Column, ColumnFiltersState, SortingState } from '@tanstack/vue-table';
-import { downloadFile, formatBytes, slugify, valueUpdater } from '@/lib/utils';
+import { formatBytes, slugify, valueUpdater } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   Table,
@@ -29,10 +29,6 @@ const props = defineProps<{
 }>();
 
 const columnHelper = createColumnHelper<Dataset>();
-
-function downloadDataset(name: string) {
-  downloadFile(`/datasets/${name}`, name);
-}
 
 const sortableHeader = <A, B>(column: Column<A, B>, header: string, tooltip?: string) => {
   return h(
