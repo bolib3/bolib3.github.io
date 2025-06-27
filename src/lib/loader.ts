@@ -49,7 +49,7 @@ const problemMetadataValidator = z.object({
 });
 
 export function loadDatasets(): Dataset[] {
-  const datasetPaths = fs.globSync(BOLIB_PATH + '/data/*.csv');
+  const datasetPaths = fs.globSync(BOLIB_PATH + '/data/*.{csv,json}');
 
   return datasetPaths.map((path) => ({
     name: basename(path),
