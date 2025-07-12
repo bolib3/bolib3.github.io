@@ -1,5 +1,6 @@
 package*
 dist
+public/datasets
 
 # Ignore the bolib3 submodule
 bolib3
