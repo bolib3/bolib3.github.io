@@ -9,10 +9,7 @@ const problemMetadataValidator = z.object({
   name: z.string(),
   category: z.string(),
   subcategory: z.string().optional(),
-  added: z
-    .string()
-    .datetime()
-    .transform((date) => new Date(date)),
+  added: z.iso.datetime().transform((date) => new Date(date)),
   published: z.boolean().optional().default(false),
   dimension: z.object({
     x: z.number(),
