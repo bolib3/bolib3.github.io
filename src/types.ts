@@ -34,9 +34,9 @@ interface Solution {
   x: number[];
   y: number[];
   F: number;
-  G: number[];
-  H: number[];
+  G?: number[] | undefined;
+  H?: number[] | undefined;
   f: number;
-  g: number[];
-  h: number[];
+  g?: number[] | undefined;
+  h?: number[] | undefined;
 }

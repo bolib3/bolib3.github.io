@@ -40,11 +40,11 @@ const problemMetadataValidator = z.object({
     x: z.array(z.number()),
     y: z.array(z.number()),
     F: z.number(),
-    G: z.array(z.number()),
-    H: z.array(z.number()),
+    G: z.array(z.number()).optional(),
+    H: z.array(z.number()).optional(),
     f: z.number(),
-    g: z.array(z.number()),
-    h: z.array(z.number()),
+    g: z.array(z.number()).optional(),
+    h: z.array(z.number()).optional(),
   }),
 });
 
