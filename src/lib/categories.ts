@@ -9,6 +9,10 @@ export const categories = {
     name: 'Textbook',
     colour: 'oklch(95% 0.052 163.051)',
   },
+  machine_learning: {
+    name: 'Machine Learning',
+    colour: 'oklch(0.885 0.062 214.18)',
+  },
   miscellaneous: {
     name: 'Miscellaneous',
     colour: 'oklch(95.2% 0.037 318.852)',
