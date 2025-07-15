@@ -4,6 +4,7 @@ import DownloadProblemCollection from '../components/DownloadProblemCollection.v
 import Datatable from '@/components/datasets/Datatable.vue';
 import DownloadDatasetCollection from '../components/DownloadDatasetCollection.vue';
 
+import { Button } from '@/components/ui/button';
 import { datasets, problems } from '@/lib/data';
 ---
 
@@ -11,9 +12,15 @@ import { datasets, problems } from '@/lib/data';
   <h1>Downloads</h1>
 
   <p class="mt-6 max-w-3xl leading-7">
-    Access our comprehensive collection of bilevel optimization problems and datasets. Download
-    benchmark instances in various formats to test and evaluate your bilevel optimization algorithms
-    against standardized problems from the research community.
+    For the benchmarking of algorithms against multiple problems,
+    we recommend researchers pull the full library from 
+    <Button variant="link" class="p-0">
+      <a href="https://github.com/bolib3/bolib3">
+          bolib3 github repository
+      </a> 
+    </Button>
+    where additional components to assist automation have been included
+    Alternatively, you can download zip files containing the full set of problems here.
   </p>
 
   <div class="grid gap-x-4 gap-y-8 md:grid-cols-2">
@@ -31,8 +38,7 @@ import { datasets, problems } from '@/lib/data';
       <h2 class="mt-12 text-2xl font-bold">Datasets</h2>
 
       <p class="text-muted-foreground mt-6 max-w-3xl leading-7">
-        A selection of the problems are parameterized, the datasets are available for download
-        below.
+        A selection of the problems are parameterized by datasets, which can be found below.
       </p>
 
       <Datatable datasets={datasets} problems={problems} client:load />

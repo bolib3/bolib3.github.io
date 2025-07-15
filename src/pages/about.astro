@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Mail } from 'lucide-vue-next';
 
 const citation = `@report{bolib3,
-    title = {BOLIB-3: Bilevel optimisation library for benchmarking},
-    author = {Samuel Ward, Yaru Qian, Jordan Fisher, Alain Zemkoho},
+    title = {BOLIB: Bilevel optimisation library for benchmarking},
+    author = {Samuel Ward, Alain Zemkoho, Jordan Fisher, David Benfield, Yaru Qian},
     year = {2025},
     institution = {University of Southampton}
 }`;
@@ -18,22 +18,24 @@ const email = 's.ward@soton.ac.uk';
   <h1>About</h1>
 
   <p class="mt-6 max-w-3xl leading-7">
-    This repository provides a comprehensive collection of bilevel optimization benchmarks for
-    researchers and practitioners. Bilevel optimization involves hierarchical decision-making where
-    one optimization problem is nested within another, commonly found in areas like economics,
-    engineering design, and machine learning.
+    This is a collection of 200 continuous bilevel optimization problems form a range of applications.
+    The project is in it's third iteration.  For the original library which is no longer maintained, see
+    <Button variant="link" class="p-0">
+      <a href="https://github.com/ShenglongZhou/BOLIB">
+          BOLIB (deprecated).
+      </a>
+    </Button>
   </p>
 
   <h3 class="mt-6">Contributing</h3>
 
   <p class="mt-6 max-w-3xl leading-7">
-    We welcome contributions of new benchmark problems, datasets, and improvements to existing
+    We welcome contributions of new bilevel problems, datasets, and improvements to existing
     instances. Please see <Button variant="link" class="p-0">
       <a href="https://github.com/bolib3/bolib3.github.io/blob/main/CONTRIBUTING.md">
-        our contribution guidelines
+        our contribution guidelines.
       </a>
     </Button>
-    for detailed instructions on how to add new problems or enhance the collection.
   </p>
 
   <h3 class="mt-6">Citing</h3>
