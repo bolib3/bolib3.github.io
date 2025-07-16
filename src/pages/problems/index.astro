@@ -9,13 +9,15 @@ import { problems } from '@/lib/data';
 <RootLayout>
   <h1>Problems</h1>
 
-  <p class="text-muted-foreground mt-6 max-w-3xl leading-7">Our collection of bilevel problems</p>
+  <p class="text-muted-foreground mt-6 max-w-3xl leading-7">
+    Click on a problem name for further details.
+  </p>
 
   <Datatable problems={problems} client:load>
     <p class="text-muted-foreground text-sm" slot="bottom-right">
       Want to download multiple problems?
       <Button variant="link" class="p-0">
-        <a href="/downloads"> Download a collection </a>
+        <a href="/downloads"> Download full collection </a>
       </Button>
     </p>
   </Datatable>
