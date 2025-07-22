@@ -46,10 +46,11 @@ const problemMetadataValidator = z.object({
 });
 
 export function loadDatasets(): Dataset[] {
-  const datasetPaths = fs.globSync(BOLIB_PATH + '/data/*.{csv,json}');
+  const datasetPaths = fs.globSync(BOLIB_PATH + '/data/**/*.{csv,json,gdx}');
 
   return datasetPaths.map((path) => ({
     name: basename(path),
+    path: path.split('/data/')[1]!, // Extract path relative to data directory
     size: fs.statSync(path).size,
   }));
 }
@@ -97,11 +98,11 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
       }
     }
 
-    const problemsDatasets = metadata.datasets?.map((datasetName) => {
-      const dataset = datasets.find((d) => d.name === datasetName);
+    const problemsDatasets = metadata.datasets?.map((datasetPath) => {
+      const dataset = datasets.find((d) => d.path === datasetPath);
 
       if (!dataset) {
-        throw new Error(`Dataset ${datasetName} not found for problem ${name}`);
+        throw new Error(`Dataset ${datasetPath} not found for problem ${name}`);
       }
 
       return dataset;

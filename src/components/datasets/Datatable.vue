@@ -109,7 +109,7 @@ const columns = [
       return h(
         Button,
         {
-          href: `/datasets/${dataset.name}`,
+          href: `/datasets/${dataset.path}`,
           as: 'a',
           variant: 'link',
           download: dataset.name,
