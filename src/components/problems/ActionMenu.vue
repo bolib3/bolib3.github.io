@@ -30,6 +30,10 @@ function copy(text: string) {
   navigator.clipboard.writeText(text);
 }
 
+function downloadDataset(dataset: Dataset) {
+  downloadFile(dataset.publicPath, dataset.name);
+}
+
 function downloadPDF(problem: Problem) {
   downloadFile(`/problems/pdf/${problem.name}.pdf`, problem.name + '.pdf');
 }
@@ -96,7 +100,7 @@ function downloadLaTeX(problem: Problem) {
             <DropdownMenuItem
               v-for="dataset in problem.datasets"
               :key="dataset.name"
-              @click="() => dataset.download()"
+              @click="downloadDataset(dataset)"
             >
               <Download />
               {{ dataset.name }}
