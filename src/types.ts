@@ -5,6 +5,7 @@ export interface Category {
 
 export interface Dataset {
   name: string;
+  path: string;
   size: number; // Size in bytes
 }
 

@@ -31,7 +31,7 @@ function copy(text: string) {
 }
 
 function downloadDataset(dataset: Dataset) {
-  downloadFile(`/datasets/${dataset.name}`, dataset.name);
+  downloadFile(`/datasets/${dataset.name}`, dataset.path);
 }
 
 function downloadPDF(problem: Problem) {

@@ -24,7 +24,9 @@ async function publish(logger: AstroIntegrationLogger) {
 }
 
 function publishDataset(dataset: Dataset) {
-  fs.copyFileSync(`${BOLIB_PATH}/data/${dataset.name}`, `public/datasets/${dataset.name}`);
+  fs.cpSync(`${BOLIB_PATH}/data/${dataset.path}`, `public/datasets/${dataset.path}`, {
+    recursive: true,
+  });
 }
 
 async function publishProblem(problem: Problem) {
