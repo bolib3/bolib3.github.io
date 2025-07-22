@@ -17,8 +17,8 @@ import type { Problem } from '@/types';
 import { MoreHorizontal, Radical, Table } from 'lucide-vue-next';
 import { computed } from 'vue';
 import { slugify } from '../../lib/utils';
-import type { Dataset } from '@/types';
 import { Download } from 'lucide-vue-next';
+import type { Dataset } from '@/lib/data';
 
 const props = defineProps<{
   problem: Problem;
@@ -28,10 +28,6 @@ const slug = computed(() => slugify(props.problem.name));
 
 function copy(text: string) {
   navigator.clipboard.writeText(text);
-}
-
-function downloadDataset(dataset: Dataset) {
-  downloadFile(`/datasets/${dataset.name}`, dataset.path);
 }
 
 function downloadPDF(problem: Problem) {
@@ -100,7 +96,7 @@ function downloadLaTeX(problem: Problem) {
             <DropdownMenuItem
               v-for="dataset in problem.datasets"
               :key="dataset.name"
-              @click="downloadDataset(dataset)"
+              @click="() => dataset.download()"
             >
               <Download />
               {{ dataset.name }}

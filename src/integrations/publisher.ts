@@ -1,6 +1,6 @@
-import type { Dataset, Problem } from '../types';
+import type { Problem } from '../types';
 import type { AstroIntegration, AstroIntegrationLogger } from 'astro';
-import { problems, datasets } from '../lib/data';
+import { problems, datasets, Dataset } from '../lib/data';
 import fs from 'fs';
 import { BOLIB_PATH } from '../lib/loader';
 import { convertPdfToImage } from '../lib/pdf';
@@ -24,7 +24,7 @@ async function publish(logger: AstroIntegrationLogger) {
 }
 
 function publishDataset(dataset: Dataset) {
-  fs.cpSync(`${BOLIB_PATH}/data/${dataset.path}`, `public/datasets/${dataset.path}`, {
+  fs.cpSync(dataset.originalPath, `public/${dataset.publicPath}`, {
     recursive: true,
   });
 }
