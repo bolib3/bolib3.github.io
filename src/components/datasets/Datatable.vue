@@ -20,8 +20,9 @@ import {
 } from '@tanstack/vue-table';
 import { ChevronDown, ChevronsUpDown, ChevronUp, Download } from 'lucide-vue-next';
 import { h, ref } from 'vue';
-import type { Dataset, Problem } from '@/types';
+import type { Problem } from '@/types';
 import Input from '../ui/input/Input.vue';
+import type { Dataset } from '@/lib/data';
 
 const props = defineProps<{
   datasets: Dataset[];
@@ -82,7 +83,7 @@ const columns = [
       const name = row.getValue('name') as string;
 
       // TODO: Lets do this somewhere else
-      const relatedProblem =
+      const relatedProblems =
         props.problems.filter((problem) =>
           problem.datasets?.some((dataset) => dataset.name === name)
         ) ?? [];
@@ -90,7 +91,7 @@ const columns = [
       return h(
         'div',
         { class: 'flex flex-wrap gap-1' },
-        relatedProblem.map((problem) => {
+        relatedProblems.map((problem) => {
           return h(
             Button,
             { variant: 'link', class: 'text-muted-foreground px-1', asChild: true },
@@ -109,7 +110,7 @@ const columns = [
       return h(
         Button,
         {
-          href: `/datasets/${dataset.path}`,
+          href: dataset.publicPath,
           as: 'a',
           variant: 'link',
           download: dataset.name,
