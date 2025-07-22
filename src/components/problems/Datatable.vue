@@ -126,7 +126,7 @@ const columns = [
     cell: ({ row }) =>
       h(
         'div',
-        { class: 'text-sm text-muted-foreground truncate' },
+        { class: 'text-sm text-muted-foreground text-wrap leading-8' },
         (row.getValue('datasets') as undefined | Dataset[])?.map((d) => d.name)?.join(', ')
       ),
   }),

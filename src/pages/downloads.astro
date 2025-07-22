@@ -21,8 +21,8 @@ import { datasets, problems } from '@/lib/data';
     zip files containing the full set of problems here.
   </p>
 
-  <div class="grid gap-x-4 gap-y-8 md:grid-cols-2">
-    <div>
+  <div class="grid gap-x-16 gap-y-8 md:grid-cols-5">
+    <div class="col-span-2">
       <h2 class="mt-12 text-2xl font-bold">Problem collections</h2>
 
       <p class="text-muted-foreground mt-6 max-w-3xl leading-7">
@@ -32,7 +32,7 @@ import { datasets, problems } from '@/lib/data';
       <DownloadProblemCollection client:only />
     </div>
 
-    <div class="overflow-x-auto">
+    <div class="col-span-3 overflow-x-auto">
       <h2 class="mt-12 text-2xl font-bold">Datasets</h2>
 
       <p class="text-muted-foreground mt-6 max-w-3xl leading-7">
