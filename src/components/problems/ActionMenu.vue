@@ -17,8 +17,8 @@ import type { Problem } from '@/types';
 import { MoreHorizontal, Radical, Table } from 'lucide-vue-next';
 import { computed } from 'vue';
 import { slugify } from '../../lib/utils';
-import type { Dataset } from '@/types';
 import { Download } from 'lucide-vue-next';
+import type { Dataset } from '@/lib/data';
 
 const props = defineProps<{
   problem: Problem;
@@ -31,7 +31,7 @@ function copy(text: string) {
 }
 
 function downloadDataset(dataset: Dataset) {
-  downloadFile(`/datasets/${dataset.name}`, dataset.name);
+  downloadFile(dataset.publicPath, dataset.name);
 }
 
 function downloadPDF(problem: Problem) {

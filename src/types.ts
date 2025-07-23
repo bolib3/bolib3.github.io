@@ -1,11 +1,8 @@
+import type { Dataset } from './lib/data';
+
 export interface Category {
   name: string;
   colour: string;
-}
-
-export interface Dataset {
-  name: string;
-  size: number; // Size in bytes
 }
 
 export interface Problem {

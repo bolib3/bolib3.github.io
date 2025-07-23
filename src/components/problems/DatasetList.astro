@@ -1,6 +1,6 @@
 ---
 import { Button } from '@/components/ui/button';
-import type { Dataset } from '@/types';
+import type { Dataset } from '@/lib/data';
 import { Download } from 'lucide-vue-next';
 
 interface Props {
@@ -21,7 +21,7 @@ const { datasets } = Astro.props;
 
             {/* @ts-ignore */}
             <Button
-              href={`/datasets/${dataset.name}`}
+              href={dataset.publicPath}
               as="a"
               variant="link"
               download=""

@@ -1,7 +1,8 @@
-import type { Category, Dataset, Problem } from '@/types';
+import type { Category, Problem } from '@/types';
 import * as fs from 'fs';
 import { basename } from 'path';
 import z from 'zod';
+import { Dataset } from './data';
 
 export const BOLIB_PATH = './bolib3/bolib3';
 
@@ -46,18 +47,13 @@ const problemMetadataValidator = z.object({
 });
 
 export function loadDatasets(): Dataset[] {
-  const datasetPaths = fs.globSync(BOLIB_PATH + '/data/*.{csv,json}');
+  const datasetPaths = fs.globSync(BOLIB_PATH + '/data/**/*.{csv,json,gdx}');
 
-  return datasetPaths.map((path) => ({
-    name: basename(path),
-    size: fs.statSync(path).size,
-  }));
+  return datasetPaths.map((path) => new Dataset(path));
 }
 
 export function loadProblems(categories: Record<string, Category>, datasets: Dataset[]): Problem[] {
   const problemMetadataPaths = fs.globSync(`${BOLIB_PATH}/json/*.json`);
-
-  console.log(`Found metadata for ${problemMetadataPaths.length} problems in bolib3.`);
 
   const pythonProblems = fs.globSync(`${BOLIB_PATH}/python/*.py`).map((p) => basename(p, '.py'));
   const gamsProblems = fs.globSync(`${BOLIB_PATH}/gams/*.gms`).map((p) => basename(p, '.gms'));
