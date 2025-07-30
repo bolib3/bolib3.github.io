@@ -1,6 +1,11 @@
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf.mjs';
 import fs from 'fs';
-import sharp from 'sharp';
+import sharp, { type OverlayOptions } from 'sharp';
+
+const scale = 4.0;
+const trimThreshold = 50;
+const pageSpacing = 100;
+const pageBottomCrop = 100;
 
 export async function convertPdfToImage(pdfPath: string, imagePath: string) {
   const data = new Uint8Array(fs.readFileSync(pdfPath));
@@ -10,10 +15,6 @@ export async function convertPdfToImage(pdfPath: string, imagePath: string) {
     throw new Error('No pages found in the PDF document.');
   }
 
-  const scale = 4.0;
-  const trimThreshold = 50;
-  const pageSpacing = 100;
-  const pageBottomCrop = 100;
   const pageBuffers: Buffer[] = [];
 
   for (let pageNum = 1; pageNum <= doc.numPages; pageNum++) {
@@ -66,15 +67,7 @@ export async function convertPdfToImage(pdfPath: string, imagePath: string) {
       },
     });
 
-    let currentTop = 0;
-    const compositeInputs = [];
-    for (const buffer of pageBuffers) {
-      compositeInputs.push({ input: buffer, top: currentTop, left: 0 });
-      const metadata = await sharp(buffer).metadata();
-      currentTop += metadata.height! + pageSpacing;
-    }
-
-    combinedImage = combinedImage.composite(compositeInputs);
+    combinedImage = await composeBuffers(pageBuffers);
   }
 
   const finalTrimmedBuffer = await combinedImage
@@ -87,4 +80,42 @@ export async function convertPdfToImage(pdfPath: string, imagePath: string) {
   }
 
   await sharp(finalTrimmedBuffer).png().toFile(imagePath);
+}
+
+async function composeBuffers(pageBuffers: Buffer[]) {
+  // Get dimensions of all pages
+  const pageDimensions: { width: number; height: number }[] = [];
+  for (const buffer of pageBuffers) {
+    const metadata = await sharp(buffer).metadata();
+    pageDimensions.push({ width: metadata.width!, height: metadata.height! });
+  }
+
+  // Calculate canvas dimensions
+  const maxWidth = Math.max(...pageDimensions.map((p) => p.width));
+  const totalHeight =
+    pageDimensions.reduce((sum, p) => sum + p.height, 0) + (pageBuffers.length - 1) * pageSpacing;
+
+  // Create canvas with max width
+  const combinedImage = sharp({
+    create: {
+      width: maxWidth,
+      height: totalHeight,
+      channels: 4,
+      background: { r: 255, g: 255, b: 255, alpha: 1 },
+    },
+  });
+
+  // Compose images
+  let currentTop = 0;
+  const compositeInputs: OverlayOptions[] = [];
+  for (let i = 0; i < pageBuffers.length; i++) {
+    compositeInputs.push({
+      input: pageBuffers[i],
+      top: currentTop,
+      left: 0,
+    });
+    currentTop += pageDimensions[i]!.height + pageSpacing;
+  }
+
+  return combinedImage.composite(compositeInputs);
 }
