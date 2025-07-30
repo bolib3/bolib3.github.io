@@ -92,6 +92,16 @@ const columns = [
 
       return value.some((v) => rowValue.name.toLowerCase().includes(v.toLowerCase()));
     },
+    sortingFn: (rowA, rowB, columnId) => {
+      const a = rowA.getValue(columnId) as Category;
+      const b = rowB.getValue(columnId) as Category;
+      // Sort by category name first, then subcategory
+      const nameCompare = a.name.localeCompare(b.name);
+      if (nameCompare !== 0) return nameCompare;
+      const subA = rowA.original.subcategory ?? '';
+      const subB = rowB.original.subcategory ?? '';
+      return subA.localeCompare(subB);
+    },
   }),
   columnHelper.accessor('dimension.x', {
     header: ({ column }) => sortableHeader(column, 'x', 'Upper-level decision variables'),
