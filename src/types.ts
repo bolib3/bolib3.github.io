@@ -28,12 +28,12 @@ interface Dimension {
 
 interface Solution {
   optimality: string;
-  x: number[];
-  y: number[];
-  F: number;
+  x?: number[] | undefined;
+  y?: number[] | undefined;
+  F?: number | undefined;
   G?: number[] | undefined;
   H?: number[] | undefined;
-  f: number;
+  f?: number | undefined;
   g?: number[] | undefined;
   h?: number[] | undefined;
 }
