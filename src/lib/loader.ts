@@ -12,16 +12,6 @@ const problemMetadataValidator = z.object({
   subcategory: z.string().optional(),
   added: z.iso.datetime().transform((date) => new Date(date)),
   published: z.boolean().optional().default(false),
-  dimension: z.object({
-    x: z.number(),
-    y: z.number(),
-    F: z.number(),
-    G: z.number(),
-    H: z.number(),
-    f: z.number(),
-    g: z.number(),
-    h: z.number(),
-  }),
   type: z.object({
     x: z.string(),
     y: z.string(),
@@ -32,18 +22,34 @@ const problemMetadataValidator = z.object({
     g: z.string(),
     h: z.string(),
   }),
-  datasets: z.array(z.string()),
-  solution: z.object({
-    optimality: z.string(),
-    x: z.array(z.number()),
-    y: z.array(z.number()),
-    F: z.number(),
-    G: z.array(z.number()).optional(),
-    H: z.array(z.number()).optional(),
-    f: z.number(),
-    g: z.array(z.number()).optional(),
-    h: z.array(z.number()).optional(),
-  }),
+  variants: z
+    .array(
+      z.object({
+        dataset: z.string(),
+        dimension: z.object({
+          x: z.number(),
+          y: z.number(),
+          F: z.number(),
+          G: z.number(),
+          H: z.number(),
+          f: z.number(),
+          g: z.number(),
+          h: z.number(),
+        }),
+        solution: z.object({
+          optimality: z.string(),
+          x: z.array(z.number()).optional(),
+          y: z.array(z.number()).optional(),
+          F: z.number().optional(),
+          G: z.array(z.number()).optional(),
+          H: z.array(z.number()).optional(),
+          f: z.number().optional(),
+          g: z.array(z.number()).optional(),
+          h: z.array(z.number()).optional(),
+        }),
+      })
+    )
+    .nonempty(),
 });
 
 export function loadDatasets(): Dataset[] {
@@ -93,24 +99,27 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
       }
     }
 
-    const problemsDatasets = metadata.datasets?.map((datasetName) => {
-      const dataset = datasets.find((d) => d.name === datasetName);
+    const problemsDatasets = metadata.variants
+      .map((variant) => variant.dataset)
+      .filter((datasetName) => datasetName !== '')
+      .map((datasetName) => {
+        const dataset = datasets.find((d) => d.name === datasetName);
 
-      if (!dataset) {
-        throw new Error(`Dataset ${datasetName} not found for problem ${name}`);
-      }
+        if (!dataset) {
+          throw new Error(`Dataset ${datasetName} not found for problem ${name}`);
+        }
 
-      return dataset;
-    });
+        return dataset;
+      });
 
     problems.push({
       name: metadata.name,
       category: categories[metadata.category] ?? categories.miscellaneous!,
       subcategory: metadata.subcategory ?? null,
       added: metadata.added,
-      dimension: metadata.dimension,
+      dimension: metadata.variants[0]!.dimension, // TODO: Support for multiple variants
       datasets: problemsDatasets,
-      solution: metadata.solution,
+      solution: metadata.variants[0]!.solution, // TODO: Support for multiple variants
     });
   }
 
