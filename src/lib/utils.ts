@@ -74,19 +74,35 @@ export function union<T>(arr1: T[], arr2: T[], ...rest: T[][]): T[] {
   return Array.from(unionSet);
 }
 
-export function stringifyInlineArrays(value: any, indent: number = 2): string {
-  const seen = new WeakSet();
+export function stringifyInlineArrays(
+  value: Record<any, any>, // TODO: retype
+  indent: number = 2
+): string {
+  // Separate array values and non-array values
+  const arrays: Record<string, (number | string)[]> = {};
+  const trimmed: Record<string, string | number | undefined | null> = {};
 
-  const json = JSON.stringify(value, function (_, val) {
-    if (typeof val === 'object' && val !== null) {
-      if (seen.has(val)) return '[Circular]';
-      seen.add(val);
+  for (const key in value) {
+    const val = value[key];
+    if (Array.isArray(val)) {
+      arrays[key] = val;
+      trimmed[key] = null; // placeholder
+    } else {
+      trimmed[key] = val;
     }
-    return val;
-  }, indent);
+  }
 
-  return json.replace(
-    /\[\s*((?:-?\d+(?:\.\d+)?(?:,\s*)?)+)\s*\]/g,
-    (_, numbers) => `[${numbers.replace(/\s+/g, ' ')}]`
-  );
+  // Stringify the trimmed object
+  let json = JSON.stringify(trimmed, null, indent);
+
+  // Re-insert array values as inline arrays
+  for (const key in arrays) {
+    const arrayStr = JSON.stringify(arrays[key]);
+    // Replace the placeholder null with the array string
+    // Handles both indented and non-indented cases
+    const pattern = new RegExp(`("${key}"\\s*:\\s*)null`, 'g');
+    json = json.replace(pattern, `$1${arrayStr}`);
+  }
+
+  return json;
 }
