@@ -103,6 +103,18 @@ const columns = [
       return subA.localeCompare(subB);
     },
   }),
+
+  columnHelper.accessor('datasets', {
+    header: ({ column }) =>
+      sortableHeader(column, '# Datasets', 'Number of datasets associated with the problem'),
+    cell: ({ row }) => {
+      const count = (row.getValue('datasets') as undefined | Dataset[])?.length ?? 0;
+
+      return count === 0
+        ? h('span', { class: 'text-sm text-muted-foreground' }, '-')
+        : h('div', {}, count);
+    },
+  }),
   columnHelper.accessor('dimension.x', {
     header: ({ column }) => sortableHeader(column, 'x', 'Upper-level decision variables'),
   }),
@@ -130,15 +142,6 @@ const columns = [
   columnHelper.accessor('dimension.h', {
     header: ({ column }) =>
       sortableHeader(column, 'h(x,y)', 'Lower-level equality constraint functions'),
-  }),
-  columnHelper.accessor('datasets', {
-    header: () => 'Datasets',
-    cell: ({ row }) =>
-      h(
-        'div',
-        { class: 'text-sm text-muted-foreground text-wrap leading-8' },
-        (row.getValue('datasets') as undefined | Dataset[])?.map((d) => d.name)?.join(', ')
-      ),
   }),
   columnHelper.accessor('solution.optimality', {
     header: 'Solution Optimality',
@@ -170,7 +173,6 @@ const sorting = ref<SortingState>([
 ]);
 const columnFilters = ref<ColumnFiltersState>([]);
 const columnVisibility = ref<VisibilityState>({
-  datasets: false,
   dimension_F: false,
   dimension_f: false,
   dimension_G: false,
