@@ -24,7 +24,7 @@ if (variants.length === 0) {
 
         <Code
           class="mt-6"
-          code={stringifyInlineArrays(variants[0].dimension, 2)}
+          code={stringifyInlineArrays(variants[0]!.dimension, 2)}
           lang="json"
           themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
           defaultColor="light"
@@ -36,7 +36,7 @@ if (variants.length === 0) {
 
         <Code
           class="mt-6"
-          code={stringifyInlineArrays(variants[0].solution, 2)}
+          code={stringifyInlineArrays(variants[0]!.solution, 2)}
           lang="json"
           themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
           defaultColor="light"
@@ -55,7 +55,7 @@ if (variants.length === 0) {
         {variants.map((variant) => (
           <div class="space-y-2 rounded-lg border p-4">
             <div class="flex items-center justify-between gap-4">
-              <code class="text-sm">{variant.dataset.name}</code>
+              <code class="text-sm">{variant.dataset!.name}</code>
 
               {/* @ts-ignore */}
               <Button
