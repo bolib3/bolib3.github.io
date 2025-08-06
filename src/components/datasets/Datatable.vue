@@ -85,7 +85,7 @@ const columns = [
       // TODO: Lets do this somewhere else
       const relatedProblems =
         props.problems.filter((problem) =>
-          problem.variants?.some((variant) => variant.dataset.name === name)
+          problem.variants.some((variant) => variant.dataset?.name === name)
         ) ?? [];
 
       return h(
