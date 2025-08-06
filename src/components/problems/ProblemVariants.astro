@@ -1,0 +1,90 @@
+---
+import { Button } from '@/components/ui/button';
+import type { ProblemVariant } from '@/types';
+import { Download } from 'lucide-vue-next';
+import { Code } from 'astro:components';
+import { stringifyInlineArrays } from '@/lib/utils';
+
+interface Props {
+  variants: ProblemVariant[];
+}
+
+const { variants } = Astro.props;
+
+if (variants.length === 0) {
+  throw new Error('No variants provided');
+}
+---
+
+{
+  variants.length === 1 && (
+    <div class="mt-16 grid gap-8 md:grid-cols-4">
+      <div class="col-span-1">
+        <h2 class="text-2xl font-bold">Dimension</h2>
+
+        <Code
+          class="mt-6"
+          code={stringifyInlineArrays(variants[0].dimension, 2)}
+          lang="json"
+          themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
+          defaultColor="light"
+        />
+      </div>
+
+      <div class="col-span-3">
+        <h2 class="text-2xl font-bold">Solution</h2>
+
+        <Code
+          class="mt-6"
+          code={stringifyInlineArrays(variants[0].solution, 2)}
+          lang="json"
+          themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
+          defaultColor="light"
+        />
+      </div>
+    </div>
+  )
+}
+
+{
+  variants.length > 1 && (
+    <div class="mt-16">
+      <h2 class="text-2xl font-bold">Datasets</h2>
+
+      <div class="mt-6 grid grid-cols-1 gap-4">
+        {variants.map((variant) => (
+          <div class="space-y-2 rounded-lg border p-4">
+            <div class="flex items-center justify-between gap-4">
+              <code class="text-sm">{variant.dataset.name}</code>
+
+              {/* @ts-ignore */}
+              <Button
+                href={variant.dataset.publicPath}
+                as="a"
+                variant="link"
+                download=""
+                title="Download dataset"
+              >
+                <Download class="h-4 w-4" />
+              </Button>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold">Dimension</h4>
+              <code class="overflow-x-auto text-xs wrap-anywhere">
+                {stringifyInlineArrays(variant.dimension, 2)}
+              </code>
+            </div>
+
+            <div class="max-w-full">
+              <h4 class="text-sm font-semibold">Solution</h4>
+              <code class="overflow-x-auto text-xs wrap-anywhere">
+                {stringifyInlineArrays(variant.solution, 2)}
+              </code>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

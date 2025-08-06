@@ -1,8 +1,7 @@
 ---
 import { problems } from '@/lib/data';
 import RootLayout from '../../layouts/RootLayout.astro';
-import { slugify, stringifyInlineArrays } from '@/lib/utils';
-import { Code } from 'astro:components';
+import { slugify } from '@/lib/utils';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,7 +13,7 @@ import {
 import ProblemPreview from '@/components/problems/preview/ProblemPreview.astro';
 import CategoryTag from '@/components/CategoryTag.vue';
 import { Image } from 'astro:assets';
-import DatasetList from '@/components/problems/DatasetList.astro';
+import ProblemVariants from '@/components/problems/ProblemVariants.astro';
 
 export function getStaticPaths() {
   return problems.map((problem) => ({
@@ -72,32 +71,7 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
         </a>
       </div>
 
-      <div class="justify-between gap-8 md:flex">
-        <div class="w-full">
-          <!-- TODO: Show dimensions for each variant -->
-          <h2 class="mt-12 text-2xl font-bold">Dimension</h2>
-          <Code
-            class="mt-6"
-            code={stringifyInlineArrays(problem.variants[0]!.dimension, 2)}
-            lang="json"
-            themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
-            defaultColor="light"
-          />
-        </div>
-
-        <DatasetList datasets={problem.variants.map((v) => v.dataset)} />
-      </div>
-
-      <h2 class="mt-12 text-2xl font-bold">Solution</h2>
-
-      <!-- TODO: Show solution for each variant -->
-      <Code
-        class="mt-6"
-        code={stringifyInlineArrays(problem.variants[0]!.solution, 2)}
-        lang="json"
-        themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
-        defaultColor="light"
-      />
+      <ProblemVariants variants={problem.variants} />
     </div>
 
     <div class="sticky top-20 overflow-x-auto md:max-h-[calc(100vh-10rem)]">
