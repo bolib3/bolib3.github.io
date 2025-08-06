@@ -10,8 +10,12 @@ export interface Problem {
   category: Category;
   subcategory: string | null;
   added: Date;
+  variants: ProblemVariant[];
+}
+
+export interface ProblemVariant {
+  dataset: Dataset;
   dimension: Dimension;
-  datasets: Dataset[];
   solution: Solution;
 }
 

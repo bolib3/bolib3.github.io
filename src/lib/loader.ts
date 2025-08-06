@@ -99,27 +99,16 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
       }
     }
 
-    const problemsDatasets = metadata.variants
-      .map((variant) => variant.dataset)
-      .filter((datasetName) => datasetName !== '')
-      .map((datasetName) => {
-        const dataset = datasets.find((d) => d.name === datasetName);
-
-        if (!dataset) {
-          throw new Error(`Dataset ${datasetName} not found for problem ${name}`);
-        }
-
-        return dataset;
-      });
-
     problems.push({
       name: metadata.name,
       category: categories[metadata.category] ?? categories.miscellaneous!,
       subcategory: metadata.subcategory ?? null,
       added: metadata.added,
-      dimension: metadata.variants[0]!.dimension, // TODO: Support for multiple variants
-      datasets: problemsDatasets,
-      solution: metadata.variants[0]!.solution, // TODO: Support for multiple variants
+      variants: metadata.variants.map((variant) => ({
+        dataset: datasets.find((d) => d.name === variant.dataset)!,
+        dimension: variant.dimension,
+        solution: variant.solution,
+      })),
     });
   }
 
