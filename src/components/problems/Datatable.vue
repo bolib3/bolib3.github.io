@@ -23,7 +23,7 @@ import {
   getSortedRowModel,
   useVueTable,
 } from '@tanstack/vue-table';
-import { ChevronDown, ChevronsUpDown, ChevronUp } from 'lucide-vue-next';
+import { ChevronDown, ChevronsUpDown, ChevronUp, ArrowRight } from 'lucide-vue-next';
 import { h, ref } from 'vue';
 import type { Category, Problem, ProblemVariant } from '@/types';
 import ActionMenu from './ActionMenu.vue';
@@ -75,7 +75,16 @@ const variantPropertyRange = (
   const values = variants.map((v) => v.dimension[property]);
   const min = Math.min(...values);
   const max = Math.max(...values);
-  return min === max ? `${min}` : `${min} - ${max}`;
+
+  if (min === max) {
+    return h('span', {}, min);
+  }
+
+  return h('div', { class: 'flex items-center gap-1' }, [
+    h('span', {}, min),
+    h(ArrowRight, { class: 'size-4' }),
+    h('span', {}, max),
+  ]);
 };
 
 const columns = [
@@ -131,42 +140,42 @@ const columns = [
   {
     id: 'dimension_x',
     header: basicHeader('x', 'Upper-level decision variables'),
-    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'x')),
+    cell: ({ row }) => variantPropertyRange(row.original.variants, 'x'),
   },
   {
     id: 'dimension_y',
     header: basicHeader('y', 'Lower-level decision variables'),
-    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'y')),
+    cell: ({ row }) => variantPropertyRange(row.original.variants, 'y'),
   },
   {
     id: 'dimension_F',
     header: basicHeader('F(x,y)', 'Upper-level objective function'),
-    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'F')),
+    cell: ({ row }) => variantPropertyRange(row.original.variants, 'F'),
   },
   {
     id: 'dimension_f',
     header: basicHeader('f(x,y)', 'Lower-level objective function'),
-    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'f')),
+    cell: ({ row }) => variantPropertyRange(row.original.variants, 'f'),
   },
   {
     id: 'dimension_G',
     header: basicHeader('G(x,y)', 'Upper-level inequality constraint functions'),
-    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'G')),
+    cell: ({ row }) => variantPropertyRange(row.original.variants, 'G'),
   },
   {
     id: 'dimension_g',
     header: basicHeader('g(x,y)', 'Lower-level inequality constraint functions'),
-    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'g')),
+    cell: ({ row }) => variantPropertyRange(row.original.variants, 'g'),
   },
   {
     id: 'dimension_H',
     header: basicHeader('H(x,y)', 'Upper-level equality constraint functions'),
-    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'H')),
+    cell: ({ row }) => variantPropertyRange(row.original.variants, 'H'),
   },
   {
     id: 'dimension_h',
     header: basicHeader('h(x,y)', 'Lower-level equality constraint functions'),
-    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'h')),
+    cell: ({ row }) => variantPropertyRange(row.original.variants, 'h'),
   },
   {
     id: 'solution_optimality',
