@@ -28,6 +28,10 @@ export function slugify(str: string) {
     .toLowerCase();
 }
 
+export function distinct<T>(arr: T[]): T[] {
+  return Array.from(new Set(arr));
+}
+
 export function downloadFile(url: string, filename: string) {
   const link = document.createElement('a');
   link.href = url;

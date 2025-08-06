@@ -74,24 +74,26 @@ const problem = problems.find((problem) => slugify(problem.name) === slug)!;
 
       <div class="justify-between gap-8 md:flex">
         <div class="w-full">
+          <!-- TODO: Show dimensions for each variant -->
           <h2 class="mt-12 text-2xl font-bold">Dimension</h2>
           <Code
             class="mt-6"
-            code={stringifyInlineArrays(problem.dimension, 2)}
+            code={stringifyInlineArrays(problem.variants[0]!.dimension, 2)}
             lang="json"
             themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
             defaultColor="light"
           />
         </div>
 
-        <DatasetList datasets={problem.datasets} />
+        <DatasetList datasets={problem.variants.map((v) => v.dataset)} />
       </div>
 
       <h2 class="mt-12 text-2xl font-bold">Solution</h2>
 
+      <!-- TODO: Show solution for each variant -->
       <Code
         class="mt-6"
-        code={stringifyInlineArrays(problem.solution, 2)}
+        code={stringifyInlineArrays(problem.variants[0]!.solution, 2)}
         lang="json"
         themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
         defaultColor="light"

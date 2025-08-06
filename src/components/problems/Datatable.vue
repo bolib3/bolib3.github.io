@@ -5,7 +5,7 @@ import type {
   SortingState,
   VisibilityState,
 } from '@tanstack/vue-table';
-import { slugify, valueUpdater } from '@/lib/utils';
+import { distinct, slugify, valueUpdater } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   Table,
@@ -25,10 +25,9 @@ import {
 } from '@tanstack/vue-table';
 import { ChevronDown, ChevronsUpDown, ChevronUp } from 'lucide-vue-next';
 import { h, ref } from 'vue';
-import type { Category, Problem } from '@/types';
+import type { Category, Problem, ProblemVariant } from '@/types';
 import ActionMenu from './ActionMenu.vue';
 import DataTableToolbar from './DataTableToolbar.vue';
-import type { Dataset } from '@/lib/types';
 import CategoryTag from '../CategoryTag.vue';
 
 const props = defineProps<{
@@ -36,6 +35,8 @@ const props = defineProps<{
 }>();
 
 const columnHelper = createColumnHelper<Problem>();
+
+const basicHeader = (header: string, tooltip: string) => h('div', { title: tooltip }, header);
 
 const sortableHeader = <A, B>(column: Column<A, B>, header: string, tooltip?: string) => {
   return h(
@@ -65,6 +66,16 @@ const sortableHeader = <A, B>(column: Column<A, B>, header: string, tooltip?: st
       ),
     ]
   );
+};
+
+const variantPropertyRange = (
+  variants: Problem['variants'],
+  property: keyof Problem['variants'][0]['dimension']
+) => {
+  const values = variants.map((v) => v.dimension[property]);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  return min === max ? `${min}` : `${min} - ${max}`;
 };
 
 const columns = [
@@ -104,48 +115,69 @@ const columns = [
     },
   }),
 
-  columnHelper.accessor('datasets', {
+  {
+    id: 'datasets',
     header: ({ column }) =>
       sortableHeader(column, '# Datasets', 'Number of datasets associated with the problem'),
     cell: ({ row }) => {
-      const count = (row.getValue('datasets') as undefined | Dataset[])?.length ?? 0;
+      const count = (row.original.variants as ProblemVariant[]).length;
 
-      return count === 0
+      // Problems with only one variant will not be parameterized, so there are no datasets
+      return count <= 1
         ? h('span', { class: 'text-sm text-muted-foreground' }, '-')
         : h('div', {}, count);
     },
-  }),
-  columnHelper.accessor('dimension.x', {
-    header: ({ column }) => sortableHeader(column, 'x', 'Upper-level decision variables'),
-  }),
-  columnHelper.accessor('dimension.y', {
-    header: ({ column }) => sortableHeader(column, 'y', 'Lower-level decision variables'),
-  }),
-  columnHelper.accessor('dimension.F', {
-    header: ({ column }) => sortableHeader(column, 'F(x,y)', 'Upper-level objective function'),
-  }),
-  columnHelper.accessor('dimension.f', {
-    header: ({ column }) => sortableHeader(column, 'f(x,y)', 'Lower-level objective function'),
-  }),
-  columnHelper.accessor('dimension.G', {
-    header: ({ column }) =>
-      sortableHeader(column, 'G(x,y)', 'Upper-level inequality constraint functions'),
-  }),
-  columnHelper.accessor('dimension.g', {
-    header: ({ column }) =>
-      sortableHeader(column, 'g(x,y)', 'Lower-level inequality constraint functions'),
-  }),
-  columnHelper.accessor('dimension.H', {
-    header: ({ column }) =>
-      sortableHeader(column, 'H(x,y)', 'Upper-level equality constraint functions'),
-  }),
-  columnHelper.accessor('dimension.h', {
-    header: ({ column }) =>
-      sortableHeader(column, 'h(x,y)', 'Lower-level equality constraint functions'),
-  }),
-  columnHelper.accessor('solution.optimality', {
+  },
+  {
+    id: 'dimension_x',
+    header: basicHeader('x', 'Upper-level decision variables'),
+    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'x')),
+  },
+  {
+    id: 'dimension_y',
+    header: basicHeader('y', 'Lower-level decision variables'),
+    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'y')),
+  },
+  {
+    id: 'dimension_F',
+    header: basicHeader('F(x,y)', 'Upper-level objective function'),
+    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'F')),
+  },
+  {
+    id: 'dimension_f',
+    header: basicHeader('f(x,y)', 'Lower-level objective function'),
+    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'f')),
+  },
+  {
+    id: 'dimension_G',
+    header: basicHeader('G(x,y)', 'Upper-level inequality constraint functions'),
+    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'G')),
+  },
+  {
+    id: 'dimension_g',
+    header: basicHeader('g(x,y)', 'Lower-level inequality constraint functions'),
+    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'g')),
+  },
+  {
+    id: 'dimension_H',
+    header: basicHeader('H(x,y)', 'Upper-level equality constraint functions'),
+    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'H')),
+  },
+  {
+    id: 'dimension_h',
+    header: basicHeader('h(x,y)', 'Lower-level equality constraint functions'),
+    cell: ({ row }) => h('span', {}, variantPropertyRange(row.original.variants, 'h')),
+  },
+  {
+    id: 'solution_optimality',
     header: 'Solution Optimality',
-  }),
+    cell: ({ row }) => {
+      const variants = row.original.variants as ProblemVariant[];
+
+      const values = distinct(variants.map((v) => v.solution.optimality));
+      return h('span', {}, values.join(', '));
+    },
+  },
   columnHelper.accessor('added', {
     header: ({ column }) => sortableHeader(column, 'Added', 'Date when the problem was added'),
     cell: ({ row }) =>
