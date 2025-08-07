@@ -3,6 +3,7 @@ import SplashArt from '@/components/SplashArt.astro';
 import RootLayout from '../layouts/RootLayout.astro';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-vue-next';
+import ProblemCount from '@/components/ProblemCount.astro';
 ---
 
 <RootLayout>
@@ -10,11 +11,13 @@ import { Search } from 'lucide-vue-next';
 
   <div class="grid gap-4 md:grid-cols-2">
     <div>
-      <p class="mt-6 max-w-3xl leading-7">
+      <p class="mt-6 max-w-3xl leading-10">
         Welcome to BOLIB, a benchmarking library of continuous bilevel optimization problems.
       </p>
 
-      <div class="mt-4 flex items-center gap-2">
+      <ProblemCount />
+
+      <div class="mt-8 flex items-center gap-2">
         <Button>
           <Search />
           <a href="/problems"> Browse Problems </a>
