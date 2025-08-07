@@ -36,7 +36,7 @@ const props = defineProps<{
 
 const columnHelper = createColumnHelper<Problem>();
 
-const basicHeader = (header: string, tooltip: string) => h('div', { title: tooltip }, header);
+const basicHeader = (header: string, tooltip: string) => () => h('div', { title: tooltip }, header);
 
 const sortableHeader = <A, B>(column: Column<A, B>, header: string, tooltip?: string) => {
   return h(
@@ -107,7 +107,7 @@ const columns = [
       return h(CategoryTag, { category, subcategory: row.original.subcategory });
     },
     enableHiding: false,
-    filterFn: (row, columnId, value) => {
+    filterFn: (row, columnId, value: string[]) => {
       const rowValue = row.getValue(columnId) as Category;
 
       return value.some((v) => rowValue.name.toLowerCase().includes(v.toLowerCase()));
@@ -123,8 +123,7 @@ const columns = [
       return subA.localeCompare(subB);
     },
   }),
-
-  {
+  columnHelper.display({
     id: 'datasets',
     header: ({ column }) =>
       sortableHeader(column, '# Datasets', 'Number of datasets associated with the problem'),
@@ -136,48 +135,48 @@ const columns = [
         ? h('span', { class: 'text-sm text-muted-foreground' }, '-')
         : h('div', {}, count);
     },
-  },
-  {
+  }),
+  columnHelper.display({
     id: 'dimension_x',
     header: basicHeader('x', 'Upper-level decision variables'),
     cell: ({ row }) => variantPropertyRange(row.original.variants, 'x'),
-  },
-  {
+  }),
+  columnHelper.display({
     id: 'dimension_y',
     header: basicHeader('y', 'Lower-level decision variables'),
     cell: ({ row }) => variantPropertyRange(row.original.variants, 'y'),
-  },
-  {
+  }),
+  columnHelper.display({
     id: 'dimension_F',
     header: basicHeader('F(x,y)', 'Upper-level objective function'),
     cell: ({ row }) => variantPropertyRange(row.original.variants, 'F'),
-  },
-  {
+  }),
+  columnHelper.display({
     id: 'dimension_f',
     header: basicHeader('f(x,y)', 'Lower-level objective function'),
     cell: ({ row }) => variantPropertyRange(row.original.variants, 'f'),
-  },
-  {
+  }),
+  columnHelper.display({
     id: 'dimension_G',
     header: basicHeader('G(x,y)', 'Upper-level inequality constraint functions'),
     cell: ({ row }) => variantPropertyRange(row.original.variants, 'G'),
-  },
-  {
+  }),
+  columnHelper.display({
     id: 'dimension_g',
     header: basicHeader('g(x,y)', 'Lower-level inequality constraint functions'),
     cell: ({ row }) => variantPropertyRange(row.original.variants, 'g'),
-  },
-  {
+  }),
+  columnHelper.display({
     id: 'dimension_H',
     header: basicHeader('H(x,y)', 'Upper-level equality constraint functions'),
     cell: ({ row }) => variantPropertyRange(row.original.variants, 'H'),
-  },
-  {
+  }),
+  columnHelper.display({
     id: 'dimension_h',
     header: basicHeader('h(x,y)', 'Lower-level equality constraint functions'),
     cell: ({ row }) => variantPropertyRange(row.original.variants, 'h'),
-  },
-  {
+  }),
+  columnHelper.display({
     id: 'solution_optimality',
     header: 'Solution Optimality',
     cell: ({ row }) => {
@@ -186,7 +185,7 @@ const columns = [
       const values = distinct(variants.map((v) => v.solution.optimality));
       return h('span', {}, values.join(', '));
     },
-  },
+  }),
   columnHelper.accessor('added', {
     header: ({ column }) => sortableHeader(column, 'Added', 'Date when the problem was added'),
     cell: ({ row }) =>
@@ -196,14 +195,14 @@ const columns = [
         (row.getValue('added') as Date).toLocaleDateString('en-GB')
       ),
   }),
-  {
+  columnHelper.display({
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) =>
       h(ActionMenu, {
         problem: row.original,
       }),
-  },
+  }),
 ];
 
 const sorting = ref<SortingState>([

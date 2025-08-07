@@ -76,7 +76,7 @@ const columns = [
       return formatBytes(size);
     },
   }),
-  {
+  columnHelper.display({
     id: 'problems',
     header: 'Problems',
     cell: ({ row }) => {
@@ -100,8 +100,8 @@ const columns = [
         })
       );
     },
-  },
-  {
+  }),
+  columnHelper.display({
     id: 'download',
     header: 'Download',
     cell: ({ row }) => {
@@ -119,7 +119,7 @@ const columns = [
         () => h(Download)
       );
     },
-  },
+  }),
 ];
 
 const sorting = ref<SortingState>([
@@ -138,7 +138,6 @@ const table = useVueTable({
   getFilteredRowModel: getFilteredRowModel(),
   onSortingChange: (updaterOrValue) => valueUpdater(updaterOrValue, sorting),
   onColumnFiltersChange: (updaterOrValue) => valueUpdater(updaterOrValue, columnFilters),
-  onColumnVisibilityChange: (updaterOrValue) => valueUpdater(updaterOrValue, columnVisibility),
   state: {
     get sorting() {
       return sorting.value;
