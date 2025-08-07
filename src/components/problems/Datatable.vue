@@ -123,17 +123,21 @@ const columns = [
       return subA.localeCompare(subB);
     },
   }),
-  columnHelper.display({
-    id: 'datasets',
+  columnHelper.accessor('variants', {
     header: ({ column }) =>
       sortableHeader(column, '# Datasets', 'Number of datasets associated with the problem'),
     cell: ({ row }) => {
-      const count = (row.original.variants as ProblemVariant[]).length;
+      const count = row.original.variants.length;
 
       // Problems with only one variant will not be parameterized, so there are no datasets
       return count <= 1
         ? h('span', { class: 'text-sm text-muted-foreground' }, '-')
         : h('div', {}, count);
+    },
+    sortingFn: (rowA, rowB, columnId) => {
+      const a = rowA.original.variants.length;
+      const b = rowB.original.variants.length;
+      return a - b;
     },
   }),
   columnHelper.display({
@@ -180,7 +184,7 @@ const columns = [
     id: 'solution_optimality',
     header: 'Solution Optimality',
     cell: ({ row }) => {
-      const variants = row.original.variants as ProblemVariant[];
+      const variants = row.original.variants;
 
       const values = distinct(variants.map((v) => v.solution.optimality));
       return h('span', {}, values.join(', '));
