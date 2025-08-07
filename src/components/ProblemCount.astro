@@ -1,5 +1,6 @@
 ---
 import { problems } from '@/lib/data';
+import SplitFlap from './SplitFlap.vue';
 
 const count = problems.reduce((acc, problem) => {
   return acc + problem.variants.length;
@@ -9,13 +10,9 @@ const digits = count.toString().padStart(3, '0').split('');
 ---
 
 <div class="flex items-center gap-2">
-  Total problems to date
+  <p>Total problems to date</p>
 
   <div class="flex items-center gap-0.5">
-    {
-      digits.map((digit) => (
-        <span class="bg-primary text-secondary p-1 font-mono text-xs">{digit}</span>
-      ))
-    }
+    {digits.map((digit) => <SplitFlap digit={digit} duration={1000} client:load />)}
   </div>
 </div>
