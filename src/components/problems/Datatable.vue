@@ -211,7 +211,7 @@ const columns = [
 
 const sorting = ref<SortingState>([
   {
-    id: 'name',
+    id: 'category',
     desc: false,
   },
 ]);
