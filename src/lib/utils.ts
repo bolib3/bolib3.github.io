@@ -41,6 +41,10 @@ export function downloadFile(url: string, filename: string) {
   document.body.removeChild(link);
 }
 
+export function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export function formatBytes(bytes: number, decimals = 2) {
   if (bytes === 0) return '0 Bytes';
 
