@@ -9,7 +9,7 @@ export default function publisherIntegration(): AstroIntegration {
   return {
     name: 'publisher',
     hooks: {
-      'astro:build:setup': ({ logger }) => publish(logger),
+      'astro:build:done': ({ logger }) => publish(logger),
       'astro:server:setup': ({ logger }) => publish(logger),
       // TODO: Consider setting up a watcher for changes in the source files for local development
     },
