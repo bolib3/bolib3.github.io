@@ -6,7 +6,7 @@ export default function integration(): AstroIntegration {
   return {
     name: 'zipper',
     hooks: {
-      'astro:build:done': async ({ logger }) => await zip(logger),
+      'astro:build:setup': async ({ logger }) => await zip(logger),
       'astro:server:setup': async ({ logger }) => await zip(logger),
       // TODO: Consider setting up a watcher for changes in the source files for local development
     },
