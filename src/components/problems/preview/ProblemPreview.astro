@@ -3,6 +3,7 @@ import CopyCode from '@/components/CopyCode.astro';
 import LanguageTabs from './LanguageTabs.vue';
 import type { Problem } from '@/types';
 import fs from 'fs';
+import { BOLIB_PATH } from '@/lib/loader';
 
 interface Props {
   problem: Problem;
@@ -10,10 +11,10 @@ interface Props {
 
 const { problem } = Astro.props;
 
-const python = fs.readFileSync(`./public/problems/python/${problem.name}.py`, 'utf-8');
-const matlab = fs.readFileSync(`./public/problems/matlab/${problem.name}.m`, 'utf-8');
-const gams = fs.readFileSync(`./public/problems/gams/${problem.name}.gms`, 'utf-8');
-const latex = fs.readFileSync(`./public/problems/latex/${problem.name}.tex`, 'utf-8');
+const python = fs.readFileSync(`${BOLIB_PATH}/python/${problem.name}.py`, 'utf-8');
+const matlab = fs.readFileSync(`${BOLIB_PATH}/matlab/${problem.name}.m`, 'utf-8');
+const gams = fs.readFileSync(`${BOLIB_PATH}/gams/${problem.name}.gms`, 'utf-8');
+const latex = fs.readFileSync(`${BOLIB_PATH}/latex/${problem.name}.tex`, 'utf-8');
 ---
 
 <LanguageTabs client:only>
