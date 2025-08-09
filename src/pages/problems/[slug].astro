@@ -28,7 +28,7 @@ const { slug } = Astro.params;
 const problem = problems.find((problem) => slugify(problem.name) === slug)!;
 ---
 
-<RootLayout>
+<RootLayout title={`${problem.name} - BOLIB`}>
   <div class="flex flex-wrap items-center justify-between gap-4">
     <Breadcrumb>
       <BreadcrumbList>
