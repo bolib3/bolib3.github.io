@@ -27,7 +27,7 @@ export async function convertPdfToImage(pdfPath: string, imagePath: string) {
     context.fillStyle = '#ffffff';
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    await page.render({ canvasContext: context, viewport }).promise;
+    await page.render({ canvasContext: context, canvas, viewport }).promise;
 
     const buffer = canvas.toBuffer('image/png');
     const trimmedBuffer = await sharp(buffer).trim({ threshold: trimThreshold }).png().toBuffer();
