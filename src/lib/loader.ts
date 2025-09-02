@@ -46,6 +46,12 @@ const problemMetadataValidator = z.object({
           f: z.number().optional(),
           g: z.array(z.number()).optional(),
           h: z.array(z.number()).optional(),
+          training_r2: z.number().optional(),
+          training_rmse: z.number().optional(),
+          training_accuracy: z.number().optional(),
+          validation_r2: z.number().optional(),
+          validation_rmse: z.number().optional(),
+          validation_accuracy: z.number().optional(),
         }),
       })
     )
