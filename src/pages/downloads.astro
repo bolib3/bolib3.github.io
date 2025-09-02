@@ -36,12 +36,13 @@ import { datasets, problems } from '@/lib/data';
       <h2 class="mt-12 text-2xl font-bold">Datasets</h2>
 
       <p class="text-muted-foreground mt-6 max-w-3xl leading-7">
-        A selection of the problems are parameterized by datasets, which can be found below.
+        Many of the problems are parameterized by datasets, which can be searched and downloaded
+        below.
       </p>
 
-      <Datatable datasets={datasets} problems={problems} client:load />
-
       <DownloadDatasetCollection client:load />
+
+      <Datatable datasets={datasets} problems={problems} client:load />
     </div>
   </div>
 </RootLayout>
