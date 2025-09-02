@@ -10,6 +10,6 @@ const download = () =>
 <template>
   <Button class="mt-4 p-0" @click="download">
     <DownloadIcon />
-    Download all datasets 
+    Download all datasets
   </Button>
 </template>

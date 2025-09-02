@@ -44,7 +44,7 @@ function downloadCollection() {
 
     <Button @click="downloadCollection">
       <Download />
-      Download all problems 
+      Download all problems
     </Button>
   </div>
 </template>
