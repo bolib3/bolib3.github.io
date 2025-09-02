@@ -35,37 +35,16 @@ if (variants.length === 0) {
         <h2 class="text-2xl font-bold">Solution</h2>
 
         <Code
-          class="mt-6"
-          code={stringifyInlineArrays(
-            {
+            class="mt-6"
+            code={stringifyInlineArrays({
               ...variants[0]!.solution,
-              x:
-                Array.isArray(variants[0]!.solution?.x) && variants[0]!.solution.x.length > 10
-                  ? undefined
-                  : variants[0]!.solution?.x,
-              y:
-                Array.isArray(variants[0]!.solution?.y) && variants[0]!.solution.y.length > 10
-                  ? undefined
-                  : variants[0]!.solution?.y,
-              g:
-                Array.isArray(variants[0]!.solution?.g) && variants[0]!.solution.g.length > 10
-                  ? undefined
-                  : variants[0]!.solution?.g,
-              G:
-                Array.isArray(variants[0]!.solution?.G) && variants[0]!.solution.G.length > 10
-                  ? undefined
-                  : variants[0]!.solution?.G,
-              h:
-                Array.isArray(variants[0]!.solution?.h) && variants[0]!.solution.h.length > 10
-                  ? undefined
-                  : variants[0]!.solution?.h,
-              H:
-                Array.isArray(variants[0]!.solution?.H) && variants[0]!.solution.H.length > 10
-                  ? undefined
-                  : variants[0]!.solution?.H,
-            },
-            2
-          )}
+              x: Array.isArray(variants[0]!.solution?.x) && variants[0]!.solution.x.length > 10 ? undefined : variants[0]!.solution?.x,
+              y: Array.isArray(variants[0]!.solution?.y) && variants[0]!.solution.y.length > 10 ? undefined : variants[0]!.solution?.y,
+              g: Array.isArray(variants[0]!.solution?.g) && variants[0]!.solution.g.length > 10 ? undefined : variants[0]!.solution?.g,
+              G: Array.isArray(variants[0]!.solution?.G) && variants[0]!.solution.G.length > 10 ? undefined : variants[0]!.solution?.G,
+              h: Array.isArray(variants[0]!.solution?.h) && variants[0]!.solution.h.length > 10 ? undefined : variants[0]!.solution?.h,
+              H: Array.isArray(variants[0]!.solution?.H) && variants[0]!.solution.H.length > 10 ? undefined : variants[0]!.solution?.H,
+            }, 2)}
           lang="json"
           themes={{ light: 'github-light-default', dark: 'github-dark-default' }}
           defaultColor="light"
@@ -107,38 +86,17 @@ if (variants.length === 0) {
 
             <div class="max-w-full">
               <h4 class="text-sm font-semibold">Solution</h4>
-              <code class="overflow-x-auto text-xs wrap-anywhere">
-                {stringifyInlineArrays(
-                  {
+                <code class="overflow-x-auto text-xs wrap-anywhere">
+                  {stringifyInlineArrays({
                     ...variant.solution,
-                    x:
-                      Array.isArray(variant.solution?.x) && variant.solution.x.length > 10
-                        ? undefined
-                        : variant.solution?.x,
-                    y:
-                      Array.isArray(variant.solution?.y) && variant.solution.y.length > 10
-                        ? undefined
-                        : variant.solution?.y,
-                    g:
-                      Array.isArray(variant.solution?.g) && variant.solution.g.length > 10
-                        ? undefined
-                        : variant.solution?.g,
-                    G:
-                      Array.isArray(variant.solution?.G) && variant.solution.G.length > 10
-                        ? undefined
-                        : variant.solution?.G,
-                    h:
-                      Array.isArray(variant.solution?.h) && variant.solution.h.length > 10
-                        ? undefined
-                        : variant.solution?.h,
-                    H:
-                      Array.isArray(variant.solution?.H) && variant.solution.H.length > 10
-                        ? undefined
-                        : variant.solution?.H,
-                  },
-                  2
-                )}
-              </code>
+                    x: Array.isArray(variant.solution?.x) && variant.solution.x.length > 10 ? undefined : variant.solution?.x,
+                    y: Array.isArray(variant.solution?.y) && variant.solution.y.length > 10 ? undefined : variant.solution?.y,
+                    g: Array.isArray(variant.solution?.g) && variant.solution.g.length > 10 ? undefined : variant.solution?.g,
+                    G: Array.isArray(variant.solution?.G) && variant.solution.G.length > 10 ? undefined : variant.solution?.G,
+                    h: Array.isArray(variant.solution?.h) && variant.solution.h.length > 10 ? undefined : variant.solution?.h,
+                    H: Array.isArray(variant.solution?.H) && variant.solution.H.length > 10 ? undefined : variant.solution?.H,
+                  }, 2)}
+                </code>
             </div>
           </div>
         ))}
