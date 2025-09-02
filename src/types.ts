@@ -40,4 +40,10 @@ interface Solution {
   f?: number | undefined;
   g?: number[] | undefined;
   h?: number[] | undefined;
+  training_r2?: number | undefined;
+  training_rmse?: number | undefined;
+  training_accuracy?: number | undefined;
+  validation_r2?: number | undefined;
+  validation_rmse?: number | undefined;
+  validation_accuracy?: number | undefined;
 }

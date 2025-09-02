@@ -8,8 +8,8 @@ const download = () =>
 </script>
 
 <template>
-  <Button variant="link" class="mt-4 p-0" @click="download">
-    Download all datasets
+  <Button class="mt-4 p-0" @click="download">
     <DownloadIcon />
+    Download all datasets
   </Button>
 </template>
