@@ -106,17 +106,31 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
       }
     }
 
+    // If a problem has more than one variant, it is considered parametrised.
+    // Parametrised variants must have a dataset while non-parametrised are not expected to have one.
+    const isParametrised = metadata.variants.length > 1;
+
+    const variants = metadata.variants.map((variant) => {
+      const dataset = datasets.find((d) => d.name === variant.dataset);
+
+      if (isParametrised && !dataset) {
+        throw new Error(`Dataset ${variant.dataset} for problem ${name} not found.`);
+      }
+
+      return {
+        note: variant.note,
+        dimension: variant.dimension,
+        solution: variant.solution,
+        dataset: dataset,
+      };
+    });
+
     problems.push({
       name: metadata.name,
       category: categories[metadata.category] ?? categories.miscellaneous!,
       subcategory: metadata.subcategory ?? null,
       added: metadata.added,
-      variants: metadata.variants.map((variant) => ({
-        dataset: datasets.find((d) => d.name === variant.dataset),
-        note: variant.note,
-        dimension: variant.dimension,
-        solution: variant.solution,
-      })),
+      variants: variants,
     });
   }
 
