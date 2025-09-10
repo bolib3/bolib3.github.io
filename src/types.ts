@@ -15,7 +15,7 @@ export interface Problem {
 
 export interface ProblemVariant {
   dataset: Dataset | undefined;
-  note: string | undefined;
+  note: string | null;
   dimension: Dimension;
   solution: Solution;
 }
