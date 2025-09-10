@@ -113,6 +113,7 @@ export function loadProblems(categories: Record<string, Category>, datasets: Dat
       added: metadata.added,
       variants: metadata.variants.map((variant) => ({
         dataset: datasets.find((d) => d.name === variant.dataset),
+        note: variant.note,
         dimension: variant.dimension,
         solution: variant.solution,
       })),
