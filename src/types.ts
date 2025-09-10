@@ -46,4 +46,5 @@ interface Solution {
   validation_r2?: number | undefined;
   validation_rmse?: number | undefined;
   validation_accuracy?: number | undefined;
+  note: string;
 }
