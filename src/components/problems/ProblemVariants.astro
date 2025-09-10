@@ -98,6 +98,13 @@ if (variants.length === 0) {
               </Button>
             </div>
 
+            {variant.note && variant.note.trim() !== '' && (
+              <div>
+                <h4 class="text-sm font-semibold">Description</h4>
+                <code class="text-sm">{variant.note}</code>
+              </div>
+            )}
+
             <div>
               <h4 class="text-sm font-semibold">Dimension</h4>
               <code class="overflow-x-auto text-xs wrap-anywhere">
@@ -140,6 +147,7 @@ if (variants.length === 0) {
                 )}
               </code>
             </div>
+
           </div>
         ))}
       </div>
