@@ -15,6 +15,7 @@ export interface Problem {
 
 export interface ProblemVariant {
   dataset: Dataset | undefined;
+  note: string | undefined;
   dimension: Dimension;
   solution: Solution;
 }
@@ -46,5 +47,4 @@ interface Solution {
   validation_r2?: number | undefined;
   validation_rmse?: number | undefined;
   validation_accuracy?: number | undefined;
-  note: string;
 }

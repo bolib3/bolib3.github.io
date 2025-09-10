@@ -26,6 +26,7 @@ const problemMetadataValidator = z.object({
     .array(
       z.object({
         dataset: z.string(),
+        note: z.string().optional(),
         dimension: z.object({
           x: z.number(),
           y: z.number(),
@@ -52,7 +53,6 @@ const problemMetadataValidator = z.object({
           validation_r2: z.number().optional(),
           validation_rmse: z.number().optional(),
           validation_accuracy: z.number().optional(),
-          note: z.string(),
         }),
       })
     )
