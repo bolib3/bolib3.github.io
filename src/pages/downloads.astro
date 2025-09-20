@@ -2,7 +2,6 @@
 import RootLayout from '../layouts/RootLayout.astro';
 import DownloadProblemCollection from '../components/DownloadProblemCollection.vue';
 import Datatable from '@/components/datasets/Datatable.vue';
-import DownloadDatasetCollection from '../components/DownloadDatasetCollection.vue';
 
 import { Button } from '@/components/ui/button';
 import { datasets, problems } from '@/lib/data';
@@ -26,7 +25,7 @@ import { datasets, problems } from '@/lib/data';
       <h2 class="mt-12 text-2xl font-bold">Problem collections</h2>
 
       <p class="text-muted-foreground mt-6 max-w-3xl leading-7">
-        Download all of the available problems in a single zip file for a chosen language.
+        Download all available problems in a single zip file for a chosen language.
       </p>
 
       <DownloadProblemCollection client:only />
@@ -39,8 +38,6 @@ import { datasets, problems } from '@/lib/data';
         Many of the problems are parameterized by datasets, which can be searched and downloaded
         below.
       </p>
-
-      <DownloadDatasetCollection client:load />
 
       <Datatable datasets={datasets} problems={problems} client:load />
     </div>

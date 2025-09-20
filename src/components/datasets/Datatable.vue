@@ -2,6 +2,7 @@
 import type { Column, ColumnFiltersState, SortingState } from '@tanstack/vue-table';
 import { formatBytes, slugify, valueUpdater } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import DownloadDatasetCollection from '@/components/DownloadDatasetCollection.vue';
 import {
   Table,
   TableBody,
@@ -151,12 +152,16 @@ const table = useVueTable({
 
 <template>
   <div class="mt-4 w-full">
-    <Input
-      class="max-w-sm"
-      placeholder="Search..."
-      :model-value="table.getColumn('name')?.getFilterValue() as string"
-      @update:model-value="table.getColumn('name')?.setFilterValue($event)"
-    />
+    <div class="flex items-center justify-between gap-2">
+      <Input
+        class="max-w-sm"
+        placeholder="Search..."
+        :model-value="table.getColumn('name')?.getFilterValue() as string"
+        @update:model-value="table.getColumn('name')?.setFilterValue($event)"
+      />
+
+      <DownloadDatasetCollection />
+    </div>
 
     <div class="mt-4 rounded-md border">
       <Table>
