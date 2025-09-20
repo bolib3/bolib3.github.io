@@ -9,8 +9,8 @@ const count = problems.reduce((acc, problem) => {
 const digits = count.toString().padStart(3, '0').split('');
 ---
 
-<div class="flex items-center gap-2">
-  <p>Total problems to date</p>
+<div class="mt-1 flex items-center gap-2">
+  <p>Total problem instances to date</p>
 
   <div class="flex items-center gap-0.5">
     {digits.map((digit) => <SplitFlap digit={digit} duration={1000} client:load />)}
