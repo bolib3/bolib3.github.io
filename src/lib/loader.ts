@@ -60,7 +60,9 @@ const problemMetadataValidator = z.object({
 });
 
 export function loadDatasets(): Dataset[] {
-  const datasetPaths = fs.globSync(BOLIB_PATH + '/data/**/*.{csv,json,gdx,txt,sqlite}');
+  const datasetPaths = fs.globSync(
+    BOLIB_PATH + '/data/**/*.{csv,json,gdx,txt,sqlite,aux,mps,.mps.gz}'
+  );
 
   return datasetPaths.map((path) => new Dataset(path));
 }
