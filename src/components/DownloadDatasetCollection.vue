@@ -8,7 +8,7 @@ const download = () =>
 </script>
 
 <template>
-  <Button @click="download">
+  <Button @click="download" data-umami-event="download-dataset-collection">
     <DownloadIcon />
     Download all datasets
   </Button>

@@ -42,7 +42,11 @@ function downloadCollection() {
       </SelectContent>
     </Select>
 
-    <Button @click="downloadCollection">
+    <Button
+      @click="downloadCollection"
+      data-umami-event="download-problem-collection"
+      :data-umami-event-language="chosenLanguage"
+    >
       <Download />
       Download all problems
     </Button>
