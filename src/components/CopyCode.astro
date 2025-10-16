@@ -14,7 +14,7 @@ const { code, downloadPath, lang, title, class: className, ...other } = Astro.pr
 ---
 
 <div class:list={['relative', className]}>
-  <Code code={code} {...other} class="min-h-32 p-4 text-xs" />
+  <Code code={code} lang={lang} {...other} class="min-h-32 p-4 text-xs" />
 
   <!-- TODO: Improve dark mode / theme support -->
   <div class="absolute top-2 right-2 flex items-center gap-2 text-white">
