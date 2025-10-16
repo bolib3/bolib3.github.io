@@ -20,12 +20,14 @@ const latex = fs.readFileSync(`${BOLIB_PATH}/latex/${problem.name}.tex`, 'utf-8'
 <LanguageTabs client:only>
   <CopyCode
     slot="python"
+    title={problem.name}
     code={python}
     lang="python"
     downloadPath={`/problems/python/${problem.name}.py`}
   />
   <CopyCode
     slot="matlab"
+    title={problem.name}
     code={matlab}
     lang="matlab"
     downloadPath={`/problems/matlab/${problem.name}.m`}
@@ -33,12 +35,14 @@ const latex = fs.readFileSync(`${BOLIB_PATH}/latex/${problem.name}.tex`, 'utf-8'
   <!-- Note that gams is not supported by shiki so we're using python for now -->
   <CopyCode
     slot="gams"
+    title={problem.name}
     code={gams}
     lang="python"
     downloadPath={`/problems/gams/${problem.name}.gms`}
   />
   <CopyCode
     slot="latex"
+    title={problem.name}
     code={latex}
     lang="latex"
     downloadPath={`/problems/latex/${problem.name}.tex`}

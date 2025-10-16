@@ -111,11 +111,13 @@ const columns = [
       return h(
         Button,
         {
-          href: dataset.publicPath,
-          as: 'a',
-          variant: 'link',
-          download: dataset.name,
-          title: `Download ${dataset.name}`,
+          'href': dataset.publicPath,
+          'as': 'a',
+          'variant': 'link',
+          'download': dataset.name,
+          'title': `Download ${dataset.name}`,
+          'data-umami-event': 'download-dataset',
+          'data-umami-event-dataset': dataset.name,
         },
         () => h(Download)
       );

@@ -77,15 +77,46 @@ function downloadLaTeX(problem: Problem) {
         </DropdownMenuSubTrigger>
         <DropdownMenuPortal>
           <DropdownMenuSubContent>
-            <DropdownMenuItem @click="downloadPDF(problem)"> <Download /> PDF </DropdownMenuItem>
-            <DropdownMenuItem @click="downloadPython(problem)">
+            <DropdownMenuItem
+              @click="downloadPDF(problem)"
+              data-umami-event="download-problem"
+              data-umami-event-language="pdf"
+              :data-umami-event-problem="problem.name"
+            >
+              <Download /> PDF
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              @click="downloadPython(problem)"
+              data-umami-event="download-problem"
+              data-umami-event-language="python"
+              :data-umami-event-problem="problem.name"
+            >
               <Download /> Python
             </DropdownMenuItem>
-            <DropdownMenuItem @click="downloadMatLab(problem)">
+            <DropdownMenuItem
+              @click="downloadMatLab(problem)"
+              data-umami-event="download-problem"
+              data-umami-event-language="matlab"
+              :data-umami-event-problem="problem.name"
+            >
               <Download /> MatLab
             </DropdownMenuItem>
-            <DropdownMenuItem @click="downloadGAMS(problem)"><Download /> GAMS</DropdownMenuItem>
-            <DropdownMenuItem @click="downloadLaTeX(problem)"><Download /> LaTeX</DropdownMenuItem>
+            <DropdownMenuItem
+              @click="downloadGAMS(problem)"
+              data-umami-event="download-problem"
+              data-umami-event-language="gams"
+              :data-umami-event-problem="problem.name"
+            >
+              <Download /> GAMS</DropdownMenuItem
+            >
+            <DropdownMenuItem
+              @click="downloadLaTeX(problem)"
+              data-umami-event="download-problem"
+              data-umami-event-language="latex"
+              :data-umami-event-problem="problem.name"
+            >
+              <Download /> LaTeX
+            </DropdownMenuItem>
           </DropdownMenuSubContent>
         </DropdownMenuPortal>
       </DropdownMenuSub>
@@ -101,6 +132,8 @@ function downloadLaTeX(problem: Problem) {
               v-for="dataset in problem.variants.map((v) => v.dataset!)"
               :key="dataset.name"
               @click="downloadDataset(dataset)"
+              data-umami-event="download-dataset"
+              :data-umami-event-dataset="dataset.name"
             >
               <Download />
               {{ dataset.name }}

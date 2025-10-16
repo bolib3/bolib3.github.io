@@ -6,10 +6,11 @@ import { Download } from 'lucide-vue-next';
 import { Button } from '@/components/ui/button';
 
 type Props = ComponentProps<typeof Code> & {
+  title: string;
   downloadPath?: string;
 };
 
-const { code, downloadPath, class: className, ...other } = Astro.props;
+const { code, downloadPath, lang, title, class: className, ...other } = Astro.props;
 ---
 
 <div class:list={['relative', className]}>
@@ -20,11 +21,21 @@ const { code, downloadPath, class: className, ...other } = Astro.props;
     {
       downloadPath && (
         // @ts-ignore
-        <Button as="a" variant="ghost" size="icon" href={downloadPath} download="" title="Download">
+        <Button
+          as="a"
+          variant="ghost"
+          size="icon"
+          href={downloadPath}
+          download=""
+          title="Download"
+          data-umami-event="download-problem"
+          data-umami-event-type={lang}
+          data-umami-event-problem={title}
+        >
           <Download class="h-4 w-4" />
         </Button>
       )
     }
-    <CopyToClipboard text={code} client:load />
+    <CopyToClipboard text={code} title={title} client:load />
   </div>
 </div>

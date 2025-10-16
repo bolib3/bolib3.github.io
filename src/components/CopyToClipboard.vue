@@ -5,6 +5,7 @@ import { ref } from 'vue';
 
 const props = defineProps<{
   text: string;
+  title: string;
   class?: string;
 }>();
 
@@ -20,7 +21,15 @@ async function copy() {
 </script>
 
 <template>
-  <Button @click="copy" variant="ghost" size="icon" title="Copy to clipboard" :class="props.class">
+  <Button
+    @click="copy"
+    variant="ghost"
+    size="icon"
+    title="Copy to clipboard"
+    :class="props.class"
+    data-umami-event="copy-to-clipboard"
+    :data-umami-event-title="props.title"
+  >
     <CopyCheck v-if="copied" />
     <Copy v-else />
   </Button>
